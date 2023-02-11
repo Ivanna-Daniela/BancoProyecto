@@ -3,9 +3,10 @@
 var mongoose=require('mongoose');
 var Schema=mongoose.Schema;
 
-//Se va a generar una coleccion en la base de datos pelicula que va a tener estos campos
+
 var cuentaSchema = Schema({
     nombre:String,
+    numero:String,
     tipo:String,
     cedula:Number,
     estado:Number,

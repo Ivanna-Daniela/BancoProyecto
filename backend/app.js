@@ -3,7 +3,7 @@ var express=require('express');
 var podyParser=require('body-parser');
 const bodyParser = require('body-parser');
 var app=express();
-//var peliculasRoutes=require('./routes/peliculas.routes');
+var cuentasRoutes=require('./routes/cuentas.routes');
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
@@ -25,5 +25,5 @@ app.use((req,res,next)=>{
         )
     }
 )*/
-//app.use('/', peliculasRoutes);
+app.use('/', cuentasRoutes);
 module.exports=app;
