@@ -9,13 +9,15 @@ router.get('/inicio',cuentasRouter.getInicio);
 
 router.post('/guardar-cuenta',cuentasRouter.saveCuenta);
 
-router.get('/cuentas',cuentasRouter.getCuenta);
+router.get('/cuentas',cuentasRouter.getCuentas);
 
-router.get('/cuentas/:id',cuentasRouter.getCuentas);
+router.get('/cuenta/:id',cuentasRouter.getCuenta);
 
 router.put('/editar/:id',cuentasRouter.updateCuenta);
 
 router.delete('/borrar/:id',cuentasRouter.deleteCuenta);
+
+router.get('/encontrar/:id',cuentasRouter.findCuenta);
 
 
 

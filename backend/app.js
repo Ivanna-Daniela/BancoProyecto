@@ -17,13 +17,5 @@ app.use((req,res,next)=>{
     next();
 });
 
-//rutas
-/*app.get('/',(req,res)=>
-    {
-        res.status(468).send(
-            "<h1>Hola</h1>"
-        )
-    }
-)*/
 app.use('/', cuentasRoutes);
 module.exports=app;

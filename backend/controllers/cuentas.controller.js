@@ -1,8 +1,10 @@
 'use strict'
 var Cuenta=require('../models/cuenta');
+var Transaccion=require('../models/transaccion');
 var fs=require('fs');
 var path=require('path');
 const { exists } = require('../models/cuenta');
+
 var controller={
     getInicio:function(req,res){
         return res.status(201).send(
@@ -17,13 +19,12 @@ var controller={
         cuenta.nombre=params.nombre;
         cuenta.numero=params.numero;
         cuenta.tipo=params.tipo;
-        cuenta.cedula=params.cedula;
         cuenta.estado=params.estado;
-        cuenta.contrsenia=params.contrsenia;
+        cuenta.contrasenia=params.contrasenia;
         //metodo para guardar en la base de datos
         cuenta.save((err,cuentaGuardada)=>{
             if(err) return res.status(500).send({message:"Error al guardar"});
-            if(!cuentaGuardada) return res.status(404).send({message:'No se ha guardado la ceunta'});
+            if(!cuentaGuardada) return res.status(404).send({message:'No se ha guardado la cuenta'});
             return res.status(200).send({cuenta:cuentaGuardada});
         })
     },
@@ -62,8 +63,51 @@ var controller={
             if(!cuentaActualizada) return res.status(404).send({message:'No se puede actualizar cuenta'});
             return res.status(200).send({cuentaActualizada});
         })
+    }, 
+    transaccion:function(req,res){
+        var cuentaId=req.params.id;
+        var update=req.body;
+        var cuenta=new Cuenta();
+        //para tomar datos de la pagina
+        var params=req.body;
+        cuenta.nombre=params.nombre;
+        cuenta.numero=params.numero;
+        cuenta.tipo=params.tipo;
+        cuenta.estado=params.estado;
+        cuenta.contrasenia=params.contrasenia;
+        if(cuentaId==null) return res.status(4004).send({message:"La cuenta no existe"});
+        Cuenta.findByIdAndUpdate(cuentaId,update,{new:true},(err,cuentaActualizada)=>{
+            if(err) return res.status(500).send({message:"Error al actualizar los datos"});
+            if(!cuentaActualizada) return res.status(404).send({message:'No se puede actualizar cuenta'});
+            return res.status(200).send({cuentaActualizada});
+        })
+    },
+    aveCuenta:function(req,res){
+        
+        var cuenta=new Cuenta();
+        //para tomar datos de la pagina
+        var params=req.body;
+        cuenta.nombre=params.nombre;
+        cuenta.numero=params.numero;
+        cuenta.tipo=params.tipo;
+        cuenta.estado=params.estado;
+        cuenta.contrasenia=params.contrasenia;
+        //metodo para guardar en la base de datos
+        cuenta.save((err,cuentaGuardada)=>{
+            if(err) return res.status(500).send({message:"Error al guardar"});
+            if(!cuentaGuardada) return res.status(404).send({message:'No se ha guardado la cuenta'});
+            return res.status(200).send({cuenta:cuentaGuardada});
+        })
+    }
+    findCuenta:function(req,res){
+        var cuentaId=req.params.id;
+        if(cuentaId==null) return res.status(4004).send({message:"La cuenta no existe"});
+        Cuenta.find(numero== cuentaId,(err,cuenta)=>{
+            if(err) return res.status(500).send({message:"Error al recuperar los datos"});
+            if(!cuenta) return res.status(404).send({message:'No la existe la cuenta'});
+            return res.status(200).send({cuenta});
+        })
     }
 
-    
 }
 module.exports=controller;

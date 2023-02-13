@@ -6,11 +6,11 @@ var Schema=mongoose.Schema;
 
 var cuentaSchema = Schema({
     nombre:String,
-    numero:String,
+    numero:Number,
     tipo:String,
-    cedula:Number,
     estado:Number,
-    contrasenia:String
+    contrasenia:String,
+    cliente:mongoose.Types.ObjectId
 });
 
 module.exports=mongoose.model('Cuenta', cuentaSchema);
