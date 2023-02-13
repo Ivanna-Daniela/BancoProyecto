@@ -82,27 +82,11 @@ var controller={
             return res.status(200).send({cuentaActualizada});
         })
     },
-    aveCuenta:function(req,res){
-        
-        var cuenta=new Cuenta();
-        //para tomar datos de la pagina
-        var params=req.body;
-        cuenta.nombre=params.nombre;
-        cuenta.numero=params.numero;
-        cuenta.tipo=params.tipo;
-        cuenta.estado=params.estado;
-        cuenta.contrasenia=params.contrasenia;
-        //metodo para guardar en la base de datos
-        cuenta.save((err,cuentaGuardada)=>{
-            if(err) return res.status(500).send({message:"Error al guardar"});
-            if(!cuentaGuardada) return res.status(404).send({message:'No se ha guardado la cuenta'});
-            return res.status(200).send({cuenta:cuentaGuardada});
-        })
-    }
+    
     findCuenta:function(req,res){
-        var cuentaId=req.params.id;
-        if(cuentaId==null) return res.status(4004).send({message:"La cuenta no existe"});
-        Cuenta.find(numero== cuentaId,(err,cuenta)=>{
+        var cuentaNumero=req.params.numero;
+        if(cuentaNumero==null) return res.status(4004).send({message:"La cuenta no existe"});
+        Cuenta.find(numero== cuentaNumero,(err,cuenta)=>{
             if(err) return res.status(500).send({message:"Error al recuperar los datos"});
             if(!cuenta) return res.status(404).send({message:'No la existe la cuenta'});
             return res.status(200).send({cuenta});

@@ -4,7 +4,7 @@ var Schema=mongoose.Schema;
 
 
 var clienteSchema = Schema({
-    _id:Number,
+    numero:Number,
     nombre:String,
     apellido:String,
     telefono:Number,
