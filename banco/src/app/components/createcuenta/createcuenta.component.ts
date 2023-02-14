@@ -29,7 +29,5 @@ export class CreatecuentaComponent implements OnInit{
     this.idGuardado="";
   }
   ngOnInit(): void {
-    
   }
-  
 }
