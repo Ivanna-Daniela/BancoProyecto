@@ -18,7 +18,7 @@ router.put('/editar/:id',cuentasRouter.updateCuenta);
 router.delete('/borrar/:id',cuentasRouter.deleteCuenta);
 //buscar cuenta
 router.get('/encontrar/:numero',cuentasRouter.findCuenta);
-//transaccion cuenta
+
 router.post('/transaccion',cuentasRouter.transaccion);
 
 
