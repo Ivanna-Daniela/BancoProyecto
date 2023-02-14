@@ -32,7 +32,7 @@ export class CreatecuentaComponent implements OnInit{
   ngOnInit(): void {
   }
 
-  guardar() {
+  guardarCuenta() {
     this._cuentaService.guardarCuenta(this.cuentaGuardar).subscribe(
       response => {
         if(response.status == 'success') {

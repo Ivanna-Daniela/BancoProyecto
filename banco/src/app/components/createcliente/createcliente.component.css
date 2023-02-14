@@ -1,0 +1,143 @@
+*{
+    margin: 0;
+    padding: 0;
+
+}
+.izquierdo{
+    background-color: white;
+    float: left;
+    width: 50%;
+    height: 961px;
+}
+.derecha{
+    background-color: #F4F6F9;
+    float: right;
+    width: 50%;
+    height: 961px;
+    padding-top: 40px;
+}
+ #candado{
+    margin-left: 310px;
+    margin-right: 240px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 350px;
+
+  }
+  .texto-Bloqueado h1{
+    font-size: 40px;
+    font-weight: 700;
+    width: 300px;
+    text-align: center;
+    margin-top: 50px;
+    margin-left: 320px;
+    
+  }
+  .texto-Bloqueado p{
+    text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+    margin: auto;
+    width: 350px;
+  }
+  .opciones{
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    margin-left: 180px;
+  }
+  #usuario{
+    width: 210px;
+    height: 100px;
+    text-align: center;
+    margin: auto;
+    border: 1px solid gray;
+    border-radius: 5px 5px 5px 5px;
+    background-color: white;
+  }
+  #contraseña{
+    width: 210px;
+    height: 100px;
+    text-align: center;
+    margin: auto;
+    border: 1px solid gray;
+    border-radius: 5px 5px 5px 5px;
+    background-color: white;
+  }
+
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #dee3ed;
+    border-radius: 4px;
+    width: 500px;
+    margin: auto;
+  }
+  .card-body {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 3.5rem;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+  }
+  input[type="text"], input[type="password"] {
+    width: 300px;
+    height: 40px;
+    font-size: 18px;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px 5px 5px 5px;
+    border: 1px solid gray;
+  }
+  .keyboard button {
+    width: 60px;
+    height: 60px;
+    font-size: 22px;
+    background-color: #fff;
+    color: black;
+    border: 1px solid gray;
+    cursor: pointer;
+    margin: 10px;
+    border-radius: 50%;
+  }
+  .keyboard {
+    width: 250px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+  }
+  button:hover {
+    background-color: hsla(251, 67%, 40%, 0.594);
+    color: white;
+  }
+  #continuar {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #3b22ab;
+    color: white;
+    width: 300px;
+    border:none;
+    cursor: pointer;
+    border-radius: 5px 5px 5px 5px;
+  }
+  #regresar {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #3b22ab;
+    color: white;
+    width: 300px;
+    border:none;
+    cursor: pointer;
+    border-radius: 5px 5px 5px 5px;
+    margin-bottom: 40px;
+  }
