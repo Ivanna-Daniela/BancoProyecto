@@ -17,9 +17,9 @@ export class CreatecuentaComponent implements OnInit{
   public url:string;
   public status:string;
   public idGuardado:string;
+
   constructor(
     private _cuentaService:CuentaService
-
   ){
     this.titulo="GUARDAR CUENTA";
     this.url=Global.url;
@@ -28,6 +28,26 @@ export class CreatecuentaComponent implements OnInit{
     this.status="";
     this.idGuardado="";
   }
+
   ngOnInit(): void {
   }
+
+  guardar() {
+    this._cuentaService.guardarCuenta(this.cuentaGuardar).subscribe(
+      response => {
+        if(response.status == 'success') {
+          this.status = 'success';
+          this.idGuardado = response.id;
+          this.cuentaGuardar = new Cuenta('','','','',1,'','');
+        } else {
+          this.status = 'error';
+        }
+      },
+      error => {
+        console.log(<any>error);
+        this.status = 'error';
+      }
+    );
+  }
+
 }
