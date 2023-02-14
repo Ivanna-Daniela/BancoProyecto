@@ -8,7 +8,8 @@ var clienteSchema = Schema({
     nombre:String,
     apellido:String,
     telefono:Number,
-    password:Number
+    password:Number,
+    correo:String
 });
 
 module.exports=mongoose.model('Cliente', clienteSchema);
