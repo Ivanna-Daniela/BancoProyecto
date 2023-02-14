@@ -39,7 +39,16 @@
     font-size: 18px;
     text-align: justify;
   }
-  button {
+  button{
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: gray;
+    color: white;
+    width: 100%;
+    border:none;
+    cursor: pointer;
+  }
+  button:enabled {
     padding: 10px 20px;
     font-size: 18px;
     background-color: #3b22ab;
@@ -47,4 +56,7 @@
     width: 100%;
     border:none;
     cursor: pointer;
+  }
+  .error {
+    color: red;
   }
