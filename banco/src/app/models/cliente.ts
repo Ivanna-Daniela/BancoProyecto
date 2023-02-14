@@ -5,6 +5,7 @@ export class Cuenta{
         public nombre:string,
         public apellido:string,
         public telefono:Number,
-        public password:String
+        public password:String,
+        public correo:String,
     ){}
 }
