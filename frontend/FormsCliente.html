@@ -147,6 +147,7 @@
         const randomName = Math.floor(Math.random() * 10000); // generates a random number between 0 and 9999
         userInfo.push({ nombre: nombreInput.value,apellido:apellidoInput.value,correo:correoInput.value,celular:celularInput.value,cedula:cedulaInput.value, random:randomName});
         localStorage.setItem('userInfo', JSON.stringify(userInfo));
+        console.log(`Random name: ${randomName}`);
       });
     </script>
 
