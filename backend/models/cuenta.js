@@ -10,7 +10,7 @@ var cuentaSchema = Schema({
     tipo:String,
     estado:Number,
     contrasenia:String,
-    cliente:mongoose.Types.ObjectId
+    cliente:String
 });
 
 module.exports=mongoose.model('Cuenta', cuentaSchema);
