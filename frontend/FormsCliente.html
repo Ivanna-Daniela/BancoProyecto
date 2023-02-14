@@ -106,6 +106,7 @@
                     <h1>¡Empecemos!</h1> 
                     <h2>Ingresa tus datos</h2>
                     <br>
+                    <form id="nameForm">
                     <label for="nombre">Nombre:</label>
                     <input type="text" id="nombre" name="nombre">
         
@@ -123,12 +124,32 @@
     
                     <input type="checkbox" id="autorizo" name="autorizo">
                     <label for="autorizo" class="checkbox-label">Autorizo al Banco verificar el tratamiento de mis datos personales y crediticios de fuentes legales de información</label>
-                    <button disabled>Enviar solicitud</button>
+                    <button disabled type="submit" id="submitName">Enviar solicitud</button>
+                  </form>
                     <div id="error" class="error"></div>
                 </form>
             </div>
         </div>
-        <button>Continuar</button>
+        <button onclick="window.location.href='transaccion.html'">Continuar</button>
     </div>
+
+    <script>
+      const nameForm = document.querySelector('#nameForm');
+      const submitNameBtn = document.querySelector('#submitName');
+      submitNameBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        const nombreInput = document.querySelector('#nombre');
+        const apellidoInput = document.querySelector('#apellido');
+        const correoInput = document.querySelector('#correo');
+        const celularInput = document.querySelector('#celular');
+        const cedulaInput = document.querySelector('#cedula');
+        const userInfo = JSON.parse(localStorage.getItem('userInfo')) || [];
+        const randomName = Math.floor(Math.random() * 10000); // generates a random number between 0 and 9999
+        userInfo.push({ nombre: nombreInput.value,apellido:apellidoInput.value,correo:correoInput.value,celular:celularInput.value,cedula:cedulaInput.value, random:randomName});
+        localStorage.setItem('userInfo', JSON.stringify(userInfo));
+      });
+    </script>
+
+
 </body>
 </html>
