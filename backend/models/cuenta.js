@@ -6,7 +6,7 @@ var Schema=mongoose.Schema;
 
 var cuentaSchema = Schema({
     nombre:String,
-    numero:Number,
+    numero:String,
     tipo:String,
     estado:Number,
     contrasenia:String,

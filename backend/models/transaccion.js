@@ -6,10 +6,10 @@ var Schema=mongoose.Schema;
 var transaccionSchema = Schema({
     Fecha:String,
     monto:Number,
-    id_cedulaE:Number,
-    id_cuentaE:Number,
-    id_cedulaR:Number,
-    id_cuentaR:Number
+    id_cedulaE:String,
+    id_cuentaE:String,
+    id_cedulaR:String,
+    id_cuentaR:String
 });
 
 module.exports=mongoose.model('Transaccion', transaccionSchema);
