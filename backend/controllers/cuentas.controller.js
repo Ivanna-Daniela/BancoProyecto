@@ -64,44 +64,36 @@ var controller={
         })
     }, 
     transaccion:function(req,res){
-        var update=req.body;
-        var transaccion=new Transaccion();
         var params=req.body;
-        transaccion.monto=params.monto;
-        transaccion.id_cuentaR=params.id_cuentaR;
-        transaccion.id_cuentaE=params.id_cuentaE;
-        console.log(transaccion.id_cuentaR);
-        var cuenta1=new Cuenta();
-        cuenta1=this.returnCuenta(transaccion.id_cuentaR);
-        console.log(cuenta1);
-        /*if(cuentaId==null) return res.status(4004).send({message:"La cuenta no existe"});
-        Cuenta.findByIdAndUpdate(cuentaId,update,{new:true},(err,cuentaActualizada)=>{
-            if(err) return res.status(500).send({message:"Error al actualizar los datos"});
-            if(!cuentaActualizada) return res.status(404).send({message:'No se puede actualizar cuenta'});
-            return res.status(200).send({cuentaActualizada});
-        })*/
-    },
-    saveCuenta:function(req,res){
+        var numero=params.id_cuentaE;
         
-        var cuenta=new Cuenta();
-        //para tomar datos de la pagina
-        var params=req.body;
-        cuenta.nombre=params.nombre;
-        cuenta.numero=params.numero;
-        cuenta.tipo=params.tipo;
-        cuenta.estado=params.estado;
-        cuenta.contrasenia=params.contrasenia;
-        //metodo para guardar en la base de datos
-        cuenta.save((err,cuentaGuardada)=>{
-            if(err) return res.status(500).send({message:"Error al guardar"});
-            if(!cuentaGuardada) return res.status(404).send({message:'No se ha guardado la cuenta'});
-            return res.status(200).send({cuenta:cuentaGuardada});
+        var monto=params.monto;
+        var cuentaE=new Cuenta();
+        var cuentaR=new Cuenta();
+        if(numero==null)return res.status(404).send({message:"La cuenta no existe"});
+        Cuenta.find({numero},(err,cuenta)=>{
+            if(err) return res.status(500).send({message:"Error al recuperar los datos"});
+            if(!cuenta) return res.status(404).send({message:'No la existe la cuenta'});
+            console.log({cuenta});
+            return cuenta ;
+            cuentaE=cuenta ;
+            
         })
+        numero=params.id_cuentaR;
+        Cuenta.find({numero},(err,cuenta)=>{
+            if(err) return res.status(500).send({message:"Error al recuperar los datos"});
+            if(!cuenta) return res.status(404).send({message:'No la existe la cuenta'});
+            console.log({cuenta});
+            return cuenta;
+            cuentaR=cuenta;
+            
+        })
+        
     },
+    
     
     findCuenta:function(req,res){
         var numero=req.params.numero;
-
         if(numero==null) return res.status(404).send({message:"La cuenta no existe"});
         Cuenta.find({numero},(err,cuenta)=>{
             if(err) return res.status(500).send({message:"Error al recuperar los datos"});
@@ -111,18 +103,14 @@ var controller={
     },
     returnCuenta:function(req,res){
         var numero=req.params.numero;
-        var cuenta1=new Cuenta();
-
         if(numero==null) return res.status(404).send({message:"La cuenta no existe"});
         Cuenta.find({numero},(err,cuenta)=>{
             if(err) return res.status(500).send({message:"Error al recuperar los datos"});
             if(!cuenta) return res.status(404).send({message:'No la existe la cuenta'});
             console.log({cuenta});
-            return cuenta;
-            this.cuenta1=cuenta;
+            return cuenta ;
+            
         })
-
-        console.log("Datos de la cuenta: "+cuenta1);
     }
    
 }
