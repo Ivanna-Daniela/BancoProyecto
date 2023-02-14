@@ -10,7 +10,14 @@
     height: 961px;
 }
 .derecha{
-    background-color: #F4F6F9;
+    background: #C6FFDD;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #f7797d, #FBD786, #C6FFDD);  
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, hsla(358, 89%, 72%, 0.603), hsla(42, 94%, 75%, 0.603), hsla(144, 100%, 89%, 0.603)), url("img/bank.jpg"); 
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background-size: cover;
+    background-attachment:fixed;
+    position: relative;
     float: right;
     width: 50%;
     height: 961px;
@@ -34,11 +41,17 @@
     
   }
   .texto-Bloqueado p{
-    text-align: center;
-    font-size: 15px;
-    font-weight: 600;
+    text-align: justify;
+    font-size: 25px;
+    font-weight: 400;
     margin: auto;
-    width: 350px;
+    width: 550px;
+  }
+  #footer{
+    width: 700px;
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 15px;
   }
   .opciones{
     width: 60%;
@@ -82,6 +95,7 @@
     flex: 1 1 auto;
     min-height: 1px;
     padding: 3.5rem;
+    margin-top: 170px;
   }
   .form-group {
     display: flex;
@@ -97,24 +111,6 @@
     margin-bottom: 20px;
     border-radius: 5px 5px 5px 5px;
     border: 1px solid gray;
-  }
-  .keyboard button {
-    width: 60px;
-    height: 60px;
-    font-size: 22px;
-    background-color: #fff;
-    color: black;
-    border: 1px solid gray;
-    cursor: pointer;
-    margin: 10px;
-    border-radius: 50%;
-  }
-  .keyboard {
-    width: 250px;
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    margin-bottom: 50px;
   }
   #continuar {
     padding: 10px 20px;

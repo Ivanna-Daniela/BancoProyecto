@@ -21,49 +21,35 @@
 <body>
     <div class="izquierdo">
         <div class="texto-Bloqueado">
-            <h1>¿Tu Banca Web está bloqueada?</h1>
+            <h1>Crea tu cuenta para tener acceso a la banca web</h1>
             <img id="candado" src="css/img/bloqueado.png" alt="bloqueado">
             <p>
-                Ingresa el número de tu documento de identidad
-                o pasaporte y clave de tarjeta de débito.
+                01. Cuida tu usuario y contraseña.
+            </p>
+            <p>
+                02. Recuerde que su numero de cuenta y PIN han sido enviado a su correo electrónico.
             </p>
             <br>
                 
-            <p>
-                Enviaremos una contraseña temporal
-                a tu correo electrónico y/o teléfono celular.
-            </p>
-            <br>
-            <div class="opciones">
-                <button id="usuario">Recordar Usuario</button>
-                <button id="contraseña">Recordar Contraseña</button>
-            </div>
+            <p id="footer">&copy; 2023 BANK, Quito, Ecuador. Todos los derechos Reservados</p>
+            
         </div>
     </div>
     <div class="derecha">
         <div class="card card-body" >
             <div class="form-group">
-                <label for="cedula">Documento de identidad o pasaporte</label>
-                <input type="text" id="cedula">
-                <div class="form-group">
-                    <label for="password">Clave tarjeta de débito</label>
-                    <input type="password" id="password">
-                    <div class="keyboard">
-                        <button>1</button>
-                        <button>2</button>
-                        <button>3</button>
-                        <button>4</button>
-                        <button>5</button>
-                        <button>6</button>
-                        <button>7</button>
-                        <button>8</button>
-                        <button>9</button>
-                        <button>0</button>
-                    </div>
-                </div>
+                <label for="cuenta">Numero de cuenta</label>
+                <input type="text" id="cuenta">
+                <label for="pin">PIN</label>
+                <input type="password" id="pin">
+                <label for="user">Nombre de usuario</label>
+                <input type="text" id="user">
+                <label for="password">contraseña</label>
+                <input type="password" id="password">
+                
                 <button id="continuar">Continuar</button>
                 <br>
-                <button id="regresar">Regresar Banca Web</button>
+                <button id="regresar">Regresar</button>
             </div>
         </div>
 
