@@ -39,13 +39,13 @@
         <div class="card card-body" >
             <div class="form-group">
                 <label for="cuenta">Numero de cuenta</label>
-                <input type="text" id="cuenta">
+                <input type="text" id="cuenta" name="cuenta">
                 <label for="pin">PIN</label>
-                <input type="password" id="pin">
+                <input type="password" id="pin" name="pin">
                 <label for="user">Nombre de usuario</label>
-                <input type="text" id="user">
+                <input type="text" id="user" name="user">
                 <label for="password">contraseña</label>
-                <input type="password" id="password">
+                <input type="password" id="password" name="password">
                 
                 <button id="continuar">Continuar</button>
                 <br>
@@ -54,5 +54,43 @@
         </div>
 
     </div>
+
+
+    <script>
+        const userInfo = JSON.parse(localStorage.getItem('userInfo')) || [];
+        const userInfoList = document.querySelector('#userInfo');
+        const error = document.querySelector('#error');
+        
+        for (let i = 0; i < userInfo.length; i++) {
+          const userInfoItem = document.createElement('li');
+          //userInfoItem.innerText = `${userInfo[i].name}: ${userInfo[i].number}`;
+          //userInfoList.appendChild(userInfoItem);
+        }
+        
+        const userInfoForm = document.querySelector('#userInfoForm');
+        const submitUserInfoBtn = document.querySelector('#submitUserInfo');
+        submitUserInfoBtn.addEventListener('click', (event) => {
+          event.preventDefault();
+          const nameInput = document.querySelector('#cuenta');
+          const numberInput = document.querySelector('#pin');
+          const usuarioInput = document.querySelector('#user');
+          const passwordInput = document.querySelector('#password');
+          const userInfoIndex = userInfo.findIndex((item) => item.name === nameInput.value);
+          if (userInfoIndex !== -1 && userInfo[userInfoIndex].number === Number(numberInput.value)) {
+            error.innerText = `Ingreso correcto de cuenta y pin, por favor coloque su usuario y contrasena`;
+            return;
+          }
+          if (userInfoIndex !== -1) {
+            userInfo[userInfoIndex].number -= Number(numberInput.value);
+          } else {
+            userInfo.push({ name: nameInput.value, number: -Number(numberInput.value), user:usuarioInput.value,password:passwordInput.value });
+          }
+          localStorage.setItem('userInfo', JSON.stringify(userInfo));
+          const userInfoItem = document.createElement('li');
+          userInfoItem.innerText = `${nameInput.value}: ${userInfo[userInfoIndex].number}`;
+          userInfoList.appendChild(userInfoItem);
+        });
+      </script>
+
 </body>
 </html>
