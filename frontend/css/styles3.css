@@ -133,3 +133,9 @@
     border-radius: 5px 5px 5px 5px;
     margin-bottom: 40px;
   }
+  #tituloD{
+    text-align: center;
+    font-size: 30px;
+    font-weight: 800;
+    margin-top: 20px;
+  }
