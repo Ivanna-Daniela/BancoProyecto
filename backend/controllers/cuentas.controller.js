@@ -83,15 +83,31 @@ var controller={
         })
     },
     
-    findCuenta:function(req,res){
-        var cuentaNumero=req.params.numero;
-        if(cuentaNumero==null) return res.status(4004).send({message:"La cuenta no existe"});
-        Cuenta.find(numero== cuentaNumero,(err,cuenta)=>{
+    /*findCuenta:function(req,res){
+        var numero=req.params.numero;
+
+        if(numero==null) return res.status(404).send({message:"La cuenta no existe"});
+        Cuenta.find({numero},(err,cuenta)=>{
             if(err) return res.status(500).send({message:"Error al recuperar los datos"});
             if(!cuenta) return res.status(404).send({message:'No la existe la cuenta'});
             return res.status(200).send({cuenta});
         })
-    }
+    },*/
+    findCuenta:function(req,res){
+        var numero=req.params.numero;
+        var cuenta1=new Cuenta();
 
+        if(numero==null) return res.status(404).send({message:"La cuenta no existe"});
+        Cuenta.find({numero},(err,cuenta)=>{
+            if(err) return res.status(500).send({message:"Error al recuperar los datos"});
+            if(!cuenta) return res.status(404).send({message:'No la existe la cuenta'});
+            console.log({cuenta});
+            return {cuenta};
+            this.cuenta1=cuenta;
+        })
+
+        console.log("Datos de la cuenta: "+cuenta1);
+    }
+   
 }
 module.exports=controller;
