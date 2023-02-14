@@ -47,9 +47,9 @@
                 <label for="password">contraseña</label>
                 <input type="password" id="password" name="password">
                 
-                <button id="continuar">Continuar</button>
+                <button id="continuar">Guardar</button>
                 <br>
-                <button id="regresar">Regresar</button>
+                <button onclick="window.location.href='FormsUsuario.html'" style="margin-top: 20px;"id="regresar">Next</button>
             </div>
         </div>
 
@@ -57,6 +57,8 @@
 
 
     <script>
+        const submitNumberBtn = document.querySelector('#continuar');
+        
         const userInfo = JSON.parse(localStorage.getItem('userInfo')) || [];
         const userInfoList = document.querySelector('#userInfo');
         const error = document.querySelector('#error');
@@ -67,9 +69,10 @@
           //userInfoList.appendChild(userInfoItem);
         }
         
-        const userInfoForm = document.querySelector('#userInfoForm');
-        const submitUserInfoBtn = document.querySelector('#submitUserInfo');
-        submitUserInfoBtn.addEventListener('click', (event) => {
+        //const userInfoForm = document.querySelector('#userInfoForm');
+        //const submitUserInfoBtn = document.querySelector('#submitUserInfo');
+
+        submitNumberBtn.addEventListener('click', (event) => {
           event.preventDefault();
           const nameInput = document.querySelector('#cuenta');
           const numberInput = document.querySelector('#pin');
@@ -90,6 +93,7 @@
           userInfoItem.innerText = `${nameInput.value}: ${userInfo[userInfoIndex].number}`;
           userInfoList.appendChild(userInfoItem);
         });
+    
       </script>
 
 </body>
