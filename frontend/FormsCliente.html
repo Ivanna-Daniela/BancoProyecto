@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/00c1360545.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">      
+    <title>Ingreso de Datos</title>
+    <script>
+        window.onload = function() {
+          const checkbox = document.getElementById('autorizo');
+          const button = document.querySelector('button');
+  
+          checkbox.addEventListener('change', function() {
+            button.disabled = !this.checked;
+          });
+        };
+    </script>
+    <script>
+        window.onload = function() {
+        const checkbox = document.getElementById('autorizo');
+        const button = document.querySelector('button');
+        const nombreInput = document.getElementById('nombre');
+        const apellidoInput = document.getElementById('apellido');
+        const cedulaInput = document.getElementById('cedula');
+        const contrasenaInput = document.getElementById('contrasena');
+        const errorDiv = document.getElementById('error');
+
+        checkbox.addEventListener('change', function() {
+          button.disabled = !this.checked;
+        });
+
+        function validarNombre() {
+          const nombre = nombreInput.value.trim();
+          if (nombre === '') {
+            errorDiv.textContent = 'Por favor, ingresa tu nombre';
+            return false;
+          } else if (!/^[A-Za-z]+$/.test(nombre)) {
+            errorDiv.textContent = 'Por favor, ingresa solo letras en el campo de nombre';
+            return false;
+          }
+          return true;
+        }
+
+        function validarApellido() {
+          const apellido = apellidoInput.value.trim();
+          if (apellido === '') {
+            errorDiv.textContent = 'Por favor, ingresa tu apellido';
+            return false;
+          } else if (!/^[A-Za-z]+$/.test(apellido)) {
+            errorDiv.textContent = 'Por favor, ingresa solo letras en el campo de apellido';
+            return false;
+          }
+          return true;
+        }
+
+        function validarCorreo() {
+            const correo = correoInput.value.trim();
+            if (correo === '') {
+                errorDiv.textContent = 'Por favor, ingresa tu correo electrónico';
+                return false;
+            } else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(correo)) {
+                errorDiv.textContent = 'Por favor, ingresa un correo electrónico válido';
+                return false;
+            }
+            return true;
+        }
+        function validarCedula() {
+          const cedula = cedulaInput.value.trim();
+          if (cedula === '') {
+            errorDiv.textContent = 'Por favor, ingresa tu cédula';
+            return false;
+          } else if (!/^[0-9]{10}$/.test(cedula)) {
+            errorDiv.textContent = 'Por favor, ingresa una cédula válida';
+            return false;
+          }
+          return true;
+        }
+        function validarFormulario(event) {
+            errorDiv.textContent = '';
+            if (!validarNombre() || !validarApellido() || !validarCedula() || !validarCorreo()) {
+                errorDiv.style.display = 'block';
+                    event.preventDefault();
+            } else {
+                errorDiv.style.display = 'none';
+                }
+        }
+        const form = document.querySelector('form');
+        form.addEventListener('submit', validarFormulario);
+  };
+    </script>
+</head>
+<body>
+    <div class="total">
+        <div class="container">
+            <div class="formulario">
+                <form>
+                    <h1>¡Empecemos!</h1> 
+                    <h2>Ingresa tus datos</h2>
+                    <br>
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre">
+        
+                    <label for="apellido">Apellido:</label>
+                    <input type="text" id="apellido" name="apellido">
+    
+                    <label for="correo">Correo:</label>
+                    <input type="text" id="correo" name="correo">
+    
+                    <label for="celular">Celular:</label>
+                    <input type="text" id="celular" name="celular">
+    
+                    <label for="cedula">Cédula:</label>
+                    <input type="text" id="cedula" name="cedula">
+    
+                    <input type="checkbox" id="autorizo" name="autorizo">
+                    <label for="autorizo" class="checkbox-label">Autorizo al Banco verificar el tratamiento de mis datos personales y crediticios de fuentes legales de información</label>
+                    <button disabled>Enviar solicitud</button>
+                    <div id="error" class="error"></div>
+                </form>
+            </div>
+        </div>
+        <button>Continuar</button>
+    </div>
+</body>
+</html>
