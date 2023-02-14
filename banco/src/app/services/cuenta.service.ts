@@ -18,7 +18,7 @@ export class CuentaService{
         let headers=new HttpHeaders().set('Content-Type','application/json');
         return this._http.get(this.url+'cuentas',{headers:headers});
     }
-    //guardar pelicula
+    //guardar cuenta
     //http://localhost:3700/guardar-cuenta
     guardarCuenta(cuenta:Cuenta):Observable<any>{
         let params=JSON.stringify(cuenta);
