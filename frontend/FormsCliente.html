@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/00c1360545.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">      
+    <title>Ingreso de Datos</title>
+    <script>
+        window.onload = function() {
+          const checkbox = document.getElementById('autorizo');
+          const button = document.querySelector('button');
+  
+          checkbox.addEventListener('change', function() {
+            button.disabled = !this.checked;
+          });
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="formulario">
+            <form>
+                <h1>¡Empecemos!</h1> 
+                <h2>Ingresa tus datos</h2>
+                <br>
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre">
+    
+                <label for="apellido">Apellido:</label>
+                <input type="text" id="apellido" name="apellido">
+    
+                <label for="correo">Correo:</label>
+                <input type="text" id="correo" name="correo">
+    
+                <label for="celular">Celular:</label>
+                <input type="text" id="celular" name="celular">
+            
+                <label for="password">Contraseña:</label>
+                <input type="password" id="codigo-dactilar" name="codigo-dactilar">
+                
+                <input type="checkbox" id="autorizo" name="autorizo">
+                <label for="autorizo" class="checkbox-label">Autorizo al Banco verificar el tratamiento de mis datos personales y crediticios de fuentes legales de información</label>
+                <button disabled>Enviar solicitud</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
