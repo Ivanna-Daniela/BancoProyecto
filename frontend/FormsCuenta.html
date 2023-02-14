@@ -61,7 +61,9 @@
           event.preventDefault();
           const userInfo = JSON.parse(localStorage.getItem('userInfo')) || [];
           const name = JSON.parse(localStorage.getItem('userInfo'))[userInfo.length-1].name;
-          const user = { name: name,number: 50,  emotion: emotionInput.value };
+          const randomcuenta = Math.floor(Math.random() * 1000000); // generates a random number between 0 and 999999
+          const user = { name: name,number: 50,  emotion: emotionInput.value,cuenta:randomcuenta };
+          console.log(`Random name: ${randomCuenta}`);
           userInfo.push(user);
           localStorage.setItem('userInfo', JSON.stringify(userInfo));
         });
