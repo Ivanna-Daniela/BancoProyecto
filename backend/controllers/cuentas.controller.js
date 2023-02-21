@@ -1,6 +1,6 @@
 'use strict'
 var Cuenta=require('../models/cuenta');
-var Transaccion=require('../models/transaccion');
+var Cliente=require('../models/cliente');
 var fs=require('fs');
 var path=require('path');
 const { exists } = require('../models/cuenta');
@@ -11,31 +11,42 @@ var controller={
             "<h1>Hola 2<h1>"
         );
     },
-     saveCuenta: async function(req, res) {
-        try {
-          const { nombre, numero, tipo, estado, contrasenia } = req.body;
-      
-          // check if cuenta already exists
+    saveCuenta: async function(req, res) {
+      try {
+        const { tipo, estado, cliente,limiteDiario } = req.body;
+    
+        // generate a unique cuenta number
+        let numero;
+        do {
+          numero = Math.floor(Math.random() * (99999999 - 10000000) + 10000000).toString();
           const existingCuenta = await Cuenta.findOne({ numero });
           if (existingCuenta) {
-            return res.status(404).send({ message: 'Ya existe la cuenta' });
+            numero = null;
           }
-      
-          // create a new cuenta object and save to database
-          const nuevaCuenta = new Cuenta({
-            nombre,
-            numero,
-            tipo,
-            estado,
-            contrasenia,
-          });
-          const cuentaGuardada = await nuevaCuenta.save();
-          return res.status(200).send({ cuenta: cuentaGuardada });
-        } catch (err) {
-          console.error(err);
-          return res.status(500).send({ message: 'Error al guardar' });
+        } while (!numero);
+    
+        // check if cliente exists
+        const existingCliente = await Cliente.findOne({ nombre: cliente });
+        if (!existingCliente) {
+          return res.status(404).send({ message: 'El cliente no existe' });
         }
-      }    
+    
+        // create a new cuenta object and save to database
+        const nuevaCuenta = new Cuenta({
+          numero,
+          tipo,
+          estado,
+          cliente: existingCliente._id,
+          limiteDiario,
+        });
+        const cuentaGuardada = await nuevaCuenta.save();
+        return res.status(200).send({ cuenta: cuentaGuardada });
+      } catch (err) {
+        console.error(err);
+        return res.status(500).send({ message: 'Error al guardar' });
+      }
+    }
+    
     ,
  
     getCuentas:function(req,res){
@@ -123,20 +134,5 @@ var controller={
         })
     },
 
-    returnCuenta:function(req,res){
-        var numero=req.params.numero;
-        var cuenta1=new Cuenta();
-
-        if(numero==null) return res.status(404).send({message:"La cuenta no existe"});
-        Cuenta.find({numero},(err,cuenta)=>{
-            if(err) return res.status(500).send({message:"Error al recuperar los datos"});
-            if(!cuenta) return res.status(404).send({message:'No la existe la cuenta'});
-            console.log({cuenta});
-            return {cuenta};
-            return cuenta;
-            this.cuenta1=cuenta;
-        })
-        console.log("Datos de la cuenta: "+cuenta1);
-    }
 }
 module.exports=controller;

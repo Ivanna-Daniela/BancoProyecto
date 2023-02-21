@@ -5,12 +5,11 @@ var Schema=mongoose.Schema;
 
 
 var cuentaSchema = Schema({
-    nombre:String,
     numero:String,
     tipo:String,
     estado:Number,
-    contrasenia:String,
-    cliente:String
+    cliente:String,
+    limiteDiario:Number
 });
 
 module.exports=mongoose.model('Cuenta', cuentaSchema);

@@ -4,6 +4,7 @@ var podyParser=require('body-parser');
 const bodyParser = require('body-parser');
 var app=express();
 var cuentasRoutes=require('./routes/cuentas.routes');
+var clientesRoutes=require('./routes/cliente.routes');
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
@@ -18,4 +19,5 @@ app.use((req,res,next)=>{
 });
 
 app.use('/', cuentasRoutes);
+app.use('/', clientesRoutes);
 module.exports=app;

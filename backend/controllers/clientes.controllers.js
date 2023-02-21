@@ -11,18 +11,20 @@ var controller={
             "<h1>Hola 2<h1>"
         );
     },
-     saveCliente: async function(req, res) {
+    saveCliente: async function(req, res) {
         try {
-          const { numero, nombre, apellido, telefono, password, correo } = req.body;
+          const { numero, nombre, apellido, telefono, correo } = req.body;
       
-          // check if cuenta already exists
+          // Generate a random 4-digit numeric password
+          const password = Math.floor(1000 + Math.random() * 9000).toString();
+      
           const existingCliente = await Cliente.findOne({ numero });
           if (existingCliente) {
             return res.status(404).send({ message: 'Ya existe el Cliente' });
           }
       
-          // create a new cuenta object and save to database
-          const nuevoCliente = new Cuenta({
+          // create a new client object and save to database
+          const nuevoCliente = new Cliente({
             numero,
             nombre,
             apellido,
@@ -36,11 +38,12 @@ var controller={
           console.error(err);
           return res.status(500).send({ message: 'Error al guardar' });
         }
-      }    
+      }
+      
     ,
  
     getClientes:function(req,res){
-        Cuenta.find({}).sort().exec((err,clientes)=>{
+        Cliente.find({}).sort().exec((err,clientes)=>{
             if(err) return res.status(500).send({message:"Error al recuperar los datos"});
             if(!clientes) return res.status(404).send({message:'No existen clientes'});
             return res.status(200).send({clientes});
@@ -64,21 +67,21 @@ var controller={
             return res.status(200).send({clienteBorrado});
         })
     },
-    updateCuenta:function(req,res){
-        var cuentaId=req.params.id;
+    updateCliente:function(req,res){
+        var clienteId=req.params.id;
         var update=req.body;
-        if(cuentaId==null) return res.status(4004).send({message:"La cuenta no existe"});
-        Cuenta.findOneAndUpdate({cuentaId},update,{new:true},(err,cuentaActualizada)=>{
+        if(clienteId==null) return res.status(4004).send({message:"La cliente no existe"});
+        Cliente.findOneAndUpdate({clienteId},update,{new:true},(err,clienteActualizado)=>{
             if(err) return res.status(500).send({message:"Error al actualizar los datos"});
-            if(!cuentaActualizada) return res.status(404).send({message:'No se puede actualizar cuenta'});
-            return res.status(200).send({cuentaActualizada});
+            if(!clienteActualizado) return res.status(404).send({message:'No se puede actualizar cliente'});
+            return res.status(200).send({clienteActualizado});
         })
     }, 
 
     findCliente:function(req,res){
         var numero=req.params.numero;
         if(numero==null) return res.status(404).send({message:"No se ha ingresado bien el CI"});
-        Cuenta.find({numero},(err,cliente)=>{
+        Cliente.find({numero},(err,cliente)=>{
             if(err) return res.status(500).send({message:"Error al recuperar los datos"});
             if(!cliente) return res.status(404).send({message:'No la existe el cliente'});
             return res.status(200).send({cliente});

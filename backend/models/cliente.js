@@ -4,11 +4,11 @@ var Schema=mongoose.Schema;
 
 
 var clienteSchema = Schema({
-    numero:Number,
+    numero:String,
     nombre:String,
     apellido:String,
     telefono:Number,
-    password:Number,
+    password:String,
     correo:String
 });
 
