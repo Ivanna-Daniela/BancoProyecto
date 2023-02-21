@@ -64,10 +64,10 @@ var controller={
         })
     },
     updateCuenta:function(req,res){
-        var cuentaId=req.params.id;
+        var numero=req.params.numero;
         var update=req.body;
-        if(cuentaId==null) return res.status(4004).send({message:"La cuenta no existe"});
-        Cuenta.findOneAndUpdate({cuentaId},update,{new:true},(err,cuentaActualizada)=>{
+        if(numero==null) return res.status(4004).send({message:"La cuenta no existe"});
+        Cuenta.findOneAndUpdate(numero,update,{new:true},(err,cuentaActualizada)=>{
             if(err) return res.status(500).send({message:"Error al actualizar los datos"});
             if(!cuentaActualizada) return res.status(404).send({message:'No se puede actualizar cuenta'});
             return res.status(200).send({cuentaActualizada});
@@ -113,11 +113,12 @@ var controller={
     
     
     findCuenta:function(req,res){
+      var prueba={ "cuenta":[]};
         var numero=req.params.numero;
         if(numero==null) return res.status(404).send({message:"La cuenta no existe"});
         Cuenta.find({numero},(err,cuenta)=>{
             if(err) return res.status(500).send({message:"Error al recuperar los datos"});
-            if(!cuenta) return res.status(404).send({message:'No la existe la cuenta'});
+            if(cuenta==prueba) return res.status(404).send({message:'No la existe la cuenta'});
             return res.status(200).send({cuenta});
         })
     },

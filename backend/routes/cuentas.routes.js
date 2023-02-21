@@ -13,7 +13,7 @@ router.get('/cuentas',cuentasRouter.getCuentas);
 //ver cuenta
 router.get('/cuenta/:id',cuentasRouter.getCuenta);
 //editar cuenta
-router.put('/editar/:id',cuentasRouter.updateCuenta);
+router.put('/editar/:numero',cuentasRouter.updateCuenta);
 //borrar cuenta
 router.delete('/borrar/:id',cuentasRouter.deleteCuenta);
 //buscar cuenta
