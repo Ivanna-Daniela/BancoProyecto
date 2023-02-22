@@ -5,8 +5,8 @@ exports.sendEmail = function(req, res){
     var transporter = nodemailer.createTransport({
         service: 'Gmail',
         auth: {
-            user: 'example@gmail.com',
-            pass: 'password'
+            user: 'proyectobanco23@gmail.com',
+            pass: 'Proyecto123Banco456'
         }
     });
 // Definimos el email

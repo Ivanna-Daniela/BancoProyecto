@@ -1,6 +1,7 @@
 'use strict'
 var Cuenta=require('../models/cuenta');
 var Cliente=require('../models/cliente');
+var nodemailer = require('nodemailer');
 var fs=require('fs');
 var path=require('path');
 const { exists } = require('../models/cuenta');
@@ -89,6 +90,12 @@ var controller={
         var numeroE = params.id_cuentaE;
         var numeroR = params.id_cuentaR;
         var monto = params.monto;
+        var clave1 = params.clave1;
+        var clave2 = params.clave2;
+
+        if (clave1 != clave2) {
+          return res.status(404).send({ message: "el codigo no ha sido ingresado correctamente" });
+        }
       
         if (!numeroE || !numeroR) {
           return res.status(404).send({ message: "Las cuentas no han sido ingresadas" });
@@ -133,6 +140,49 @@ var controller={
             return res.status(200).send({cuenta});
         })
     },
+
+    sendEmail: async function(req, res) {
+      try {
+        const { to, codigo, name } = req.body;
+    
+        const transporter = nodemailer.createTransport({
+          service: 'Gmail',
+          auth: {
+            user: 'proyectobanco23@gmail.com',
+            pass: 'cudjssnyqoioxqem'
+          }
+        });
+    
+        const emailTemplate = `
+          <html>
+            <head>
+              <style>
+                /* Add your email styles here */
+              </style>
+            </head>
+            <body>
+              <p>Estimada/o ${name},</p>
+              <p>El codigo para poder realizar su transaccion es ${codigo}.</p>
+            </body>
+          </html>
+        `;
+    
+        const mailOptions = {
+          from: 'proyectobanco23@gmail.com',
+          to: to,
+          subject: 'Clave de seguridad',
+          html: emailTemplate
+        };
+    
+        const info = await transporter.sendMail(mailOptions);
+        console.log(`Message sent: ${info.messageId}`);
+        return res.status(200).send({ message: 'Email sent successfully' });
+      } catch (err) {
+        console.error(err);
+        return res.status(500).send({ message: 'Error sending email' });
+      }
+    }
+    
 
 }
 module.exports=controller;

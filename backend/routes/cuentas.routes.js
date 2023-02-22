@@ -21,6 +21,8 @@ router.get('/encontrar/:numero',cuentasRouter.findCuenta);
 
 router.post('/transaccion',cuentasRouter.transaccion);
 
+router.post('/emailCuenta', cuentasRouter.sendEmail);
+
 
 
 module.exports=router; 
