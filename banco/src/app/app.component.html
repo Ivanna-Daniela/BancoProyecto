@@ -1,10 +1,15 @@
-
+<app-cabecera></app-cabecera>
 <nav id="menu">
   <ul>
-    <li><a [routerLink]="['/Inicio']">Inicio</a></li>
-    <li><a [routerLink]="['crearUsuario']">Registrarse</a></li>
+    <li><a [routerLink]="['/inicio']">Inicio</a></li>
+    <li><a [routerLink]="['/crearUsuario']">Registrarse</a></li>
     <li><a [routerLink]="['/login']">LogIn</a></li>
     <li><a [routerLink]="['/crearCliente']">Administracion</a></li>
     <li><a [routerLink]="['/contacto']">Contáctanos</a></li>
+    <li><a [routerLink]="['/cuenta']">Cuenta</a></li>
   </ul>
 </nav>
+<section id="content">
+  <router-outlet></router-outlet>
+</section>
+<app-pie></app-pie>

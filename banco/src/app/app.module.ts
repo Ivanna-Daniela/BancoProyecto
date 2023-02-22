@@ -11,8 +11,9 @@ import { PieComponent } from './components/pie/pie.component';
 import { HomeComponent } from './components/home/home.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
 import { LoginComponent } from './components/login/login.component';
-import { CreateUserComponent } from './components/create-user/create-user.component';
 import { CreateuserComponent } from './components/createuser/createuser.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,12 +26,13 @@ import { CreateuserComponent } from './components/createuser/createuser.componen
     HomeComponent,
     ContactoComponent,
     LoginComponent,
-    CreateUserComponent,
     CreateuserComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
