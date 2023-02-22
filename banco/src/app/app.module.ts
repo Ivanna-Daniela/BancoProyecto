@@ -8,6 +8,11 @@ import { CreateclienteComponent } from './components/createcliente/createcliente
 import { TransactionComponent } from './components/transaction/transaction.component';
 import { CabeceraComponent } from './components/cabecera/cabecera.component';
 import { PieComponent } from './components/pie/pie.component';
+import { HomeComponent } from './components/home/home.component';
+import { ContactoComponent } from './components/contacto/contacto.component';
+import { LoginComponent } from './components/login/login.component';
+import { CreateUserComponent } from './components/create-user/create-user.component';
+import { CreateuserComponent } from './components/createuser/createuser.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +21,12 @@ import { PieComponent } from './components/pie/pie.component';
     CreateclienteComponent,
     TransactionComponent,
     CabeceraComponent,
-    PieComponent
+    PieComponent,
+    HomeComponent,
+    ContactoComponent,
+    LoginComponent,
+    CreateUserComponent,
+    CreateuserComponent
   ],
   imports: [
     BrowserModule,
