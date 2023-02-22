@@ -7,6 +7,7 @@ import { CreatecuentaComponent } from './components/createcuenta/createcuenta.co
 import { CreateclienteComponent } from './components/createcliente/createcliente.component';
 import { TransactionComponent } from './components/transaction/transaction.component';
 import { CabeceraComponent } from './components/cabecera/cabecera.component';
+import { PieComponent } from './components/pie/pie.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { CabeceraComponent } from './components/cabecera/cabecera.component';
     CreatecuentaComponent,
     CreateclienteComponent,
     TransactionComponent,
-    CabeceraComponent
+    CabeceraComponent,
+    PieComponent
   ],
   imports: [
     BrowserModule,
