@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { CreatecuentaComponent } from './components/createcuenta/createcuenta.component';
 import { CreateclienteComponent } from './components/createcliente/createcliente.component';
 import { TransactionComponent } from './components/transaction/transaction.component';
+import { CabeceraComponent } from './components/cabecera/cabecera.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CreatecuentaComponent,
     CreateclienteComponent,
-    TransactionComponent
+    TransactionComponent,
+    CabeceraComponent
   ],
   imports: [
     BrowserModule,
