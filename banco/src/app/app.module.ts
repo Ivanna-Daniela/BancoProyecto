@@ -14,7 +14,7 @@ import { LoginComponent } from './components/login/login.component';
 import { CreateuserComponent } from './components/createuser/createuser.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { EditarclienteComponent } from './editarcliente/editarcliente.component';
+import { EditarclienteComponent } from './components/editarcliente/editarcliente.component';
 
 @NgModule({
   declarations: [
