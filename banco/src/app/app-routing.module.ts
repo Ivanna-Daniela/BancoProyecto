@@ -6,6 +6,9 @@ import { CreatecuentaComponent } from './components/createcuenta/createcuenta.co
 import { CreateuserComponent } from './components/createuser/createuser.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
+import { EditarclienteComponent } from './components/editarcliente/editarcliente.component';
+//import { Cliente } from './models/cliente';
+import { ClientesComponent } from './components/clientes/clientes.component';
 
 const routes: Routes = [
   {path:'inicio',component:HomeComponent},
@@ -14,6 +17,8 @@ const routes: Routes = [
   {path:'crearCliente',component:CreateclienteComponent},
   {path:'contacto',component:ContactoComponent},
   {path:'cuenta',component:CreatecuentaComponent},
+  {path: 'clientes',component:ClientesComponent},
+  {path: 'editarcliente', component:EditarclienteComponent},
   {path:'**',component:HomeComponent}
 ];
 

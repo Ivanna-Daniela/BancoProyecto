@@ -15,6 +15,7 @@ import { CreateuserComponent } from './components/createuser/createuser.componen
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { EditarclienteComponent } from './components/editarcliente/editarcliente.component';
+import { ClientesComponent } from './components/clientes/clientes.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { EditarclienteComponent } from './components/editarcliente/editarcliente
     ContactoComponent,
     LoginComponent,
     CreateuserComponent,
-    EditarclienteComponent
+    EditarclienteComponent,
+    ClientesComponent
   ],
   imports: [
     BrowserModule,

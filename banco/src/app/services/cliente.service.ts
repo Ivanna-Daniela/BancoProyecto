@@ -15,7 +15,7 @@ export class ClienteService{
 
     getClientes():Observable<any>{
         let headers=new HttpHeaders().set('Content-Type','application/json');
-        return this._http.get(this.url+'clientes',{headers:headers});
+        return this._http.get(this.url+'/clientes',{headers:headers});
     }
 
     //guardar pelicula
@@ -23,7 +23,7 @@ export class ClienteService{
     guardarCliente(cliente:Cliente):Observable<any>{
         let params=JSON.stringify(cliente);
         let headers=new HttpHeaders().set('Content-Type','application/json');
-        return this._http.post(this.url+'guardarCliente',params,{headers:headers});
+        return this._http.post(this.url+'/guardarCliente',params,{headers:headers});
     }
 
 
@@ -31,12 +31,12 @@ export class ClienteService{
     //http://localhost:3700/pelicula/:id
     getClienteN(numero:string):Observable<any>{
         let headers=new HttpHeaders().set('Content-Type','application/json');
-        return this._http.get(this.url+'encontrarCliente/'+numero,{headers:headers});
+        return this._http.get(this.url+'/encontrarCliente/'+numero,{headers:headers});
     }
 
     getCliente(id:string):Observable<any>{
         let headers=new HttpHeaders().set('Content-Type','application/json');
-        return this._http.get(this.url+'cliente/'+id,{headers:headers});
+        return this._http.get(this.url+'/cliente/'+id,{headers:headers});
     }
 
     //editar pelicula
@@ -44,12 +44,12 @@ export class ClienteService{
     updateClientes(cliente:Cliente):Observable<any>{
         let params=JSON.stringify(cliente);
         let headers=new HttpHeaders().set('Content-Type','application/json');
-        return this._http.put(this.url+'editarCliente/'+cliente._id,params,{headers:headers});
+        return this._http.put(this.url+'/editarCliente/'+cliente._id,params,{headers:headers});
     }
     //eliminar pelicula
     //http://localhost:3700/pelicula/:id
     deleteCliente(id:string):Observable<any>{
         let headers=new HttpHeaders().set('Content-Type','application/json');
-        return this._http.delete(this.url+'borrarCliente/'+id,{headers:headers});
+        return this._http.delete(this.url+'/borrarCliente/'+id,{headers:headers});
     }
 }
