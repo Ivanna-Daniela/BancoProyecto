@@ -14,6 +14,7 @@ import { LoginComponent } from './components/login/login.component';
 import { CreateuserComponent } from './components/createuser/createuser.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { EditarclienteComponent } from './editarcliente/editarcliente.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { FormsModule } from '@angular/forms';
     HomeComponent,
     ContactoComponent,
     LoginComponent,
-    CreateuserComponent
+    CreateuserComponent,
+    EditarclienteComponent
   ],
   imports: [
     BrowserModule,
