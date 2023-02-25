@@ -1,0 +1,12 @@
+<p>clientes works!</p>
+<h2>Clientes</h2>
+<ul>
+    <li *ngFor="let cliente of clientes" class="cliente">
+        <h4>{{cliente.nombre}} - {{cliente.apellido}} - {{cliente.telefono}}</h4>
+    </li>
+</ul>
+<div class="search-container">
+    <input type="text" placeholder="Buscar cliente" [(ngModel)]="numero">
+    <button (click)="searchCliente()">Buscar</button>
+</div>
+  

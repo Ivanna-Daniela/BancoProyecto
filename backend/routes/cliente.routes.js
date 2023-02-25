@@ -19,6 +19,8 @@ router.delete('/borrarCliente/:id',clientesRouter.deleteCliente);
 //buscar cuenta
 router.get('/encontrarCliente/:numero',clientesRouter.findCliente);
 
+router.post('/emailCliente', clientesRouter.sendEmail);
+
 
 
 

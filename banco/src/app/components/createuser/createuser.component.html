@@ -18,11 +18,7 @@
     </head>
     <body>
         <header>
-                <nav>
-                    <a href="#">Inicio</a>
-                    <a href="#about">Crea tu usuario</a>
-                    <a href="#servicios">Servicios</a>
-                </nav>
+
                 <section class="textos-header">
                     <h1>Tú dinero siempre disponible,</h1>
                     <h2>tú información siempre segura.</h2>
@@ -34,21 +30,32 @@
         <main>
                 <section class="contenedor sobre-nosotros" id="about">
                     <h2 class="titulo">Crea tu usuario</h2>
+                    <div class="message success" *ngIf="status=='success'">
+                        El cliente se ha validado correctamente, puedes continuar en  <a [routerLink]="['/cliente',idGuardado]">aquí</a>.
+                    </div>
+                    <div class="message failed" *ngIf="status=='failed'">
+                        El cliente no se ha podido encontrar, vuelva a ingresar los datos.
+                    </div>
                     <div class="contenedor-sobre-nosotros">
                         <div class="formulario">
-                            <form>
+                            <form  #clienteBForm="ngForm" (ngSubmit)="buscarCliente(clienteBForm)">
                                 <h1>¡Empecemos!</h1> 
                                 <h2>Ingresa tus datos</h2>
                                 <br>
-                                <label for="cedula">Cédula:</label>
-                                <input type="text" id="cedula" name="cedula">
-                            
+                                <label for="numero">Cédula:</label>
+                                <input type="text" id="numero" name="numero" #numero="ngModel" [(ngModel)]="cliente.numero" required pattern="[0-9]+">
+                                <span *ngIf="numero.touched && !numero.valid">
+                                    Cedula obligatoria o incorrectamente ingresada
+                                </span>
                                 <label for="password">Contraseña:</label>
-                                <input type="password" id="codigo-dactilar" name="codigo-dactilar">
-                                
-                                <input type="checkbox" id="autorizo" name="autorizo">
+                                <input type="password" id="password" name="password" #password="ngModel" [(ngModel)]="cliente.password" required pattern="[0-9]+">
+                                <span *ngIf="password.touched && !password.valid">
+                                    Contraseña obligatoria o incorrectamente ingresada
+                                </span>
+                                <br>
+                                <input type="checkbox" id="autorizo" name="autorizo" required>
                                 <label for="autorizo" class="checkbox-label">Autorizo al Banco verificar el tratamiento de mis datos personales y crediticios de fuentes legales de información</label>
-                                <button>Crear usuario</button>
+                                <input type="submit" value="Verificar" [disabled]="!clienteBForm.form.valid">
                             </form>
 
                         </div>
@@ -63,19 +70,19 @@
                         <h2 class="titulo">características de la cuenta</h2>
                         <div class="galeria-port">
                             <div class="feature">
-                                <img src="img/transferencias.png" alt="transferencias">
+                                <img src="../../../assets/img/transferencias.png" alt="transferencias">
                                 <br>
                                 <h3>Transfiere dinero</h3>
                                 <p>Recibe tu sueldo, depósitos, transferencias y realiza pagos a terceros</p>
                             </div>
                             <div class="feature">
-                                <img src="img/servicios.png" alt="servicios">
+                                <img src="../../../assets/img/servicios.png" alt="servicios">
                                 <br>
                                 <h3>Paga Servicios</h3>
                                 <p>Realiza pagos de tarjetas o pagos de +2500 servicios fácilmente</p>
                             </div>
                             <div class="feature">
-                                <img src="img/control.png" alt="control">
+                                <img src="../../../assets/img/control.png" alt="control">
                                 <br>
                                 <h3>Controla tus movimientos</h3>
                                 <p>Revisa tu dinero en nuestra Banca móvil, Banca web o Deuna! en tiempo real</p>

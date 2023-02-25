@@ -3,6 +3,7 @@ import { CargarService } from '../../services/cargar.service';
 import { Global } from '../../services/global';
 import { CuentaService } from '../../services/cuenta.service';
 import { Cuenta } from '../../models/cuenta';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-createcuenta',
@@ -23,8 +24,8 @@ export class CreatecuentaComponent implements OnInit{
   ){
     this.titulo="GUARDAR CUENTA";
     this.url=Global.url;
-    this.cuenta= new Cuenta('','','','',1,'','');
-    this.cuentaGuardar= new Cuenta('','','','',1,'','');
+    this.cuenta= new Cuenta('','','',1,'',1);
+    this.cuentaGuardar= new Cuenta('','','',1,'',1);
     this.status="";
     this.idGuardado="";
   }
@@ -32,13 +33,14 @@ export class CreatecuentaComponent implements OnInit{
   ngOnInit(): void {
   }
 
-  guardarCuenta() {
+  guardarCuenta(form:NgForm) {
     this._cuentaService.guardarCuenta(this.cuentaGuardar).subscribe(
       response => {
-        if(response.status == 'success') {
+        if(response.cliente) {
           this.status = 'success';
           this.idGuardado = response.id;
-          this.cuentaGuardar = new Cuenta('','','','',1,'','');
+          this.cuentaGuardar = response.cliente;
+          form.reset();
         } else {
           this.status = 'error';
         }

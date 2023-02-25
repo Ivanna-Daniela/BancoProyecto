@@ -1,7 +1,7 @@
-export class Cuenta{
+export class Cliente{
     constructor(
         public _id:string,
-        public numero:number,
+        public numero:string,
         public nombre:string,
         public apellido:string,
         public telefono:Number,

@@ -1,143 +1,189 @@
 *{
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  font-family: 'open sans';
+}
+.contenedor{
+  padding: 60px;
+  width: 90%;
+  max-width: 1000px;
+  margin: auto;
+  overflow: hidden;
+}
+.titulo{
+  color: #3680C9;
+  font-size: 40px;
+  text-align: center;
+  margin-bottom: 60px;
+  margin-top: -40px;
+}
+/*header*/
+header{
+  width: 100%;
+  height: 800px;
+  background: #C6FFDD;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #f7797d, #FBD786, #C6FFDD);  
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, hsla(358, 89%, 72%, 0.603), hsla(42, 94%, 75%, 0.603), hsla(144, 100%, 89%, 0.603)), url("img/banner.jpg"); 
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-size: cover;
+  background-attachment:fixed;
+  position: relative;
+}
+nav{
+  text-align: right;
+  padding: 10px 0 0 0;
+}
+
+nav > a:hover{
+  color: #047034;
+  transform: scale(1.2);
+}
+nav a {
+  color:#fff;
+  font-size: 20px;
+  font-weight: 500;
+  text-decoration: none;
+  margin-right: 50px;
+  display: inline-block;
+  padding: 10px;
+  transition: all 0.3s ease;
+  margin-top: -20px;
+}
+
+header .textos-header{
+  display: flex;
+  height: 430px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+.textos-header h1{
+  font-size: 70px;
+  color: #fff;
+  animation: crecer 2s ease-in-out infinite;
+}
+.textos-header h2{
+  font-size: 50px;
+  font-weight: 300;
+  color: #fff;
+  animation: crecer 2s ease-in-out infinite;
+}
+@keyframes crecer {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.07); }
+  100% { transform: scale(1); }
+}
+.wave{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+/*About us*/
+main .sobre-nosotros{
+  padding: 30px 0 60px 0;
+}
+.contenedor-sobre-nosotros{
+  display: flex;
+  justify-content: space-evenly;
+}
+.imagen-sobre-nosotros{
+  width: 65%;
+  animation: vibration 0.7s ease-in-out infinite;
+}
+.formulario{
+  min-width: 500px;
+  max-width: 650px;
+  padding: 24px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px 0 hsl(0deg 0% 78% / 50%);
+  margin-right: 150px;
+}
+.formulario select{
+  min-width: 450px;
+  max-width: 650px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px 0 hsl(0deg 0% 78% / 50%);
+  margin-right: 150px;
+}
+form h1{
+  margin-bottom: 0px;
+  text-align: center;
+}
+form h2{
+  margin-bottom: 30px;
+  text-align: center;
+}
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  font-size: 18px;
+  border-radius: 5px 5px 5px 5px;
+  border: 1px solid gray;
+}
+label {
+  font-size: 18px;
+  margin-bottom: 10px;
+  display: block;
+}
+.checkbox-label {
+  display: inline-block;
+  margin-left: 10px;
+  font-size: 18px;
+  text-align: justify;
+}
+button {
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #3b22ab;
+  color: white;
+  width: 100%;
+  border:none;
+  cursor: pointer;
+}
+.sobre-nosotros .contenido-textos{
+  margin-top: 90px;
+  margin-left: 100px;
+  width: 50%;
 
 }
-.izquierdo{
-    background-color: white;
-    float: left;
-    width: 50%;
-    height: 961px;
+.contenido-textos h3{
+  color: #0d2b69;
+  padding-top: 40px!important;
+  max-width: 300px;
+  font-weight: 700;
+  line-height: 1.9rem;
+  font-size: 30px;
 }
-.derecha{
-    background-color: #F4F6F9;
-    float: right;
-    width: 50%;
-    height: 961px;
-    padding-top: 40px;
+
+.contenido-textos p {
+  padding-top: 10px;
+  max-width: 400px;
+  color: #4a4a4a;
+  text-align: justify;
+  font-size: 20px;
 }
- #candado{
-    margin-left: 310px;
-    margin-right: 240px;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    width: 350px;
+span {
+  color: red;
+}
 
-  }
-  .texto-Bloqueado h1{
-    font-size: 40px;
-    font-weight: 700;
-    width: 300px;
-    text-align: center;
-    margin-top: 50px;
-    margin-left: 320px;
-    
-  }
-  .texto-Bloqueado p{
-    text-align: center;
-    font-size: 15px;
-    font-weight: 600;
-    margin: auto;
-    width: 350px;
-  }
-  .opciones{
-    width: 60%;
-    display: flex;
-    justify-content: center;
-    margin-left: 180px;
-  }
-  #usuario{
-    width: 210px;
-    height: 100px;
-    text-align: center;
-    margin: auto;
-    border: 1px solid gray;
-    border-radius: 5px 5px 5px 5px;
-    background-color: white;
-  }
-  #contraseña{
-    width: 210px;
-    height: 100px;
-    text-align: center;
-    margin: auto;
-    border: 1px solid gray;
-    border-radius: 5px 5px 5px 5px;
-    background-color: white;
-  }
+  /* Hide the error message by default */
+.error-message {
+  display: none;
+}
 
-  .card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background-color: #fff;
-    background-clip: border-box;
-    border: 1px solid #dee3ed;
-    border-radius: 4px;
-    width: 500px;
-    margin: auto;
-  }
-  .card-body {
-    flex: 1 1 auto;
-    min-height: 1px;
-    padding: 3.5rem;
-  }
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 40px;
-  }
-  input[type="text"], input[type="password"] {
-    width: 300px;
-    height: 40px;
-    font-size: 18px;
-    padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 5px 5px 5px 5px;
-    border: 1px solid gray;
-  }
-  .keyboard button {
-    width: 60px;
-    height: 60px;
-    font-size: 22px;
-    background-color: #fff;
-    color: black;
-    border: 1px solid gray;
-    cursor: pointer;
-    margin: 10px;
-    border-radius: 50%;
-  }
-  .keyboard {
-    width: 250px;
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    margin-bottom: 50px;
-  }
-  button:hover {
-    background-color: hsla(251, 67%, 40%, 0.594);
-    color: white;
-  }
-  #continuar {
-    padding: 10px 20px;
-    font-size: 18px;
-    background-color: #3b22ab;
-    color: white;
-    width: 300px;
-    border:none;
-    cursor: pointer;
-    border-radius: 5px 5px 5px 5px;
-  }
-  #regresar {
-    padding: 10px 20px;
-    font-size: 18px;
-    background-color: #3b22ab;
-    color: white;
-    width: 300px;
-    border:none;
-    cursor: pointer;
-    border-radius: 5px 5px 5px 5px;
-    margin-bottom: 40px;
-  }
+/* Show the error message when the input is touched and invalid */
+input.ng-touched.ng-invalid + .error-message {
+  display: block;
+}
+

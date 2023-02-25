@@ -20,6 +20,8 @@ import { TasksComponent } from './components/tasks/tasks.component';
 import { PrivateTasksComponent } from './components/private-tasks/private-tasks.component';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './services/token-interceptor.service';
+import { EditarclienteComponent } from './components/editarcliente/editarcliente.component';
+import { ClientesComponent } from './components/clientes/clientes.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
     SigninComponent,
     SignupComponent,
     TasksComponent,
-    PrivateTasksComponent
+    PrivateTasksComponent,
+    EditarclienteComponent,
+    ClientesComponent
   ],
   imports: [
     BrowserModule,
