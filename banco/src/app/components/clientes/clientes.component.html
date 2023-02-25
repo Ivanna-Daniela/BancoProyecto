@@ -5,3 +5,8 @@
         <h4>{{cliente.nombre}} - {{cliente.apellido}} - {{cliente.telefono}}</h4>
     </li>
 </ul>
+<div class="search-container">
+    <input type="text" placeholder="Buscar cliente" [(ngModel)]="numero">
+    <button (click)="searchCliente()">Buscar</button>
+</div>
+  
