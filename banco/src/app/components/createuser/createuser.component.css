@@ -163,6 +163,20 @@
     text-align: justify;
     font-size: 20px;
   }
+  span {
+    color: red;
+  }
+  
+    /* Hide the error message by default */
+  .error-message {
+    display: none;
+  }
+
+  /* Show the error message when the input is touched and invalid */
+  input.ng-touched.ng-invalid + .error-message {
+    display: block;
+  }
+
   /*caracteristicas*/
   .portafolio{
     background: #f2f2f2;
