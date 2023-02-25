@@ -10,6 +10,7 @@ import { TasksComponent } from './components/tasks/tasks.component';
 import { PrivateTasksComponent } from './components/private-tasks/private-tasks.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { SigninComponent } from './components/signin/signin.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   {path:'inicio',component:HomeComponent},
@@ -18,9 +19,9 @@ const routes: Routes = [
   {path:'crearCliente',component:CreateclienteComponent},
   {path:'contacto',component:ContactoComponent},
   {path:'cuenta',component:CreatecuentaComponent},
-  {path:'**',component:HomeComponent},
+  //{path:'**',component:HomeComponent},
   {path:'tasks',component:TasksComponent},
-  {path:'private',component:PrivateTasksComponent},
+  {path:'private',component:PrivateTasksComponent,canActivate:[AuthGuard]},
   {path:'signup',component:SignupComponent},
   {path:'signin',component:SigninComponent}
 ];
