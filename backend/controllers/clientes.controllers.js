@@ -86,7 +86,49 @@ var controller={
             if(!cliente) return res.status(404).send({message:'No la existe el cliente'});
             return res.status(200).send({cliente});
         })
-    }
+    },
+
+    sendEmail: async function(req, res) {
+        try {
+          const { to, codigo, name } = req.body;
+      
+          const transporter = nodemailer.createTransport({
+            service: 'Gmail',
+            auth: {
+              user: 'proyectobanco23@gmail.com',
+              pass: 'cudjssnyqoioxqem'
+            }
+          });
+      
+          const emailTemplate = `
+            <html>
+              <head>
+                <style>
+                  /* Add your email styles here */
+                </style>
+              </head>
+              <body>
+                <p>Estimada/o ${name},</p>
+                <p>El codigo para poder crear su usuario es ${codigo}.</p>
+              </body>
+            </html>
+          `;
+      
+          const mailOptions = {
+            from: 'proyectobanco23@gmail.com',
+            to: to,
+            subject: 'Clave de seguridad',
+            html: emailTemplate
+          };
+      
+          const info = await transporter.sendMail(mailOptions);
+          console.log(`Message sent: ${info.messageId}`);
+          return res.status(200).send({ message: 'Email sent successfully' });
+        } catch (err) {
+          console.error(err);
+          return res.status(500).send({ message: 'Error sending email' });
+        }
+      }
 
 }
 module.exports=controller;

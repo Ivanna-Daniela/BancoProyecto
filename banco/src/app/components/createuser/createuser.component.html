@@ -18,11 +18,7 @@
     </head>
     <body>
         <header>
-                <nav>
-                    <a href="#">Inicio</a>
-                    <a href="#about">Crea tu usuario</a>
-                    <a href="#servicios">Servicios</a>
-                </nav>
+
                 <section class="textos-header">
                     <h1>Tú dinero siempre disponible,</h1>
                     <h2>tú información siempre segura.</h2>
@@ -34,18 +30,28 @@
         <main>
                 <section class="contenedor sobre-nosotros" id="about">
                     <h2 class="titulo">Crea tu usuario</h2>
+                    <div class="message success" *ngIf="status=='success'">
+                        El cliente se ha validado correctamente, puedes continuar en  <a [routerLink]="['/cliente',idGuardado]">aquí</a>.
+                    </div>
+                    <div class="message failed" *ngIf="status=='failed'">
+                        El cliente no se ha podido encontrar, vuelva a ingresar los datos.
+                    </div>
                     <div class="contenedor-sobre-nosotros">
                         <div class="formulario">
-                            <form>
+                            <form  #clienteBForm="ngForm" (ngSubmit)="buscarCliente(clienteBForm)">
                                 <h1>¡Empecemos!</h1> 
                                 <h2>Ingresa tus datos</h2>
                                 <br>
                                 <label for="cedula">Cédula:</label>
-                                <input type="text" id="cedula" name="cedula">
-                            
+                                <input type="text" id="cedula" name="cedula" #cedula="ngModel" [(ngModel)]="cliente.numero" required pattern="[0-9]">
+                                <span *ngIf="nombre.touched && !nombre.valid">
+                                    Cedula obligatoria
+                                </span>
                                 <label for="password">Contraseña:</label>
-                                <input type="password" id="codigo-dactilar" name="codigo-dactilar">
-                                
+                                <input type="password" id="password" name="password" #password="ngModel" [(ngModel)]="cliente.password" required>
+                                <span *ngIf="password.touched && !password.valid">
+                                    Contraseña obligatoria
+                                </span>
                                 <input type="checkbox" id="autorizo" name="autorizo">
                                 <label for="autorizo" class="checkbox-label">Autorizo al Banco verificar el tratamiento de mis datos personales y crediticios de fuentes legales de información</label>
                                 <button>Crear usuario</button>
