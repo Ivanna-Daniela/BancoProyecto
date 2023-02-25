@@ -38,6 +38,7 @@ export class CreateuserComponent implements OnInit{
   }
 
   buscarCliente(form:NgForm){
+    console.log("si pasa");
     this._clienteService.getClienteN(this.numero).subscribe(
       response=>{
         if(response.cliente){
