@@ -54,13 +54,13 @@
                                 </select>
 
                                 <label for="estado">Monto Inicial:</label>4
-                                <input type="number" id="estado" name="estado" #estado="ngModel" [(ngModel)]="cliente.estado" required >
+                                <input type="number" id="estado" name="estado" #estado="ngModel" [(ngModel)]="cuenta.estado" required >
                                 <span *ngIf="estado.touched && !estado.valid">
                                     Monto inicial obligatorio o incorrectamente ingresado
                                 </span>
                                
                                 <label for="limiteDiario">Limite diario:</label>4
-                                <input type="number" id="limiteDiario" name="limiteDiario" #limiteDiario="ngModel" [(ngModel)]="cliente.limiteDiario" required >
+                                <input type="number" id="limiteDiario" name="limiteDiario" #limiteDiario="ngModel" [(ngModel)]="cuenta.limiteDiario" required >
                                 <span *ngIf="limiteDiario.touched && !limiteDiario.valid">
                                     Limite Diario obligatorio o incorrectamente ingresado
                                 </span>
