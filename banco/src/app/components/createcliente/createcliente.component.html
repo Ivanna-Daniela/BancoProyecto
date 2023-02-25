@@ -42,29 +42,40 @@
                                 <h1>¡Empecemos!</h1> 
                                 <h2>Ingresa tus datos</h2>
                                 <br>
-                                <label for="cliente">Cédula:</label>
-                                <input type="text" id="cliente" name="cliente" #cliente="ngModel" [(ngModel)]="cuenta.cliente" required pattern="[0-9]+">
-                                <span *ngIf="cliente.touched && !cliente.valid">
+                                <label for="numero">Cédula:</label>
+                                <input type="text" id="numero" name="numero" #numero="ngModel" [(ngModel)]="cliente.numero" required pattern="[0-9]+">
+                                <span *ngIf="numero.touched && !numero.valid">
                                     Cédula obligatoria o incorrectamente ingresada
                                 </span>
-                                <label for="tipo">Tipo:</label>
-                                <select id="tipo" name="tipo" #tipo="ngModel" [(ngModel)]="cuenta.tipo" required>
-                                <option value="Ahorros">Ahorros</option>
-                                <option value="Corriente">Corriente</option>
-                                </select>
+                                <label for="nombre">Nombre:</label>
+                                <input type="text" id="nombre" name="nombre" #nombre="ngModel" [(ngModel)]="cliente.nombre" required pattern="[a-zA-Z]">
+                                <span *ngIf="nombre.touched && !nombre.valid">
+                                    Nombre obligatorio o incorrectamente ingresado
+                                </span>
+                                <label for="apellido">Nombre:</label>
+                                <input type="text" id="apellido" name="apellido" #apellido="ngModel" [(ngModel)]="cliente.apellido" required pattern="[a-zA-Z]">
+                                <span *ngIf="apellido.touched && !apellido.valid">
+                                    Apellido obligatorio o incorrectamente ingresado
+                                </span>
 
-                                <label for="estado">Monto Inicial:</label>  
-                                <input type="number" id="estado" name="estado" #estado="ngModel" [(ngModel)]="cuenta.estado" required >
-                                <span *ngIf="estado.touched && !estado.valid">
-                                    Monto inicial obligatorio o incorrectamente ingresado
+                                <label for="telefono">Telefono:</label>  
+                                <input type="telefono" id="telefono" name="telefono" #telefono="ngModel" [(ngModel)]="cliente.telefono" required >
+                                <span *ngIf="telefono.touched && !telefono.valid">
+                                    Teléfono obligatorio o incorrectamente ingresado
+                                </span>
+
+                                <label for="password">Contraseña:</label>
+                                <input type="password" id="password" name="password" #password="ngModel" [(ngModel)]="cliente.password" required pattern="[0-9]+">
+                                <span *ngIf="password.touched && !password.valid">
+                                    Contraseña obligatoria o incorrectamente ingresada
                                 </span>
                                
-                                <label for="limiteDiario">Limite diario:</label>
-                                <input type="number" id="limiteDiario" name="limiteDiario" #limiteDiario="ngModel" [(ngModel)]="cuenta.limiteDiario" required >
-                                <span *ngIf="limiteDiario.touched && !limiteDiario.valid">
-                                    Limite Diario obligatorio o incorrectamente ingresado
+                                <label for="correo">Correo:</label>
+                                <input type="email" id="correo" name="correo" #correo="ngModel" [(ngModel)]="cliente.correo" required>
+                                <span *ngIf="correo.touched && !correo.valid">
+                                    Correo obligatorio o incorrectamente ingresado
                                 </span>
-                                <input type="submit" value="Verificar" [disabled]="!cuentaForm.form.valid">
+                                <input type="submit" value="Verificar" [disabled]="!clienteForm.form.valid">
                             </form>
 
                         </div>
