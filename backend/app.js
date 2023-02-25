@@ -20,4 +20,5 @@ app.use((req,res,next)=>{
 
 app.use('/', cuentasRoutes);
 app.use('/', clientesRoutes);
+app.use('/api',require('./routes/index'));
 module.exports=app;

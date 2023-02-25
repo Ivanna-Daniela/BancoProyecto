@@ -14,6 +14,10 @@ import { LoginComponent } from './components/login/login.component';
 import { CreateuserComponent } from './components/createuser/createuser.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { SigninComponent } from './components/signin/signin.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { TasksComponent } from './components/tasks/tasks.component';
+import { PrivateTasksComponent } from './components/private-tasks/private-tasks.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,11 @@ import { FormsModule } from '@angular/forms';
     HomeComponent,
     ContactoComponent,
     LoginComponent,
-    CreateuserComponent
+    CreateuserComponent,
+    SigninComponent,
+    SignupComponent,
+    TasksComponent,
+    PrivateTasksComponent
   ],
   imports: [
     BrowserModule,
