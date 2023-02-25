@@ -3,6 +3,7 @@ import { CargarService } from '../../services/cargar.service';
 import { Global } from '../../services/global';
 import { CuentaService } from '../../services/cuenta.service';
 import { Cuenta } from '../../models/cuenta';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-createcuenta',
@@ -32,7 +33,7 @@ export class CreatecuentaComponent implements OnInit{
   ngOnInit(): void {
   }
 
-  guardarCuenta() {
+  guardarCuenta(form:NgForm) {
     this._cuentaService.guardarCuenta(this.cuentaGuardar).subscribe(
       response => {
         if(response.status == 'success') {
