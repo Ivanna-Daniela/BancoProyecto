@@ -22,6 +22,7 @@ import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { ClientesComponent } from './components/clientes/clientes.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { CuentasComponent } from './components/cuentas/cuentas.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { AdminComponent } from './components/admin/admin.component';
     TasksComponent,
     PrivateTasksComponent,
     ClientesComponent,
-    AdminComponent
+    AdminComponent,
+    CuentasComponent
   ],
   imports: [
     BrowserModule,
