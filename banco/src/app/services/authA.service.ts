@@ -5,21 +5,21 @@ import { Router } from "@angular/router";
 @Injectable({
     providedIn: 'root'
 })
-export class AuthService {
+export class AuthAService {
 
-    private URL = 'http://localhost:3700/api'
+    private URL = 'http://localhost:3700/administrator'
 
     constructor(
         private http: HttpClient,
         private router: Router,
     ){}
 
-    signUp(user:any){
-        return this.http.post<any>(this.URL + '/signup', user);
+    signUp(admin:any){
+        return this.http.post<any>(this.URL + '/signup', admin);
     }
 
-    signIn(user:any){
-        return this.http.post<any>(this.URL + '/signin', user);
+    signIn(admin:any){
+        return this.http.post<any>(this.URL + '/signin', admin);
     }
 
     loggedIn(){
@@ -34,5 +34,4 @@ export class AuthService {
         localStorage.removeItem('token');
         this.router.navigate(['/signin'])
     }
-
 }

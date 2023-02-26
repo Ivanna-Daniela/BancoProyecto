@@ -35,10 +35,10 @@
         <ul class="navbar-nav ml-auto">
           <ng-container *ngIf="!authService.loggedIn(); else loggedIn">
             <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/signin']">SignIn</a>
+              <a class="nav-link" [routerLink]="['/signin']">Iniciar Sesión</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/signup']">SignUp</a>
+              <a class="nav-link" [routerLink]="['/signup']">Registrarse</a>
             </li>
           </ng-container>
           <ng-template #loggedIn>

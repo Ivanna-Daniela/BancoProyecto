@@ -5,7 +5,7 @@ const Admin = require('../models/administrator');
 
 const jwt = require('jsonwebtoken');
 
-router.get('/',(req,res)=> res.send('Hello world'))
+router.get('/',(req,res)=> res.send('Hello Administrador'))
 
 router.post('/signup', async (req,res)=>{
     const { email, password } = req.body;
