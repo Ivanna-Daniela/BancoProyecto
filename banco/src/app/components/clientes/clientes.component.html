@@ -1,3 +1,7 @@
+<div *ngIf="actualizacionExitosa" class="success-message rounded shadow-lg p-3 mb-4 " style="background-color: lightblue;text-align: center;">
+    ACTUALIZACION EXITOSA
+  </div>
+  
 <h2>Clientes</h2>
 <ul>
   <li *ngFor="let cliente of clientes" class="cliente">
@@ -48,6 +52,7 @@
 
   <button *ngIf="!editMode" (click)="enableEditMode()">Editar</button>
   <button *ngIf="editMode" (click)="guardarCambios()">Guardar</button>
+  <button type="button" (click)="borrarCliente(cliente._id)">Borrar</button>
 </div>
 
 <div *ngIf="clienteBuscado && !cliente._id">

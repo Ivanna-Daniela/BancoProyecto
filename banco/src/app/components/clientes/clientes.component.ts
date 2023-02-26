@@ -4,6 +4,7 @@ import { Cliente } from '../../models/cliente';
 import { ClienteService } from '../../services/cliente.service';
 import { Global } from '../../services/global';
 
+
 @Component({
   selector: 'app-clientes',
   templateUrl: './clientes.component.html',
@@ -17,6 +18,7 @@ export class ClientesComponent implements OnInit {
   public cliente: Cliente;
   public clienteBuscado: boolean = false;
   public editMode: boolean = false;
+  public actualizacionExitosa: boolean = false; // add this variable
 
   constructor(private _clienteService: ClienteService) {
     this.url = Global.url;
@@ -44,6 +46,7 @@ export class ClientesComponent implements OnInit {
   }
 
   buscarCliente() {
+    this.actualizacionExitosa = false;
     if (this.numero !== '') {
       this._clienteService.getClienteN(this.numero).subscribe(
         response => {
@@ -74,6 +77,7 @@ export class ClientesComponent implements OnInit {
       response => {
         // Do something with the response, e.g. show a success message
         console.log('Cliente actualizado:', response.clienteActualizado);
+        this.actualizacionExitosa = true; // set the flag to true when client is updated
         this.editMode = false; // disable edit mode after saving changes
       },
       error => {
@@ -81,7 +85,23 @@ export class ClientesComponent implements OnInit {
       }
     );
   }
+
+  borrarCliente(id: string) {
+    if (confirm('¿Está seguro de que desea borrar este cliente?')) {
+      this._clienteService.deleteCliente(id).subscribe(
+        response => {
+          console.log('Cliente borrado:', response.clienteBorrado);
+          this.getClientes(); // refresh the client list
+          this.cliente=new Cliente('','','',"",123,"",""); // clear the search results
+          this.clienteBuscado = false; // reset the search flag
+          this.editMode = false; // disable edit mode
+        },
+        error => {
+          console.log(<any>error);
+        }
+      );
+    }
+  }
   
 
-  
 }
