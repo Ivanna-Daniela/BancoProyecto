@@ -47,6 +47,10 @@
                                 <span *ngIf="cliente.touched && !cliente.valid">
                                     Cédula obligatoria o incorrectamente ingresada
                                 </span>
+
+                                <label for="nombre">Nombre de su cuenta:</label>
+                                <input type="text" id="nombre" name="nombre" #cliente="ngModel" [(ngModel)]="cuenta.nombre" required>
+                                
                                 <label for="tipo">Tipo:</label>
                                 <select id="tipo" name="tipo" #tipo="ngModel" [(ngModel)]="cuenta.tipo" required>
                                 <option value="Ahorros">Ahorros</option>

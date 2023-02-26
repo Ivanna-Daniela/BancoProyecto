@@ -5,7 +5,8 @@ var Schema=mongoose.Schema;
 
 
 var cuentaSchema = Schema({
-    numero:String,
+    numero:Number,
+    nombre:String,
     tipo:String,
     estado:Number,
     cliente:String,

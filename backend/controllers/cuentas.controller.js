@@ -14,7 +14,7 @@ var controller={
     },
     saveCuenta: async function(req, res) {
       try {
-        const { tipo, estado, cliente, limiteDiario } = req.body;
+        const { nombre,tipo, estado, cliente, limiteDiario } = req.body;
     
         // check if cliente exists
         const existingCliente = await Cliente.findOne({ numero: cliente });
@@ -23,18 +23,19 @@ var controller={
         }
     
         // generate a unique cuenta number
+        const latestCuenta = await Cuenta.findOne({}, {}, { sort: { 'numero': -1 } });
         let numero;
-        do {
-          numero = Math.floor(Math.random() * (99999999 - 10000000) + 10000000).toString();
-          const existingCuenta = await Cuenta.findOne({ numero });
-          if (existingCuenta) {
-            numero = null;
-          }
-        } while (!numero);
-    
+        if (latestCuenta && latestCuenta.numero !== undefined) {
+         numero = latestCuenta.numero + 1;
+        } else {
+         const cuentaCount = await Cuenta.countDocuments();
+        numero = cuentaCount + 1;
+        }
+
         // create a new cuenta object and save to database
         const nuevaCuenta = new Cuenta({
           numero,
+          nombre,
           tipo,
           estado,
           cliente: existingCliente.numero,

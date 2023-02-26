@@ -24,8 +24,8 @@ export class CreatecuentaComponent implements OnInit{
   ){
     this.titulo="GUARDAR CUENTA";
     this.url=Global.url;
-    this.cuenta= new Cuenta('','','',1,'',1);
-    this.cuentaGuardar= new Cuenta('','','',1,'',1);
+    this.cuenta= new Cuenta('',1,'','',1,'',1);
+    this.cuentaGuardar= new Cuenta('',1,'','',1,'',1);
     this.status="";
     this.idGuardado="";
   }
@@ -40,6 +40,8 @@ export class CreatecuentaComponent implements OnInit{
           this.status = 'success';
           this.idGuardado = response.id;
           this.cuentaGuardar = response.cuenta;
+          console.log(response.cuenta);
+          //console.log(response.cuenta);
           form.reset();
         } else {
           this.status = 'failed';

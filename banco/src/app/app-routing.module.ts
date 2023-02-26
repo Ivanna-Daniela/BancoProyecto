@@ -12,6 +12,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { AuthGuard } from './auth.guard';
 import { ClientesComponent } from './components/clientes/clientes.component';
+import { CuentasComponent } from './components/cuentas/cuentas.component';
 
 const routes: Routes = [
   {path:'inicio',component:HomeComponent},
@@ -20,12 +21,12 @@ const routes: Routes = [
   {path:'crearCliente',component:CreateclienteComponent},
   {path:'contacto',component:ContactoComponent},
   {path:'cuenta',component:CreatecuentaComponent},
-  //{path:'**',component:HomeComponent},
   {path:'tasks',component:TasksComponent},
   {path:'private',component:PrivateTasksComponent,canActivate:[AuthGuard]},
   {path:'signup',component:SignupComponent},
   {path:'signin',component:SigninComponent},
-  {path: 'clientes',component:ClientesComponent},
+  {path: 'edicionclientes',component:ClientesComponent},
+  {path:'cuentas',component:CuentasComponent},
   {path:'**',component:HomeComponent}
 ];
 
