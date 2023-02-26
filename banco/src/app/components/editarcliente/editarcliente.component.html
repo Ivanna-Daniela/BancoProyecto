@@ -1,19 +1,11 @@
-<div class="search-container">
-    <input type="text" placeholder="Buscar cliente" [(ngModel)]="searchText">
-    <button (click)="searchCliente()">Buscar</button>
-  </div>
-  
-  <h2>Clientes</h2>
-  <ul>
-    <li *ngFor="let cliente of clientes" class="cliente">
-      <h4>{{cliente.nombre}} - {{cliente.apellido}} - {{cliente.telefono}}</h4>
-    </li>
-  </ul>
-  
-  <h2>Resultados de búsqueda</h2>
-  <ul>
-    <li *ngFor="let cliente of filteredClientes" class="cliente">
-      <h4>{{cliente.nombre}} - {{cliente.apellido}} - {{cliente.telefono}}</h4>
-    </li>
-  </ul>
-  
+<p>editarcliente works!</p>
+<h2>Detalle de clientes</h2>
+<div class="container" *ngIf="cliente">
+
+    <div class="data">
+        <h4>{{cliente.nombre}}</h4>
+        <h4>{{cliente.apellido}}</h4>
+        <h4>{{cliente.telefono}}</h4>
+        <h4>{{cliente.correo}}</h4>
+    </div>
+</div>

@@ -1,12 +1,48 @@
-<p>clientes works!</p>
 <h2>Clientes</h2>
 <ul>
-    <li *ngFor="let cliente of clientes" class="cliente">
-        <h4>{{cliente.nombre}} - {{cliente.apellido}} - {{cliente.telefono}}</h4>
-    </li>
+  <li *ngFor="let cliente of clientes" class="cliente">
+    <h4>{{cliente.nombre}} - {{cliente.apellido}} - {{cliente.numero}}</h4>
+  </li>
 </ul>
-<div class="search-container">
-    <input type="text" placeholder="Buscar cliente" [(ngModel)]="numero">
-    <button (click)="searchCliente()">Buscar</button>
-</div>
+
+<h2>Busqueda por numero de cedula</h2> 
+<!-- add a search form to retrieve a single client by ID -->
+<form>
+  <input type="text" [(ngModel)]="numero" name="numero" placeholder="Cédula del cliente">
+  <button type="button" (click)="buscarCliente()">Buscar</button>
+</form>
+
+<!-- display the details of the searched client -->
+<div *ngIf="clienteBuscado && cliente._id">
+    <h2>Detalles del cliente buscado</h2>
+    <table style="border: 1px solid black;">
+      <tr>
+        <th style="border: 1px solid black;">Cedula</th>
+        <td style="border: 1px solid black;">{{cliente.numero}}</td>
+      </tr>
+      <tr>
+        <th style="border: 1px solid black;">Nombre</th>
+        <td style="border: 1px solid black;" [contentEditable]="editMode" >{{cliente.nombre}}</td>
+      </tr>
+      <tr>
+        <th style="border: 1px solid black;">Apellido</th>
+        <td style="border: 1px solid black;" [contentEditable]="editMode">{{cliente.apellido}}</td>
+      </tr>
+      <tr>
+        <th style="border: 1px solid black;">Telefono</th>
+        <td style="border: 1px solid black;" [contentEditable]="editMode">{{cliente.telefono}}</td>
+      </tr>
+      <tr>
+        <th style="border: 1px solid black;">Mail</th>
+        <td style="border: 1px solid black;" [contentEditable]="editMode">{{cliente.correo}}</td>
+      </tr>
+    </table>
   
+    <button *ngIf="!editMode" (click)="enableEditMode()">Editar</button>
+    <button *ngIf="editMode" (click)="guardarCambios()">Guardar</button>
+  </div>
+  
+
+<div *ngIf="clienteBuscado && !cliente._id">
+  <p>No se encontró ningún cliente.</p>
+</div>
