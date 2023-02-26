@@ -1,60 +1,67 @@
+<div style="display: flex;">
+
+    <div style="flex: 1; margin-left: 20px;">
+      <h2>Busqueda por numero de cédula</h2> 
+      <!-- add a search form to retrieve a single client by ID -->
+      <form>
+        <input type="text" [(ngModel)]="numero" name="numero" placeholder="Cédula del cliente">
+        <button type="button" (click)="buscarCliente()">Buscar</button>
+      </form>
+  
+      <!-- display the details of the searched client -->
+      <div *ngIf="clienteBuscado && cliente._id">
+        <h2>Detalles del cliente buscado</h2>
+        <table style="border: 1px solid black;">
+          <tr>
+            <th style="border: 1px solid black;">Cedula</th>
+            <td style="border: 1px solid black;">{{cliente.numero}}</td>
+          </tr>
+          <tr>
+            <th style="border: 1px solid black;">Nombre</th>
+            <td style="border: 1px solid black;">
+              <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="cliente.nombre" required [disabled]="!editMode">
+            </td>
+          </tr>
+          <tr>
+            <th style="border: 1px solid black;">Apellido</th>
+            <td style="border: 1px solid black;">
+              <input type="text" name="apellido" #apellido="ngModel" [(ngModel)]="cliente.apellido" required [disabled]="!editMode">
+            </td>
+          </tr>
+          <tr>
+            <th style="border: 1px solid black;">Telefono</th>
+            <td style="border: 1px solid black;">
+              <input type="text" name="telefono" #telefono="ngModel" [(ngModel)]="cliente.telefono" required [disabled]="!editMode">
+            </td>
+          </tr>
+          <tr>
+            <th style="border: 1px solid black;">Mail</th>
+            <td style="border: 1px solid black;">
+              <input type="text" name="correo" #correo="ngModel" [(ngModel)]="cliente.correo" required [disabled]="!editMode">
+            </td>
+          </tr>
+        </table>
+  
+        <button *ngIf="!editMode" (click)="enableEditMode()">Editar</button>
+        <button *ngIf="editMode" (click)="guardarCambios()">Guardar</button>
+        <button type="button" (click)="borrarCliente(cliente._id)">Borrar</button>
+      </div>
+  
+      <div *ngIf="clienteBuscado && !cliente._id">
+        <p>No se encontró ningún cliente.</p>
+      </div>
+    </div>
+
+    <div style="flex: 1;">
+        <h2>Últimos 10 clientes creados</h2>
+        <ul>
+          <li *ngFor="let cliente of clientes" class="cliente">
+            <h4>{{cliente.numero}} - {{cliente.nombre}} - {{cliente.apellido}} - {{cliente.telefono}}- {{cliente.correo}}</h4>
+          </li>
+        </ul>
+      </div>
+
+  </div>
 <div *ngIf="actualizacionExitosa" class="success-message rounded shadow-lg p-3 mb-4 " style="background-color: lightblue;text-align: center;">
     ACTUALIZACION EXITOSA
   </div>
-  
-<h2>Clientes</h2>
-<ul>
-  <li *ngFor="let cliente of clientes" class="cliente">
-    <h4>{{cliente.nombre}} - {{cliente.apellido}} - {{cliente.numero}}</h4>
-  </li>
-</ul>
-
-<h2>Busqueda por numero de cedula</h2> 
-<!-- add a search form to retrieve a single client by ID -->
-<form>
-  <input type="text" [(ngModel)]="numero" name="numero" placeholder="Cédula del cliente">
-  <button type="button" (click)="buscarCliente()">Buscar</button>
-</form>
-
-<!-- display the details of the searched client -->
-<div *ngIf="clienteBuscado && cliente._id">
-  <h2>Detalles del cliente buscado</h2>
-  <table style="border: 1px solid black;">
-    <tr>
-      <th style="border: 1px solid black;">Cedula</th>
-      <td style="border: 1px solid black;">{{cliente.numero}}</td>
-    </tr>
-    <tr>
-      <th style="border: 1px solid black;">Nombre</th>
-      <td style="border: 1px solid black;">
-        <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="cliente.nombre" required [disabled]="!editMode">
-      </td>
-    </tr>
-    <tr>
-      <th style="border: 1px solid black;">Apellido</th>
-      <td style="border: 1px solid black;">
-        <input type="text" name="apellido" #apellido="ngModel" [(ngModel)]="cliente.apellido" required [disabled]="!editMode">
-      </td>
-    </tr>
-    <tr>
-      <th style="border: 1px solid black;">Telefono</th>
-      <td style="border: 1px solid black;">
-        <input type="text" name="telefono" #telefono="ngModel" [(ngModel)]="cliente.telefono" required [disabled]="!editMode">
-      </td>
-    </tr>
-    <tr>
-      <th style="border: 1px solid black;">Mail</th>
-      <td style="border: 1px solid black;">
-        <input type="text" name="correo" #correo="ngModel" [(ngModel)]="cliente.correo" required [disabled]="!editMode">
-      </td>
-    </tr>
-  </table>
-
-  <button *ngIf="!editMode" (click)="enableEditMode()">Editar</button>
-  <button *ngIf="editMode" (click)="guardarCambios()">Guardar</button>
-  <button type="button" (click)="borrarCliente(cliente._id)">Borrar</button>
-</div>
-
-<div *ngIf="clienteBuscado && !cliente._id">
-  <p>No se encontró ningún cliente.</p>
-</div>
