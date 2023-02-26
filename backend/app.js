@@ -6,6 +6,9 @@ const cors = require('cors');
 var app=express();
 var cuentasRoutes=require('./routes/cuentas.routes');
 var clientesRoutes=require('./routes/cliente.routes');
+var userRoutes=require('./routes/user.routes')
+var adminRoutes=require('./routes/administrator.routes');
+var empleadoRoutes=require('./routes/empleado.routes');
 
 app.use(cors());
 app.use(bodyParser.urlencoded({extended:false}));
@@ -22,5 +25,7 @@ app.use((req,res,next)=>{
 
 app.use('/', cuentasRoutes);
 app.use('/', clientesRoutes);
-app.use('/api',require('./routes/index'));
+app.use('/api',userRoutes);
+app.use('/administrator',adminRoutes);
+app.use('/empleado',empleadoRoutes);
 module.exports=app;
