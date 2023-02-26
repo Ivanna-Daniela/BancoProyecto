@@ -142,7 +142,7 @@ label {
   font-size: 18px;
   text-align: justify;
 }
-button {
+input[type="submit"]  {
   padding: 10px 20px;
   font-size: 18px;
   background-color: #3b22ab;

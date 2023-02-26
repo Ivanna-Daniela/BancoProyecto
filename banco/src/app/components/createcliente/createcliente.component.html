@@ -59,7 +59,7 @@
                                 </span>
 
                                 <label for="telefono">Telefono:</label>  
-                                <input type="telefono" id="telefono" name="telefono" #telefono="ngModel" [(ngModel)]="cliente.telefono" required >
+                                <input type="number" id="telefono" name="telefono" #telefono="ngModel" [(ngModel)]="cliente.telefono" required >
                                 <span *ngIf="telefono.touched && !telefono.valid">
                                     Teléfono obligatorio o incorrectamente ingresado
                                 </span>

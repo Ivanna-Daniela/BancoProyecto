@@ -123,7 +123,9 @@ form h2{
   text-align: center;
 }
 input[type="text"],
-input[type="number"] {
+input[type="number"],
+input[type="password"],
+input[type="email"] {
   width: 100%;
   padding: 10px;
   margin-bottom: 20px;
@@ -142,7 +144,7 @@ label {
   font-size: 18px;
   text-align: justify;
 }
-button {
+input[type="submit"]  {
   padding: 10px 20px;
   font-size: 18px;
   background-color: #3b22ab;
