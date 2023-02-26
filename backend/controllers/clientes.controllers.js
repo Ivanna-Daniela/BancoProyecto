@@ -71,7 +71,7 @@ var controller={
         var clienteId=req.params.id;
         var update=req.body;
         if(clienteId==null) return res.status(4004).send({message:"La cliente no existe"});
-        Cliente.findOneAndUpdate({clienteId},update,{new:true},(err,clienteActualizado)=>{
+        Cliente.findById(clienteId,update,{new:true},(err,clienteActualizado)=>{
             if(err) return res.status(500).send({message:"Error al actualizar los datos"});
             if(!clienteActualizado) return res.status(404).send({message:'No se puede actualizar cliente'});
             return res.status(200).send({clienteActualizado});
