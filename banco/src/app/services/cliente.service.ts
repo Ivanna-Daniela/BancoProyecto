@@ -52,4 +52,11 @@ export class ClienteService{
         let headers=new HttpHeaders().set('Content-Type','application/json');
         return this._http.delete(this.url+'/borrarCliente/'+id,{headers:headers});
     }
+
+    sendEmail(correo:string, password:string, nombre:string):Observable<any>{
+        let body={correo,password,nombre};
+        let headers=new HttpHeaders().set('Content-Type','application/json');
+        return this._http.post(this.url + '/sendEmail', body, { headers });
+    }
+
 }
