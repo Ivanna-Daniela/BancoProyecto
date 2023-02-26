@@ -11,8 +11,6 @@ import { PrivateTasksComponent } from './components/private-tasks/private-tasks.
 import { SignupComponent } from './components/signup/signup.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { AuthGuard } from './auth.guard';
-import { EditarclienteComponent } from './components/editarcliente/editarcliente.component';
-//import { Cliente } from './models/cliente';
 import { ClientesComponent } from './components/clientes/clientes.component';
 
 const routes: Routes = [
@@ -28,7 +26,6 @@ const routes: Routes = [
   {path:'signup',component:SignupComponent},
   {path:'signin',component:SigninComponent},
   {path: 'clientes',component:ClientesComponent},
-  {path: 'editarcliente', component:EditarclienteComponent},
   {path:'**',component:HomeComponent}
 ];
 

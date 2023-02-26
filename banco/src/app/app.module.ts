@@ -20,7 +20,6 @@ import { TasksComponent } from './components/tasks/tasks.component';
 import { PrivateTasksComponent } from './components/private-tasks/private-tasks.component';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './services/token-interceptor.service';
-import { EditarclienteComponent } from './components/editarcliente/editarcliente.component';
 import { ClientesComponent } from './components/clientes/clientes.component';
 
 @NgModule({
@@ -39,7 +38,6 @@ import { ClientesComponent } from './components/clientes/clientes.component';
     SignupComponent,
     TasksComponent,
     PrivateTasksComponent,
-    EditarclienteComponent,
     ClientesComponent
   ],
   imports: [
