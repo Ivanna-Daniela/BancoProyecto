@@ -22,7 +22,7 @@ export class AuthAService {
         return this.http.post<any>(this.URL + '/signin', admin);
     }
 
-    loggedIn(){
+    loggedInA(){
         return !!localStorage.getItem('token');
     }
 
