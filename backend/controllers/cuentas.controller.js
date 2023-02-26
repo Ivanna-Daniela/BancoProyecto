@@ -69,6 +69,7 @@ var controller={
             return res.status(200).send({cuenta});
         })
     },
+    
     deleteCuenta:function(req,res){
         var cuentaId=req.params.id;
         if(cuentaId==null) return res.status(4004).send({message:"La cuenta no existe"});
@@ -184,8 +185,17 @@ var controller={
         console.error(err);
         return res.status(500).send({ message: 'Error sending email' });
       }
-    }
+    },
     
+    findCuentabyCliente:function(req,res){
+      var cliente=req.params.cliente;
+      if(cliente==null) return res.status(404).send({message:"No se ha ingresado bien el CI"});
+      Cuenta.find({cliente},(err,cuenta)=>{
+          if(err) return res.status(500).send({message:"Error al recuperar los datos"});
+          if(!cuenta) return res.status(404).send({message:'No existe'});
+          return res.status(200).send({cuenta});
+      })
+  },
 
 }
 module.exports=controller;

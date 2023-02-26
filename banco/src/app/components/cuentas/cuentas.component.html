@@ -3,6 +3,58 @@
  <ul>
   <li *ngFor="let cuenta of cuentas" class="cuenta">
     <h4>{{cuenta.numero}} - {{cuenta.nombre}} - {{cuenta.tipo}} - {{cuenta.saldo}} - {{cuenta.cliente}} - {{cuenta.estado}}</h4>
-
   </li>
 </ul>  
+
+<h2>Busqueda por numero de cédula de cliente</h2> 
+<!-- add a search form to retrieve a single client by ID -->
+<form>
+  <input type="text" [(ngModel)]="cliente" name="cliente" placeholder="Cédula del cliente">
+  <button type="button" (click)="buscarCuenta()">Buscar</button>
+</form>
+
+<!-- display the details of the searched client -->
+<div *ngIf="cuentaBuscada && cuenta._id">
+  <h2>Detalles de la cuenta buscada</h2>
+  <table style="border: 1px solid black;">
+    <tr>
+      <th style="border: 1px solid black;">Numero</th>
+      <td style="border: 1px solid black;">{{cuenta.numero}}</td>
+    </tr>
+    <tr>
+      <th style="border: 1px solid black;">Nombre</th>
+      <td style="border: 1px solid black;">
+        <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="cuenta.nombre" required [disabled]="!editMode">
+      </td>
+    </tr>
+    <tr>
+      <th style="border: 1px solid black;">Tipo</th>
+      <td style="border: 1px solid black;">
+        <input type="text" name="tipo" #tipo="ngModel" [(ngModel)]="cuenta.tipo" required [disabled]="!editMode">
+      </td>
+    </tr>
+    <tr>
+      <th style="border: 1px solid black;">Saldo</th>
+      <td style="border: 1px solid black;">{{cuenta.saldo}}</td>
+    </tr>
+    <tr>
+        <th style="border: 1px solid black;">Cliente</th>
+        <td style="border: 1px solid black;">{{cuenta.cliente}}</td>
+    </tr>
+    <tr>
+        <th style="border: 1px solid black;">Estado</th>
+        <td style="border: 1px solid black;">{{cuenta.estado}}</td>
+    </tr>
+        <tr>
+      <th style="border: 1px solid black;">Limite Diario</th>
+      <td style="border: 1px solid black;">
+        <input type="number" name="limiteDiario" #limiteDiario="ngModel" [(ngModel)]="cuenta.limiteDiario" required [disabled]="!editMode">
+      </td>
+    </tr>
+    </table>
+<button *ngIf="!editMode" (click)="enableEditMode()">Editar</button>
+<button *ngIf="editMode" (click)="guardarCambios()">Guardar</button>
+<button type="button" (click)="borrarCuenta(cuenta._id)">Borrar</button> 
+
+  
+</div>

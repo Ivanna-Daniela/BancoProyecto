@@ -33,15 +33,19 @@ export class CuentaService{
     }
     //editar cuenta
     //http://localhost:3700/cuenta/:id
-    updatePeliculas(cuenta:Cuenta):Observable<any>{
+    updateCuenta(cuenta:Cuenta):Observable<any>{
         let params=JSON.stringify(cuenta);
         let headers=new HttpHeaders().set('Content-Type','application/json');
-        return this._http.put(this.url+'/pelicula/'+cuenta._id,params,{headers:headers});
+        return this._http.put(this.url+'/editar/'+cuenta._id,params,{headers:headers});
     }
     //eliminar cuenta
     //http://localhost:3700/cuenta/:id
     deleteCuenta(id:String):Observable<any>{
         let headers=new HttpHeaders().set('Content-Type','application/json');
         return this._http.delete(this.url+'/cuenta/'+id,{headers:headers});
+    }
+    getCuentaN(cliente:string):Observable<any>{
+        let headers=new HttpHeaders().set('Content-Type','application/json');
+        return this._http.get(this.url+'/filtroCliente/'+cliente,{headers:headers});
     }
 }

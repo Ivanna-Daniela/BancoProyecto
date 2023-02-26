@@ -75,10 +75,9 @@ export class ClientesComponent implements OnInit {
   guardarCambios() {
     this._clienteService.updateClientes(this.cliente).subscribe(
       response => {
-        // Do something with the response, e.g. show a success message
         console.log('Cliente actualizado:', response.clienteActualizado);
         this.actualizacionExitosa = true; // set the flag to true when client is updated
-        this.editMode = false; // disable edit mode after saving changes
+        this.editMode = false; 
       },
       error => {
         console.log(<any>error);

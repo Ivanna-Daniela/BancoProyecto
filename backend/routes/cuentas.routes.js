@@ -22,12 +22,8 @@ router.get('/encontrar/:numero',cuentasRouter.findCuenta);
 router.post('/transaccion',cuentasRouter.transaccion);
 
 router.post('/emailCuenta', cuentasRouter.sendEmail);
-
-//login
-
-
-//logout
-
+//buscar cuenta por cedula del cliente
+router.get('/filtroCliente/:cliente',cuentasRouter.findCuentabyCliente);
 
 
 module.exports=router; 
