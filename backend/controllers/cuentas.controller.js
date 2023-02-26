@@ -14,7 +14,13 @@ var controller={
     },
     saveCuenta: async function(req, res) {
       try {
-        const { tipo, estado, cliente,limiteDiario } = req.body;
+        const { tipo, estado, cliente, limiteDiario } = req.body;
+    
+        // check if cliente exists
+        const existingCliente = await Cliente.findOne({ numero: cliente });
+        if (!existingCliente) {
+          return res.status(404).send({ message: 'El cliente no existe' });
+        }
     
         // generate a unique cuenta number
         let numero;
@@ -26,18 +32,12 @@ var controller={
           }
         } while (!numero);
     
-        // check if cliente exists
-        const existingCliente = await Cliente.findOne({ nombre: cliente });
-        if (!existingCliente) {
-          return res.status(404).send({ message: 'El cliente no existe' });
-        }
-    
         // create a new cuenta object and save to database
         const nuevaCuenta = new Cuenta({
           numero,
           tipo,
           estado,
-          cliente: existingCliente._id,
+          cliente: existingCliente.numero,
           limiteDiario,
         });
         const cuentaGuardada = await nuevaCuenta.save();
@@ -47,6 +47,7 @@ var controller={
         return res.status(500).send({ message: 'Error al guardar' });
       }
     }
+    
     
     ,
  

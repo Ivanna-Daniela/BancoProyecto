@@ -34,20 +34,22 @@ export class CreatecuentaComponent implements OnInit{
   }
 
   guardarCuenta(form:NgForm) {
-    this._cuentaService.guardarCuenta(this.cuentaGuardar).subscribe(
+    this._cuentaService.guardarCuenta(this.cuenta).subscribe(
       response => {
-        if(response.cliente) {
+        if(response.cuenta) {
           this.status = 'success';
           this.idGuardado = response.id;
-          this.cuentaGuardar = response.cliente;
+          this.cuentaGuardar = response.cuenta;
           form.reset();
         } else {
-          this.status = 'error';
+          this.status = 'failed';
+          form.reset();
         }
       },
       error => {
         console.log(<any>error);
-        this.status = 'error';
+        this.status = 'failed';
+        form.reset();
       }
     );
   }

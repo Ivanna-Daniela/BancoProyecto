@@ -48,12 +48,12 @@
                                     Cédula obligatoria o incorrectamente ingresada
                                 </span>
                                 <label for="nombre">Nombre:</label>
-                                <input type="text" id="nombre" name="nombre" #nombre="ngModel" [(ngModel)]="cliente.nombre" required pattern="[a-zA-Z]">
+                                <input type="text" id="nombre" name="nombre" #nombre="ngModel" [(ngModel)]="cliente.nombre" required pattern="[a-zA-Z]+">
                                 <span *ngIf="nombre.touched && !nombre.valid">
                                     Nombre obligatorio o incorrectamente ingresado
                                 </span>
-                                <label for="apellido">Nombre:</label>
-                                <input type="text" id="apellido" name="apellido" #apellido="ngModel" [(ngModel)]="cliente.apellido" required pattern="[a-zA-Z]">
+                                <label for="apellido">Apellido:</label>
+                                <input type="text" id="apellido" name="apellido" #apellido="ngModel" [(ngModel)]="cliente.apellido" required pattern="[a-zA-Z]+">
                                 <span *ngIf="apellido.touched && !apellido.valid">
                                     Apellido obligatorio o incorrectamente ingresado
                                 </span>
@@ -64,11 +64,6 @@
                                     Teléfono obligatorio o incorrectamente ingresado
                                 </span>
 
-                                <label for="password">Contraseña:</label>
-                                <input type="password" id="password" name="password" #password="ngModel" [(ngModel)]="cliente.password" required pattern="[0-9]+">
-                                <span *ngIf="password.touched && !password.valid">
-                                    Contraseña obligatoria o incorrectamente ingresada
-                                </span>
                                
                                 <label for="correo">Correo:</label>
                                 <input type="email" id="correo" name="correo" #correo="ngModel" [(ngModel)]="cliente.correo" required>

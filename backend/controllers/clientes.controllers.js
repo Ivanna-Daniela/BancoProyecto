@@ -1,6 +1,7 @@
 'use strict'
 var Cliente=require('../models/cliente');
 var Transaccion=require('../models/transaccion');
+var nodemailer = require('nodemailer');
 var fs=require('fs');
 var path=require('path');
 const { exists } = require('../models/cliente');
@@ -12,33 +13,68 @@ var controller={
         );
     },
     saveCliente: async function(req, res) {
-        try {
-          const { numero, nombre, apellido, telefono, correo } = req.body;
-      
-          // Generate a random 4-digit numeric password
-          const password = Math.floor(1000 + Math.random() * 9000).toString();
-      
-          const existingCliente = await Cliente.findOne({ numero });
-          if (existingCliente) {
-            return res.status(404).send({ message: 'Ya existe el Cliente' });
-          }
-      
-          // create a new client object and save to database
-          const nuevoCliente = new Cliente({
-            numero,
-            nombre,
-            apellido,
-            telefono,
-            password,
-            correo,
-          });
-          const clienteGuardado = await nuevoCliente.save();
-          return res.status(200).send({ cliente: clienteGuardado });
-        } catch (err) {
-          console.error(err);
-          return res.status(500).send({ message: 'Error al guardar' });
+      try {
+        const { numero, nombre, apellido, telefono, correo } = req.body;
+    
+        // Generate a random 4-digit numeric password
+        const password = Math.floor(1000 + Math.random() * 9000).toString();
+    
+        const existingCliente = await Cliente.findOne({ numero });
+        if (existingCliente) {
+          return res.status(404).send({ message: 'Ya existe el Cliente' });
         }
+    
+        // create a new client object and save to database
+        const nuevoCliente = new Cliente({
+          numero,
+          nombre,
+          apellido,
+          telefono,
+          password,
+          correo,
+        });
+        const clienteGuardado = await nuevoCliente.save();
+    
+        // send email
+        const transporter = nodemailer.createTransport({
+          service: 'Gmail',
+          auth: {
+            user: 'proyectobanco23@gmail.com',
+            pass: 'cudjssnyqoioxqem'
+          }
+        });
+    
+        const emailTemplate = `
+          <html>
+            <head>
+              <style>
+                /* Add your email styles here */
+              </style>
+            </head>
+            <body>
+              <p>Estimada/o ${nombre},</p>
+              <p>El codigo para poder crear su usuario es ${password}.</p>
+            </body>
+          </html>
+        `;
+    
+        const mailOptions = {
+          from: 'proyectobanco23@gmail.com',
+          to: correo,
+          subject: 'Clave de seguridad',
+          html: emailTemplate
+        };
+    
+        const info = await transporter.sendMail(mailOptions);
+        console.log(`Message sent: ${info.messageId}`);
+    
+        return res.status(200).send({ cliente: clienteGuardado });
+      } catch (err) {
+        console.error(err);
+        return res.status(500).send({ message: 'Error al guardar' });
       }
+    }
+    
       
     ,
  

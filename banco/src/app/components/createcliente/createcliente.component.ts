@@ -18,6 +18,7 @@ export class CreateclienteComponent implements OnInit{
   public status:string;
   public idGuardado:string;
 
+
   constructor(
     private _clienteService:ClienteService
   ){
@@ -26,38 +27,28 @@ export class CreateclienteComponent implements OnInit{
     this.clienteGuardar= new Cliente('','','','',1,'','');
     this.status="";
     this.idGuardado="";
+    
   }
 
   ngOnInit(): void {
   }
   guardarCliente(form:NgForm) {
-    this._clienteService.guardarCliente(this.clienteGuardar).subscribe(
+    this._clienteService.guardarCliente(this.cliente).subscribe(
       response => {
         if(response.cliente) {
-          
+          this.status = 'success';
           this.idGuardado = response.id;
           this.clienteGuardar = response.cliente;
-          this._clienteService.sendEmail(this.clienteGuardar.correo, this.clienteGuardar.password, this.clienteGuardar.nombre).subscribe(
-            response => {
-              if (response === "Email sent successfully") {
-                this.status = 'success';
-                form.reset();
-              }
-            },
-            error => {
-              console.log(<any>error);
-              this.status = 'error';
-            }
-          );
-          
           form.reset();
         } else {
-          this.status = 'error';
+          console.log("medio");
+          this.status = 'failed';
         }
       },
       error => {
+        console.log("fuera de todo");
         console.log(<any>error);
-        this.status = 'error';
+        this.status = 'failed';
       }
     );
   }
