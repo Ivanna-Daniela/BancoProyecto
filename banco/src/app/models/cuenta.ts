@@ -4,8 +4,9 @@ export class Cuenta{
         public numero:Number,
         public nombre:string,
         public tipo:string,
-        public estado:Number,
+        public saldo:Number,
         public cliente:string,
+        public estado:string,
         public limiteDiario:number
     ){}
 }

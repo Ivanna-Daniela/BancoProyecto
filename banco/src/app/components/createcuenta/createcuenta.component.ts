@@ -24,8 +24,8 @@ export class CreatecuentaComponent implements OnInit{
   ){
     this.titulo="GUARDAR CUENTA";
     this.url=Global.url;
-    this.cuenta= new Cuenta('',1,'','',1,'',1);
-    this.cuentaGuardar= new Cuenta('',1,'','',1,'',1);
+    this.cuenta= new Cuenta('',1,'','',1,'','',1);
+    this.cuentaGuardar= new Cuenta('',1,'','',1,'','',1);
     this.status="";
     this.idGuardado="";
   }

@@ -50,16 +50,16 @@
 
                                 <label for="nombre">Nombre de su cuenta:</label>
                                 <input type="text" id="nombre" name="nombre" #cliente="ngModel" [(ngModel)]="cuenta.nombre" required>
-                                
+
                                 <label for="tipo">Tipo:</label>
                                 <select id="tipo" name="tipo" #tipo="ngModel" [(ngModel)]="cuenta.tipo" required>
                                 <option value="Ahorros">Ahorros</option>
                                 <option value="Corriente">Corriente</option>
                                 </select>
 
-                                <label for="estado">Monto Inicial:</label>  
-                                <input type="number" id="estado" name="estado" #estado="ngModel" [(ngModel)]="cuenta.estado" required >
-                                <span *ngIf="estado.touched && !estado.valid">
+                                <label for="saldo">Monto Inicial:</label>  
+                                <input type="number" id="saldo" name="saldo" #saldo="ngModel" [(ngModel)]="cuenta.saldo" required >
+                                <span *ngIf="saldo.touched && !saldo.valid">
                                     Monto inicial obligatorio o incorrectamente ingresado
                                 </span>
                                

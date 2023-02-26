@@ -14,7 +14,7 @@ var controller={
     },
     saveCuenta: async function(req, res) {
       try {
-        const { nombre,tipo, estado, cliente, limiteDiario } = req.body;
+        const { nombre,tipo, saldo, cliente, limiteDiario } = req.body;
     
         // check if cliente exists
         const existingCliente = await Cliente.findOne({ numero: cliente });
@@ -31,15 +31,16 @@ var controller={
          const cuentaCount = await Cuenta.countDocuments();
         numero = cuentaCount + 1;
         }
-
+        let estado = "Activo";
         // create a new cuenta object and save to database
         const nuevaCuenta = new Cuenta({
           numero,
           nombre,
           tipo,
-          estado,
+          saldo,
           cliente: existingCliente.numero,
           limiteDiario,
+          estado
         });
         const cuentaGuardada = await nuevaCuenta.save();
         return res.status(200).send({ cuenta: cuentaGuardada });
@@ -117,8 +118,8 @@ var controller={
           }
       
           // Update account balances
-          cuentaE.estado -= monto;
-          cuentaR.estado = parseInt(cuentaR.estado) + parseInt(monto);
+          cuentaE.saldo -= monto;
+          cuentaR.saldo = parseInt(cuentaR.saldo) + parseInt(monto);
       
           await cuentaE.save();
           await cuentaR.save();

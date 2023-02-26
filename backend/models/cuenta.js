@@ -8,8 +8,9 @@ var cuentaSchema = Schema({
     numero:Number,
     nombre:String,
     tipo:String,
-    estado:Number,
+    saldo:Number,
     cliente:String,
+    estado:String,
     limiteDiario:Number
 });
 
