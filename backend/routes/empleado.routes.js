@@ -5,7 +5,7 @@ const Empleado = require('../models/empleado');
 
 const jwt = require('jsonwebtoken');
 
-router.get('/',(req,res)=> res.send('Hello world'))
+router.get('/',(req,res)=> res.send('Hello'))
 
 router.post('/signup', async (req,res)=>{
     const { email, password } = req.body;

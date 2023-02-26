@@ -13,6 +13,7 @@ import { SigninComponent } from './components/signin/signin.component';
 import { AuthGuard } from './auth.guard';
 import { ClientesComponent } from './components/clientes/clientes.component';
 import { CuentasComponent } from './components/cuentas/cuentas.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 const routes: Routes = [
   {path:'inicio',component:HomeComponent},
@@ -27,6 +28,8 @@ const routes: Routes = [
   {path:'signin',component:SigninComponent},
   {path: 'edicionclientes',component:ClientesComponent},
   {path:'cuentas',component:CuentasComponent},
+  {path:'clientes',component:ClientesComponent},
+  {path:'administrator',component:AdminComponent},
   {path:'**',component:HomeComponent}
 ];
 
