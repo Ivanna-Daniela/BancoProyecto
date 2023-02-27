@@ -14,12 +14,12 @@ export class AuthAService {
         private router: Router,
     ){}
 
-    signUp(admin:any){
-        return this.http.post<any>(this.URL + '/signup', admin);
-    }
+    /*signUp(admin:any){
+        return this.http.post<any>(this.URL, admin);
+    }*/
 
-    signIn(admin:any){
-        return this.http.post<any>(this.URL + '/signin', admin);
+    signInA(admin:any){
+        return this.http.post<any>(this.URL + '/signinA', admin);
     }
 
     loggedInA(){
@@ -30,7 +30,7 @@ export class AuthAService {
         return localStorage.getItem('token');
     }
 
-    logOut(){
+    logOutA(){
         localStorage.removeItem('token');
         this.router.navigate(['/signin'])
     }

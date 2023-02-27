@@ -11,9 +11,11 @@ import { PrivateTasksComponent } from './components/private-tasks/private-tasks.
 import { SignupComponent } from './components/signup/signup.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { AuthGuard } from './auth.guard';
+import { AuthAGuard } from './authA.guard';
 import { ClientesComponent } from './components/clientes/clientes.component';
 import { CuentasComponent } from './components/cuentas/cuentas.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { PrivateTasksAComponent } from './components/private-tasks-a/private-tasks-a.component';
 
 const routes: Routes = [
   {path:'inicio',component:HomeComponent},
@@ -24,9 +26,10 @@ const routes: Routes = [
   {path:'cuenta',component:CreatecuentaComponent},
   {path:'tasks',component:TasksComponent},
   {path:'private',component:PrivateTasksComponent,canActivate:[AuthGuard]},
+  {path:'privateA',component:PrivateTasksAComponent,canActivate:[AuthAGuard]},
   {path:'signup',component:SignupComponent},
   {path:'signin',component:SigninComponent},
-  {path: 'edicionclientes',component:ClientesComponent},
+  {path:'edicionclientes',component:ClientesComponent},
   {path:'cuentas',component:CuentasComponent},
   {path:'clientes',component:ClientesComponent},
   {path:'administrator',component:AdminComponent},

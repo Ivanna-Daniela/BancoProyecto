@@ -21,12 +21,12 @@ export class AdminComponent implements OnInit{
   ngOnInit() {
     
   }
-  signIn(){
-    this.authAService.signIn(this.admin).subscribe(
+  signInA(){
+    this.authAService.signInA(this.admin).subscribe(
       res =>{
         console.log(res);
         localStorage.setItem('token', res.token);
-        this.router.navigate(['/private']);
+        this.router.navigate(['/privateA']);
       },
       err => console.log(err)
     )

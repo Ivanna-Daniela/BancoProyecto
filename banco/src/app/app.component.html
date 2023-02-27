@@ -9,7 +9,7 @@
         <ul class="navbar-nav">
           <ng-container *ngIf="!authAService.loggedInA(); else loggedInA">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" [routerLink]="['/inicio']">Inicio</a>
+              <a class="nav-link" [routerLink]="['/inicio']">Inicio</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" [routerLink]="['/crearUsuario']">Registrarse</a>
@@ -35,16 +35,10 @@
           </ng-container>
           <ng-template #loggedInA>
             <li class="nav-item">
-              <a class="nav-link">Crear Empleado</a>
+              <a class="nav-link" [routerLink]="['/cuentas']">Cuentas</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" >Borrar Empleado</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link">Visualizar Empleado</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link">Editar Empleado</a>
+              <a class="nav-link" [routerLink]="['/edicionclientes']">Editar Clientes</a>
             </li>
           </ng-template>
         </ul>
@@ -59,11 +53,10 @@
           </ng-container>
           <ng-template #loggedIn>
             <li class="nav-item">
-              <a class="nav-link" style="cursor: pointer;" (click)="authService.logOut()">LogOut</a>
+              <a class="nav-link" style="cursor: pointer;" (click)="authAService.logOutA()">LogOut</a>
             </li>
           </ng-template>
         </ul>
-        
       </div>
     </div>
   </div>

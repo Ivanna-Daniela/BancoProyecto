@@ -15,7 +15,7 @@ router.post('/signup', async (req,res)=>{
     res.status(200).json({token}); 
 });
 
-router.post('/signin', async (req, res)=>{
+router.post('/signinA', async (req, res)=>{
     const { email, password} = req.body;
     const admin = await Admin.findOne({email});
     if (!admin) return res.status(401).send("El correo no existe");
@@ -47,7 +47,7 @@ router.get('/tasks', (req, res)=>{
     ])
 });
 //datos privados
-router.get('/private-tasks', verifyToken, (req, res)=>{
+router.get('/private-tasksA', verifyToken, (req, res)=>{
     res.json([
         {
             _id: 1,

@@ -19,10 +19,12 @@ import { SignupComponent } from './components/signup/signup.component';
 import { TasksComponent } from './components/tasks/tasks.component';
 import { PrivateTasksComponent } from './components/private-tasks/private-tasks.component';
 import { AuthGuard } from './auth.guard';
+import { AuthAGuard } from './authA.guard';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { ClientesComponent } from './components/clientes/clientes.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { CuentasComponent } from './components/cuentas/cuentas.component';
+import { PrivateTasksAComponent } from './components/private-tasks-a/private-tasks-a.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ import { CuentasComponent } from './components/cuentas/cuentas.component';
     PrivateTasksComponent,
     ClientesComponent,
     AdminComponent,
-    CuentasComponent
+    CuentasComponent,
+    PrivateTasksAComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +55,12 @@ import { CuentasComponent } from './components/cuentas/cuentas.component';
   ],
   providers: [
     AuthGuard,
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    },
+    AuthAGuard,
     {
       provide:HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
