@@ -48,4 +48,9 @@ export class CuentaService{
         let headers=new HttpHeaders().set('Content-Type','application/json');
         return this._http.get(this.url+'/filtroCliente/'+cliente,{headers:headers});
     }
+
+    getCuentasN(cliente:string):Observable<any>{
+        let headers=new HttpHeaders().set('Content-Type','application/json');
+        return this._http.get(this.url+'/encontrarCuentas/'+cliente,{headers:headers});
+    }
 }

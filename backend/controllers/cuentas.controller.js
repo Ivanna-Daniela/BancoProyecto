@@ -131,7 +131,15 @@ var controller={
           return res.status(500).send({ message: "Error al realizar la transacción" });
         }
       },
-      
+      findCuentas:function(req,res){
+          var cliente=req.params.cliente;
+          if(cliente==null) return res.status(404).send({message:"No se ha ingresado bien el CI"});
+          Cuenta.find({cliente}).sort().exec((err,cuentas)=>{
+              if(err) return res.status(500).send({message:"Error al recuperar los datos"});
+              if(!cuentas) return res.status(404).send({message:'No existe'});
+              return res.status(200).send({cuentas});
+          })
+      },
     
     
     findCuenta:function(req,res){

@@ -1,1 +1,44 @@
-<p>transaction works!</p>
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Transferencias</title>
+    </head>
+
+    <body>
+        <!--Inicio de barra lateral-->
+        <aside id="lateral">
+            <h3>Banco</h3>
+            <div class="container" *ngIf="cliente">
+                <h3>Bienvenid@ {{cliente.nombre}}</h3>
+                <div class="clearfix"></div>
+            </div>
+        </aside>
+        <div class="data">
+            <p *ngIf="confirm == false">
+                <a [routerLink]="['/inicio',cliente._id]" class="button-cuentas">Mis cuentas</a>
+            </p>
+            <p *ngIf="confirm == false">
+                <a [routerLink]="['/transacciones',cliente._id]" class="button-transacciones">Transacciones</a>
+            </p>
+            <p *ngIf="confirm == false">
+                <a [routerLink]="['/contactos',cliente._id]" class="button-contactos">Contactos</a>
+            </p>
+        </div>
+        <div class="containerTransaccion">
+            <div class="cuentaDespliegue">
+                <h2>Elija su cuenta</h2>
+                <label for="selectedOption">Cuenta:</label>
+                <select id="numero" name="numero" #numero="ngModel" [(ngModel)]="cuentaE.numero" required>
+                    <option *ngFor="let cuenta of cuentas" [value]="cuenta.numero">{{ cuenta.numero }}</option>
+                  </select>!
+            </div>
+
+            <div class="formulario">
+                <form></form>
+                
+            </div>
+
+        </div>
+    </body>
+</html>

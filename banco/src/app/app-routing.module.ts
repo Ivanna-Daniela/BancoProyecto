@@ -16,6 +16,7 @@ import { ClientesComponent } from './components/clientes/clientes.component';
 import { CuentasComponent } from './components/cuentas/cuentas.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { PrivateTasksAComponent } from './components/private-tasks-a/private-tasks-a.component';
+import { TransactionComponent } from './components/transaction/transaction.component';
 
 const routes: Routes = [
   {path:'inicio',component:HomeComponent},
@@ -33,6 +34,7 @@ const routes: Routes = [
   {path:'cuentas',component:CuentasComponent},
   {path:'clientes',component:ClientesComponent},
   {path:'administrator',component:AdminComponent},
+  {path:'transacciones/:id',component:TransactionComponent},
   {path:'**',component:HomeComponent}
 ];
 
