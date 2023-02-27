@@ -143,7 +143,6 @@ var controller={
     
     
     findCuenta:function(req,res){
-      var prueba={ "cuenta":[]};
         var numero=req.params.numero;
         if(numero==null) return res.status(404).send({message:"La cuenta no existe"});
         Cuenta.find({numero},(err,cuenta)=>{

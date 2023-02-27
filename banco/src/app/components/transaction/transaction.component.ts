@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Cliente } from '../../models/cliente';
 import { Cuenta } from '../../models/cuenta';
@@ -18,9 +19,11 @@ export class TransactionComponent implements OnInit{
   public cliente:Cliente;
   public cuentaE:Cuenta;
   public cuentaR:Cuenta;
+  public guardada:Cuenta;
   public confirm:boolean;
   public cuentas: Cuenta[];
   public selectedOption: any;
+  public comprobado:string;
 
 
   constructor(
@@ -33,9 +36,11 @@ export class TransactionComponent implements OnInit{
     this.url=Global.url;
     this.cliente=new Cliente("","","","",0,"","");
     this.cuentaE= new Cuenta("",0,"","",0,"","",0);
+    this.guardada= new Cuenta("",0,"","",0,"","",0);
     this.cuentaR= new Cuenta("",0,"","",0,"","",0);
     this.confirm=false;
     this.cuentas=[];
+    this.comprobado="";
     
   }
   
@@ -64,6 +69,7 @@ export class TransactionComponent implements OnInit{
   getCliente(id:string){
     this._clienteService.getCliente(id).subscribe(
       response=>{
+
         this.cliente=response.cliente;
         this.getOptions(this.cliente.numero);
       },
@@ -75,4 +81,29 @@ export class TransactionComponent implements OnInit{
   setConfirm(confirm:boolean){
     this.confirm=confirm;
   }
+  getCuenta(form:NgForm){
+    this._cuentaService.getCuentaN(this.cuentaR.cliente).subscribe(
+      response=>{
+        if(response.cuenta){
+          console.log(response.cuenta);
+          this.guardada=response.cuenta;
+          console.log("guardada", this.guardada.numero);
+          console.log("R", this.cuentaR.numero);
+          if(this.guardada.numero == this.cuentaR.numero){
+
+            this.comprobado='si';
+            form.reset();
+          }else{
+            this.comprobado='no';
+            form.reset();
+          }
+
+        }
+      },
+      error =>{
+
+      }
+    )
+  }
+
 }

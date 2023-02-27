@@ -30,12 +30,34 @@
                 <h2>Elija su cuenta</h2>
                 <label for="selectedOption">Cuenta:</label>
                 <select id="numero" name="numero" #numero="ngModel" [(ngModel)]="cuentaE.numero" required>
-                    <option *ngFor="let cuenta of cuentas" [value]="cuenta.numero">{{ cuenta.numero }}</option>
-                  </select>!
+                    <option *ngFor="let cuenta of cuentas" [value]="cuenta.numero">Cuenta: {{ cuenta.numero }}  saldo {{ cuenta.saldo }}</option>
+                  </select>
             </div>
 
             <div class="formulario">
-                <form></form>
+                <h2>Ingrese los datos de la cuenta receptora</h2>
+               <form  #cuentaForm="ngForm" (ngSubmit)="getCuenta(cuentaForm)">
+                    <br>
+                    <label for="clienteE">Cédula:</label>
+                    <input type="text" id="clienteE" name="clienteE" #clienteE="ngModel" [(ngModel)]="cuentaR.cliente" required pattern="[0-9]+">
+                    <span *ngIf="clienteE.touched && !clienteE.valid">
+                        Cédula obligatoria o incorrectamente ingresada
+                    </span>
+                    <label for="numeroR">Número de cuenta:</label>
+                    <input type="number" id="numeroR" name="numeroR" #numeroR="ngModel" [(ngModel)]="cuentaR.numero" required >
+                    <span *ngIf="numeroR.touched && !numeroR.valid">
+                        Número de cuenta obligatorio o incorrectamente ingresado
+                    </span>
+
+                    
+                    <input type="submit" value="Verificar" [disabled]="!cuentaForm.form.valid">
+                    <div class="message success" *ngIf="comprobado=='si'">
+                        La cuenta se ha validado correctamente, puedes continuar en  
+                    </div>
+                    <div class="message failed" *ngIf="comprobado=='no'">
+                        La cuenta no se ha podido encontrar, vuelva a ingresar los datos.
+                    </div>
+                </form>
                 
             </div>
 
