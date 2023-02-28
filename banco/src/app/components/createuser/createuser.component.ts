@@ -68,7 +68,7 @@ export class CreateuserComponent implements OnInit{
       res => {
         console.log(res);
         //Redirige al usuario a la página de home
-        this._router.navigate(['/signin']);
+        this._router.navigate(['/signup']);
       },
       err => console.log(err)
     )
