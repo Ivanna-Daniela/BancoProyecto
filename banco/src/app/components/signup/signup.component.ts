@@ -26,6 +26,7 @@ export class SignupComponent implements OnInit {
   }
   signUp(){
     GlobalComponent.appUrl = this.user.usuario;
+    this.user.numero = GlobalComponent.appCed;
     this.authService.signUp(this.user).subscribe(
       res =>{
         console.log(res);

@@ -6,6 +6,8 @@ import { CargarService } from '../../services/cargar.service';
 import { ClienteService } from '../../services/cliente.service';
 import { Global } from '../../services/global';
 import { NgForm } from '@angular/forms';
+import { GlobalComponent } from '../globalVar/global-component';
+
 
 @Component({
   selector: 'app-createuser',
@@ -64,6 +66,7 @@ export class CreateuserComponent implements OnInit{
     );
   }
   signIn(){
+    GlobalComponent.appCed= this.cliente1.numero;
     this.userService.signIn(this.cliente1).subscribe(
       res => {
         console.log(res);
