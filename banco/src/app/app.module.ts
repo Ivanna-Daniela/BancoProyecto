@@ -45,7 +45,7 @@ import { PrivateTasksAComponent } from './components/private-tasks-a/private-tas
     ClientesComponent,
     AdminComponent,
     CuentasComponent,
-    PrivateTasksAComponent
+    PrivateTasksAComponent,
   ],
   imports: [
     BrowserModule,

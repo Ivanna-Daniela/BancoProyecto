@@ -1,1 +1,24 @@
 <p>private-tasks works!</p>
+<h1>Bienvenido, {{cliente.nombre}}</h1>
+<button type="button" (click)="buscarCuentas()">Mis productos</button>
+<div *ngIf="cuentaBuscada">
+    <h2>Detalles de la cuenta buscada</h2>
+ <table  *ngFor="let cuenta of arr" style="border: 1px solid black;">
+    <tr>
+        <th style="border: 1px solid black;">Nombre de la cuenta</th>
+        <td style="border: 1px solid black;">{{cuenta.nombre}}</td>
+      </tr>
+    <tr>
+      <th style="border: 1px solid black;">Numero de cuenta</th>
+      <td style="border: 1px solid black;">{{cuenta.cliente}}</td>
+    </tr>
+    <tr>
+        <th style="border: 1px solid black;">Estado</th>
+        <td style="border: 1px solid black;">{{cuenta.estado}}</td>
+      </tr>
+      <tr>
+        <th style="border: 1px solid black;">Saldo</th>
+        <td style="border: 1px solid black;">{{cuenta.saldo}}</td>
+      </tr>
+</table>
+</div>

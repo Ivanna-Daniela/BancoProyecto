@@ -1,28 +1,21 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
-
 import { GlobalComponent } from "../components/globalVar/global-component";
 
 @Injectable({
     providedIn: 'root'
 })
-export class AuthService {
-
-    private URL = 'http://localhost:3700/api'
+export class VerificarService{
+    private URL = 'http://localhost:3700'
 
     constructor(
         private http: HttpClient,
         private router: Router,
     ){}
 
-    signUp(user:any){
-        GlobalComponent.appUrl = "";
-        return this.http.post<any>(this.URL + '/signup', user);
-    }
-
-    signIn(user:any){
-        return this.http.post<any>(this.URL + '/signin', user);
+    signIn(cliente:any){
+        return this.http.post<any>(this.URL + '/signin2', cliente);
     }
 
     loggedIn(){
@@ -38,5 +31,4 @@ export class AuthService {
         GlobalComponent.appUrl = "";
         this.router.navigate(['/signin'])
     }
-
 }
