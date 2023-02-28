@@ -19,7 +19,7 @@ router.delete('/borrar/:id',cuentasRouter.deleteCuenta);
 //buscar cuenta
 router.get('/encontrar/:numero',cuentasRouter.findCuenta);
 
-router.get('/encontrarCuentas/:cliente',cuentasRouter.getCuentas);
+router.get('/encontrarCuentas/:cliente',cuentasRouter.findCuentas);
 
 router.post('/transaccion',cuentasRouter.transaccion);
 

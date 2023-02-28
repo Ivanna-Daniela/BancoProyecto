@@ -128,6 +128,7 @@ var controller={
       },
       findCuentas:function(req,res){
           var cliente=req.params.cliente;
+          console.log(cliente);
           if(cliente==null) return res.status(404).send({message:"No se ha ingresado bien el CI"});
           Cuenta.find({cliente}).sort().exec((err,cuentas)=>{
               if(err) return res.status(500).send({message:"Error al recuperar los datos"});
