@@ -94,12 +94,7 @@ var controller={
         var numeroE = params.id_cuentaE;
         var numeroR = params.id_cuentaR;
         var monto = params.monto;
-        var clave1 = params.clave1;
-        var clave2 = params.clave2;
-
-        if (clave1 != clave2) {
-          return res.status(404).send({ message: "el codigo no ha sido ingresado correctamente" });
-        }
+        
       
         if (!numeroE || !numeroR) {
           return res.status(404).send({ message: "Las cuentas no han sido ingresadas" });
@@ -147,7 +142,7 @@ var controller={
         if(numero==null) return res.status(404).send({message:"La cuenta no existe"});
         Cuenta.find({numero},(err,cuenta)=>{
             if(err) return res.status(500).send({message:"Error al recuperar los datos"});
-            if(cuenta==prueba) return res.status(404).send({message:'No la existe la cuenta'});
+            if(!cuenta) return res.status(404).send({message:'No  existe la cuenta'});
             return res.status(200).send({cuenta});
         })
     },
@@ -203,6 +198,43 @@ var controller={
           return res.status(200).send({cuenta});
       })
   },
+
+  findClienteByCuenta: function(req, res) {
+    var cuentaNumero = req.params.numero;
+  
+    if (cuentaNumero == null) {
+      return res.status(404).send({message: "No se ha ingresado bien el número de cuenta"});
+    }
+  
+    // Find the corresponding cuenta object in the database
+    Cuenta.findOne({numero: cuentaNumero}, function(err, cuenta) {
+      if (err) {
+        return res.status(500).send({message: "Error al recuperar los datos de la cuenta"});
+      }
+  
+      if (!cuenta) {
+        return res.status(404).send({message: "No se ha encontrado la cuenta"});
+      }
+  
+      // Retrieve the cliente parameter of the cuenta object
+      var clienteNumero = cuenta.cliente;
+  
+      // Find the corresponding cliente object in the database
+      Cliente.findOne({numero: clienteNumero}, function(err, cliente) {
+        if (err) {
+          return res.status(500).send({message: "Error al recuperar los datos del cliente"});
+        }
+  
+        if (!cliente) {
+          return res.status(404).send({message: "No se ha encontrado el cliente"});
+        }
+  
+        // Return the cliente object
+        return res.status(200).send({cliente});
+      });
+    });
+  },
+  
 
 
 }

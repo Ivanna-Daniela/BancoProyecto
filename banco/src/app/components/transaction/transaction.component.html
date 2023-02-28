@@ -38,24 +38,39 @@
                 <h2>Ingrese los datos de la cuenta receptora</h2>
                <form  #cuentaForm="ngForm" (ngSubmit)="getCuenta(cuentaForm)">
                     <br>
-                    <label for="clienteE">Cédula:</label>
-                    <input type="text" id="clienteE" name="clienteE" #clienteE="ngModel" [(ngModel)]="cuentaR.cliente" required pattern="[0-9]+">
-                    <span *ngIf="clienteE.touched && !clienteE.valid">
-                        Cédula obligatoria o incorrectamente ingresada
-                    </span>
                     <label for="numeroR">Número de cuenta:</label>
                     <input type="number" id="numeroR" name="numeroR" #numeroR="ngModel" [(ngModel)]="cuentaR.numero" required >
                     <span *ngIf="numeroR.touched && !numeroR.valid">
                         Número de cuenta obligatorio o incorrectamente ingresado
                     </span>
-
-                    
                     <input type="submit" value="Verificar" [disabled]="!cuentaForm.form.valid">
                     <div class="message success" *ngIf="comprobado=='si'">
-                        La cuenta se ha validado correctamente, puedes continuar en  
+                        Cuenta del cliente {{clienteR.nombre}}   {{clienteR.apellido}} 
                     </div>
                     <div class="message failed" *ngIf="comprobado=='no'">
-                        La cuenta no se ha podido encontrar, vuelva a ingresar los datos.
+                        Esta cuenta no pertenece a ningun cliente, vuelva a ingresar los datos.
+                    </div>
+                </form>
+                
+            </div>
+
+           <div class="formularioMonto">
+                <h2>Ingrese el motno a depositar</h2>
+               <form  #montoForm="ngForm" (ngSubmit)="transaccion(montoForm)">
+                <label for="monto">Monto:</label>
+                <input type="number" id="monto" name="monto" #montoInput="ngModel" [(ngModel)]="monto"  required>
+
+                <span *ngIf="montoInput.touched && !montoInput.valid">
+                Número de cuenta obligatorio o incorrectamente ingresado
+                </span>
+
+                   <input type="submit" value="Verificar" [disabled]="!montoForm.form.valid || (comprobado === 'no' && !cuentaE.numero)">
+
+                    <div class="message success" *ngIf="trans=='si'">
+                        Cuenta del cliente {{cliente.nombre}}   {{cliente.apellido}} ha transferido {{monto}} al cliente {{clienteR.nombre}}   {{clienteR.apellido}}
+                    </div>
+                    <div class="message failed" *ngIf="trans=='no'">
+                        transaccion fallida
                     </div>
                 </form>
                 

@@ -53,4 +53,23 @@ export class CuentaService{
         let headers=new HttpHeaders().set('Content-Type','application/json');
         return this._http.get(this.url+'/encontrarCuentas/'+cliente,{headers:headers});
     }
+
+    getCuentasNumero(numero:number):Observable<any>{
+        let headers=new HttpHeaders().set('Content-Type','application/json');
+        return this._http.get(this.url+'/encontrar/'+numero,{headers:headers});
+    }
+
+    //encontrar cliente por numero de cuenta
+
+    clientePorCuenta(numero:number):Observable<any>{
+        let headers=new HttpHeaders().set('Content-Type','application/json');
+        return this._http.get(this.url+'/clientePorCuenta/'+numero,{headers:headers});
+    }
+
+    transaccion(numeroE:number,numeroR:number,monto:number):Observable<any>{
+        console.log("emisor2",numeroE,"receptor",numeroR,"monto",monto)
+        let params=JSON.stringify({id_cuentaE:numeroE,id_cuentaR:numeroR,monto:monto});
+        let headers=new HttpHeaders().set('Content-Type','application/json');
+        return this._http.post(this.url+'/transaccion',params,{headers:headers});
+    }
 }
