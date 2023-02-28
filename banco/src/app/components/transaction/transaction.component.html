@@ -67,6 +67,7 @@
                             <div class="form-group">
                               <label for="numeroR">Número de cuenta:</label>
                               <input type="number" id="numeroR" name="numeroR" class="form-control" #numeroR="ngModel" [(ngModel)]="cuentaR.numero" required placeholder="Enter email">
+                              <br>
                               <span class="text-danger" *ngIf="numeroR.touched && !numeroR.valid">
                                 Número de cuenta obligatorio o incorrectamente ingresado
                               </span>
@@ -74,6 +75,7 @@
                             <button type="submit" class="btn btn-primary" [disabled]="!cuentaForm.form.valid">
                               Verificar
                             </button>
+                            <br>
                             <div class="message success" *ngIf="comprobado == 'si'">
                               Cuenta del cliente {{clienteR.nombre}} {{clienteR.apellido}}
                             </div>
@@ -94,11 +96,13 @@
                                         <div class="form-group">
                                         <label for="monto">Monto:</label>
                                         <input type="number" id="monto" name="monto" #montoInput="ngModel" [(ngModel)]="monto" required class="form-control">
+                                        <br>
                                         <span *ngIf="montoInput.touched && !montoInput.valid" class="invalid-feedback">
                                             Monto obligatorio o incorrectamente ingresado
                                         </span>
                                         </div>
-                                        <input type="submit" value="Verificar" [disabled]="!montoForm.form.valid || (comprobado === 'no' && !cuentaE.numero)" class="btn btn-primary mt-2">
+                                        <input type="submit" value="Transferir" [disabled]="!montoForm.form.valid && (comprobado === 'no' && !cuentaE.numero)" class="btn btn-primary mt-2">
+                                        <br>
                                         <div class="message success" *ngIf="trans=='si'">
                                         Cuenta del cliente {{cliente.nombre}} {{cliente.apellido}} ha transferido {{monto}} al cliente {{clienteR.nombre}} {{clienteR.apellido}}
                                         </div>
