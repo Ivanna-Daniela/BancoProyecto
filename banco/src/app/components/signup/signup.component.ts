@@ -11,8 +11,9 @@ import { GlobalComponent } from '../globalVar/global-component';
 export class SignupComponent implements OnInit {
 
   user = {
-    email: '',
-    password: ''
+    usuario: '',
+    password: '',
+    numero:''
   }
 
   constructor(
@@ -24,12 +25,12 @@ export class SignupComponent implements OnInit {
     
   }
   signUp(){
-    GlobalComponent.appUrl = this.user.email;
+    GlobalComponent.appUrl = this.user.usuario;
     this.authService.signUp(this.user).subscribe(
       res =>{
         console.log(res);
         localStorage.setItem('token',res.token);
-        this.router.navigate(['/private']);
+        this.router.navigate(['/home']);
       },
       err => console.log(err)
     )
