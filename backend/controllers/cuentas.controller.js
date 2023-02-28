@@ -23,14 +23,22 @@ var controller={
         }
     
         // generate a unique cuenta number
-        const latestCuenta = await Cuenta.findOne({}, {}, { sort: { 'numero': -1 } });
+        /*const latestCuenta = await Cuenta.findOne({}, {}, { sort: { 'numero': -1 } });
         let numero;
         if (latestCuenta && latestCuenta.numero !== undefined) {
          numero = latestCuenta.numero + 1;
         } else {
          const cuentaCount = await Cuenta.countDocuments();
         numero = cuentaCount + 1;
-        }
+        }*/
+        let numero;
+        do {
+          numero = Math.floor(Math.random() * (99999999 - 10000000) + 10000000);
+          const existingCuenta = await Cuenta.findOne({ numero });
+          if (existingCuenta) {
+            numero = null;
+          }
+        } while (!numero);
         let estado = "Activo";
         // create a new cuenta object and save to database
         const nuevaCuenta = new Cuenta({
@@ -90,42 +98,52 @@ var controller={
         })
     }, 
     transaccion: async function(req, res) {
-        var params = req.body;
-        var numeroE = params.id_cuentaE;
-        var numeroR = params.id_cuentaR;
-        var monto = params.monto;
-        
-      
-        if (!numeroE || !numeroR) {
-          return res.status(404).send({ message: "Las cuentas no han sido ingresadas" });
+      var params = req.body;
+      var numeroE = params.id_cuentaE;
+      var numeroR = params.id_cuentaR;
+      var monto = params.monto;
+    
+      if (!numeroE || !numeroR) {
+        return res.status(404).send({ message: "Las cuentas no han sido ingresadas" });
+      }
+    
+      try {
+        // Find the sending account
+        const cuentaE = await Cuenta.findOne({ numero: numeroE }).exec();
+        if (!cuentaE) {
+          return res.status(404).send({ message: "La cuenta emisora no existe" });
         }
-      
-        try {
-          // Find the sending account
-          const cuentaE = await Cuenta.findOne({ numero: numeroE }).exec();
-          if (!cuentaE) {
-            return res.status(404).send({ message: "La cuenta emisora no existe" });
-          }
-      
-          // Find the receiving account
-          const cuentaR = await Cuenta.findOne({ numero: numeroR }).exec();
-          if (!cuentaR) {
-            return res.status(404).send({ message: "La cuenta receptora no existe" });
-          }
-      
-          // Update account balances
-          cuentaE.saldo -= monto;
-          cuentaR.saldo = parseInt(cuentaR.saldo) + parseInt(monto);
-      
-          await cuentaE.save();
-          await cuentaR.save();
-      
-          return res.status(200).send({ message: "Transacción realizada con éxito" });
-        } catch (error) {
-          console.error(error);
-          return res.status(500).send({ message: "Error al realizar la transacción" });
+    
+        // Find the receiving account
+        const cuentaR = await Cuenta.findOne({ numero: numeroR }).exec();
+        if (!cuentaR) {
+          return res.status(404).send({ message: "La cuenta receptora no existe" });
         }
-      },
+    
+        // Check if monto is greater than montoLimite of cuentaE
+        if (monto > cuentaE.limiteDiario) {
+          return res.status(400).send({ message: "El monto excede el límite de la cuenta emisora" });
+        }
+    
+        // Check if monto is greater than saldo of cuentaE
+        if (monto > cuentaE.saldo) {
+          return res.status(400).send({ message: "El monto excede el saldo de la cuenta emisora" });
+        }
+    
+        // Update account balances
+        cuentaE.saldo -= monto;
+        cuentaR.saldo = parseInt(cuentaR.saldo) + parseInt(monto);
+    
+        await cuentaE.save();
+        await cuentaR.save();
+    
+        return res.status(200).send({ message: "Transacción realizada con éxito" });
+      } catch (error) {
+        console.error(error);
+        return res.status(500).send({ message: "Error al realizar la transacción" });
+      }
+    },
+    
       findCuentas:function(req,res){
           var cliente=req.params.cliente;
           console.log(cliente);
