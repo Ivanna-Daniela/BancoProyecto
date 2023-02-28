@@ -12,15 +12,15 @@
               <a class="nav-link" [routerLink]="['/inicio']">Inicio</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/crearUsuario']">Login Usuario</a>
+              <a class="nav-link" [routerLink]="['/crearUsuario']">Registrar Usuario</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/crearCliente']">Administracion</a>
-            </li>
+          <!--<li class="nav-item">
+            <a class="nav-link" [routerLink]="['/crearCliente']">Administracion</a>
+          </li>-->
             <li class="nav-item">
               <a class="nav-link" [routerLink]="['/contacto']">Contactos</a>
             </li>
-            <li class="nav-item">
+            <!--<li class="nav-item">
               <a class="nav-link" [routerLink]="['/cuenta']">Cuenta</a>
             </li>
             <li class="nav-item">
@@ -28,11 +28,17 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" [routerLink]="['/private']">Tareas Privadas</a>
-            </li>
+            </li>-->
           </ng-container>
           <ng-template #loggedInA>
             <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/cuenta']">Nueva cuenta</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" [routerLink]="['/cuentas']">Cuentas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/crearCliente']">Nuevo Cliente</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" [routerLink]="['/edicionclientes']">Editar Clientes</a>
@@ -44,9 +50,9 @@
             <li class="nav-item">
               <a class="nav-link" [routerLink]="['/signin']">Iniciar Sesión</a>
             </li>
-            <li class="nav-item">
+            <!--<li class="nav-item">
               <a class="nav-link" [routerLink]="['/signup']">Registrarse</a>
-            </li>
+            </li>-->
           </ng-container>
           <ng-template #loggedIn>
             <li class="nav-item">
