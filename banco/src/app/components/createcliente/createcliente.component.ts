@@ -4,12 +4,13 @@ import { ClienteService } from 'src/app/services/cliente.service';
 import { Cliente } from '../../models/cliente';
 import { NgForm } from '@angular/forms';
 import { Global } from '../../services/global';
+import { CuentaService } from 'src/app/services/cuenta.service';
 
 @Component({
   selector: 'app-createcliente',
   templateUrl: './createcliente.component.html',
   styleUrls: ['./createcliente.component.css'],
-  providers: [ClienteService, CargarService]
+  providers: [ClienteService, CargarService,CuentaService]
 })
 export class CreateclienteComponent implements OnInit{
   public cliente:Cliente;
@@ -20,7 +21,8 @@ export class CreateclienteComponent implements OnInit{
 
 
   constructor(
-    private _clienteService:ClienteService
+    private _clienteService:ClienteService,
+    private _cuentaService:CuentaService
   ){
     this.url=Global.url;
     this.cliente= new Cliente('','','','',1,'','');

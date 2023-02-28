@@ -2,6 +2,8 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
 
+import { GlobalComponent } from "../components/globalVar/global-component";
+
 @Injectable({
     providedIn: 'root'
 })
@@ -15,6 +17,7 @@ export class AuthService {
     ){}
 
     signUp(user:any){
+        GlobalComponent.appUrl = "";
         return this.http.post<any>(this.URL + '/signup', user);
     }
 
@@ -32,6 +35,7 @@ export class AuthService {
 
     logOut(){
         localStorage.removeItem('token');
+        GlobalComponent.appUrl = "";
         this.router.navigate(['/signin'])
     }
 

@@ -19,13 +19,17 @@ router.delete('/borrar/:id',cuentasRouter.deleteCuenta);
 //buscar cuenta
 router.get('/encontrar/:numero',cuentasRouter.findCuenta);
 
-router.get('/encontrarCuentas/:numero',cuentasRouter.getCuentas);
+router.get('/encontrarCuentas/:cliente',cuentasRouter.getCuentas);
 
 router.post('/transaccion',cuentasRouter.transaccion);
 
 router.post('/emailCuenta', cuentasRouter.sendEmail);
 //buscar cuenta por cedula del cliente
 router.get('/filtroCliente/:cliente',cuentasRouter.findCuentabyCliente);
+
+//buscar cliente por cedula de la cuenta
+
+router.get('/clientePorCuenta/:numero',cuentasRouter.findClienteByCuenta);
 
 
 module.exports=router; 
