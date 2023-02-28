@@ -12,7 +12,8 @@ export class SigninComponent implements OnInit {
 
   user = {
     usuario:'',
-    password:''
+    password:'',
+    numero:''
   }
   constructor(
     public authService: AuthService,
