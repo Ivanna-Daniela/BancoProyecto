@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Cliente } from 'src/app/models/cliente';
-import { CargarService } from 'src/app/services/cargar.service';
-import { ClienteService } from 'src/app/services/cliente.service';
-import { Global } from 'src/app/services/global';
+import { Cliente } from '../../models/cliente';
+import { UserService } from '../../services/user.service';
+import { CargarService } from '../../services/cargar.service';
+import { ClienteService } from '../../services/cliente.service';
+import { Global } from '../../services/global';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -13,6 +14,10 @@ import { NgForm } from '@angular/forms';
   providers:[ClienteService,CargarService]
 })
 export class CreateuserComponent implements OnInit{
+  cliente1 ={
+    numero:'',
+    password:''
+  }
   public numero:string;
   public cliente:Cliente;
   public url:string;
@@ -23,7 +28,8 @@ export class CreateuserComponent implements OnInit{
     private _clienteService:ClienteService,
     private _cargarService:CargarService,
     private _router:Router,
-    private _route:ActivatedRoute
+    private _route:ActivatedRoute,
+    private userService:UserService
   ){
     this.numero="000";
     this.url=Global.url;
@@ -56,5 +62,15 @@ export class CreateuserComponent implements OnInit{
         console.log(<any>error);
       }
     );
+  }
+  signIn(){
+    this.userService.signIn(this.cliente1).subscribe(
+      res => {
+        console.log(res);
+        //Redirige al usuario a la página de home
+        this._router.navigate(['/signin']);
+      },
+      err => console.log(err)
+    )
   }
 }
