@@ -48,7 +48,6 @@ export class CreateuserComponent implements OnInit{
             this.idGuardado=response.cliente._id;
             form.reset();
             console.log("si pasa");
-          
         }else{
           this.status='failed';
         }
