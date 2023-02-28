@@ -164,7 +164,25 @@ var controller={
           console.error(err);
           return res.status(500).send({ message: 'Error sending email' });
         }
+      },
+      signin: async function(req, res) {
+        try {
+          const { numero, password } = req.body;
+    
+          const existingCliente = await Cliente.findOne({ numero });
+          if (!existingCliente) {
+            return res.status(404).send({ message: 'No existe el cliente' });
+          }
+    
+          if (existingCliente.password !== password) {
+            return res.status(401).send({ message: 'Contraseña incorrecta' });
+          }
+    
+          return res.status(200).send({ cliente: existingCliente });
+        } catch (err) {
+          console.error(err);
+          return res.status(500).send({ message: 'Error al iniciar sesión' });
+        }
       }
-
 }
 module.exports=controller;

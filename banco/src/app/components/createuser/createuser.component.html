@@ -1,3 +1,25 @@
+<div class="row">
+    <div class="col-md-4 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                Iniciar Sesión
+            </div>
+            <div class="card-body">
+                <form (submit)="signIn()">
+                    <div class="form-group">
+                        <input type="text" [(ngModel)]="cliente1.numero" id="numero" name="numero" class="form-control" placeholder="Cedula" required autofocus>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" [(ngModel)]="cliente1.password" name="password" class="form-control" placeholder="Password" required >
+                    </div>
+                    <button class="btn btn-primary btn-block">
+                        Sign In
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <!DOCTYPE html>
 <html>
     <head>
@@ -38,7 +60,7 @@
                     </div>
                     <div class="contenedor-sobre-nosotros">
                         <div class="formulario">
-                            <form  #clienteBForm="ngForm" (submit)="signIn()">
+                            <form  #clienteBForm="ngForm" (ngSubmit)="buscarCliente(clienteBForm)">
                                 <h1>¡Empecemos!</h1> 
                                 <h2>Ingresa tus datos</h2>
                                 <br>
@@ -57,7 +79,7 @@
                                 <label for="autorizo" class="checkbox-label">Autorizo al Banco verificar el tratamiento de mis datos personales y crediticios de fuentes legales de información</label>
                                 <input type="submit" value="Verificar" [disabled]="!clienteBForm.form.valid">
                             </form>
-
+                            
 
                         </div>
                         <div class="contenido-textos">

@@ -20,6 +20,8 @@ router.delete('/borrarCliente/:id',clientesRouter.deleteCliente);
 router.get('/encontrarCliente/:numero',clientesRouter.findCliente);
 
 router.post('/emailCliente', clientesRouter.sendEmail);
+//signin 
+router.post('/signin', clientesRouter.signin);
 
 
 
