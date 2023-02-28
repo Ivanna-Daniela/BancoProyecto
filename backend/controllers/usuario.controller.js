@@ -42,7 +42,7 @@ var controller={
         var UserId=req.body.usuario;
         console.log("Estoy en usuario controller");
         if(UserId==null) return res.status(404).send({message:"El user no existe"});
-        User.findOne(UserId,(err,user)=>{
+        Usuario.findOne({usuario: UserId},(err,user)=>{
             if(err) return res.status(500).send({message:"Error al recuperar los datos"});
             if(!user) return res.status(404).send({message:'No existe el user'});
             return res.status(200).send({user});

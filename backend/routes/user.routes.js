@@ -5,7 +5,8 @@ const router = Router();
 const User = require('../models/user');
 
 const jwt = require('jsonwebtoken');
-
+var userRouter = require('../controllers/usuario.controller');
+var multiparty=require('connect-multiparty');
 router.get('/',(req,res)=> res.send('Hello world'))
 
 router.post('/signup', async (req,res)=>{
@@ -77,7 +78,7 @@ router.get('/profile', verifyToken, (req, res)=>{
     res.send(req.userId);
 });
 
-module.exports = router;
+
 
 function verifyToken(req, res, next) {
     if (!req.headers.authorization){
@@ -91,3 +92,6 @@ function verifyToken(req, res, next) {
     req.userId = payload._id;
     next();
 }
+router.get('/uniqueuser', userRouter.getUser);
+
+module.exports=router;
