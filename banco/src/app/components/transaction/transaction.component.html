@@ -3,14 +3,16 @@
     <head>
         <meta charset="utf-8">
         <title>Transferencias</title>
+        <link rel="stylesheet" type="text/css" href="transaction.component.css">
     </head>
 
     <body>
         <!--Inicio de barra lateral-->
+        <h3>Banco</h3>
         <aside id="lateral">
-            <h3>Banco</h3>
+            
             <div class="container" *ngIf="cliente">
-                <h3>Bienvenid@ {{cliente.nombre}}</h3>
+                <h2>Bienvenid@ {{cliente.nombre}}</h2>
                 <div class="clearfix"></div>
             </div>
         </aside>
