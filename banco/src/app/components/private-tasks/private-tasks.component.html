@@ -1,24 +1,60 @@
-<p>private-tasks works!</p>
-<h1>Bienvenido, {{cliente.nombre}}</h1>
-<button type="button" (click)="buscarCuentas()">Mis productos</button>
-<div *ngIf="cuentaBuscada">
-    <h2>Detalles de la cuenta buscada</h2>
- <table  *ngFor="let cuenta of arr" style="border: 1px solid black;">
-    <tr>
-        <th style="border: 1px solid black;">Nombre de la cuenta</th>
-        <td style="border: 1px solid black;">{{cuenta.nombre}}</td>
-      </tr>
-    <tr>
-      <th style="border: 1px solid black;">Numero de cuenta</th>
-      <td style="border: 1px solid black;">{{cuenta.cliente}}</td>
-    </tr>
-    <tr>
-        <th style="border: 1px solid black;">Estado</th>
-        <td style="border: 1px solid black;">{{cuenta.estado}}</td>
-      </tr>
-      <tr>
-        <th style="border: 1px solid black;">Saldo</th>
-        <td style="border: 1px solid black;">{{cuenta.saldo}}</td>
-      </tr>
-</table>
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Mi banco</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+
+<main>
+  <div class="container pt-4">
+    <div class="row">
+      <div class="col-lg-3 pl-0">
+        <nav
+        id="sidebarMenu"
+        class="collapse d-lg-block sidebar collapse bg-white"
+        >
+     <div class="position-sticky">
+       <div class="list-group list-group-flush mx-3 mt-4">
+         <a
+         (click)="buscarCuentas()"
+            class="list-group-item list-group-item-action py-2 ripple"
+            >
+           <i class="fas fa-chart-area fa-fw me-3"></i
+             ><span>Mis productos</span>
+         </a>
+         <a
+         class="list-group-item list-group-item-action py-2 ripple"
+         ><i class="fas fa-money-bill fa-fw me-3"></i><span>Transacciones</span></a
+        >
+        <a
+        href="#"
+        class="list-group-item list-group-item-action py-2 ripple"
+        ><i class="fas fa-users fa-fw me-3"></i><span>Pagos</span></a
+       >
+        </div>
+      </div>
+    </nav>
+      </div>
+
+      <div class="col-lg-9">
+        <div *ngIf="cuentaBuscada" class="d-flex flex-wrap">
+          <div *ngFor="let cuenta of arr" class="card m-2" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">{{cuenta.nombre}}</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Número de cuenta: {{cuenta.numero}}</li>
+              <li class="list-group-item">Estado: {{cuenta.estado}}</li>
+              <li class="list-group-item">Saldo:  {{cuenta.saldo}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</main>
+</body>
