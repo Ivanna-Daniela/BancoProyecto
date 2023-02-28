@@ -1,10 +1,12 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Cliente } from 'src/app/models/cliente';
+import { VerificarService } from 'src/app/services/verificar.service';
 import { CargarService } from 'src/app/services/cargar.service';
 import { ClienteService } from 'src/app/services/cliente.service';
 import { Global } from 'src/app/services/global';
 import { NgForm } from '@angular/forms';
+import { GlobalComponent } from '../globalVar/global-component';
 
 @Component({
   selector: 'app-createuser',
@@ -13,6 +15,14 @@ import { NgForm } from '@angular/forms';
   providers:[ClienteService,CargarService]
 })
 export class CreateuserComponent implements OnInit{
+  cliente1={
+    numero:'',
+    nombre:'',
+    apellido:'',
+    telefono:231,
+    password:'',
+    correo:''
+  };
   public numero:string;
   public cliente:Cliente;
   public url:string;
@@ -23,7 +33,8 @@ export class CreateuserComponent implements OnInit{
     private _clienteService:ClienteService,
     private _cargarService:CargarService,
     private _router:Router,
-    private _route:ActivatedRoute
+    private _route:ActivatedRoute,
+    private verificar:VerificarService
   ){
     this.numero="000";
     this.url=Global.url;
@@ -56,5 +67,17 @@ export class CreateuserComponent implements OnInit{
         console.log(<any>error);
       }
     );
+  }
+  signIn(){
+    console.log(this.cliente1.numero);
+    GlobalComponent.appUrl = this.cliente1.numero;
+    this.verificar.signIn(this.cliente1).subscribe(
+      res =>{
+        console.log(res);
+        localStorage.setItem('token', res.token);
+        this._router.navigate(['/signin']);
+      },
+      err => console.log(err)
+    )
   }
 }
