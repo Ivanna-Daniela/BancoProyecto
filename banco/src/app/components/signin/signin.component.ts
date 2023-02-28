@@ -11,8 +11,9 @@ import { GlobalComponent } from '../globalVar/global-component';
 export class SigninComponent implements OnInit {
 
   user = {
-    email:'',
-    password:''
+    usuario:'',
+    password:'',
+    numero:''
   }
   constructor(
     public authService: AuthService,
@@ -24,8 +25,8 @@ export class SigninComponent implements OnInit {
     
   }
   signIn(){
-    console.log(this.user.email);
-    GlobalComponent.appUrl = this.user.email;
+    console.log(this.user.usuario);
+    GlobalComponent.appUrl = this.user.usuario;
     this.authService.signIn(this.user).subscribe(
       res =>{
         console.log(res);
