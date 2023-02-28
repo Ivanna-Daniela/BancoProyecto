@@ -34,6 +34,7 @@ export class SigninComponent implements OnInit {
         console.log(res);
         localStorage.setItem('token', res.token);
         this.router.navigate(['/private']);
+        this.buscarUser();
       },
       err => console.log(err)
     )   
@@ -43,7 +44,7 @@ export class SigninComponent implements OnInit {
     this._user1Service.getUser(this.user.usuario).subscribe(
       response=>{
         // if(response.user){
-        //   console.log(response.user);
+           console.log(response.user);
         //   GlobalComponent.appUrl = response;
         //   console.log("exito");
         // }
@@ -51,7 +52,6 @@ export class SigninComponent implements OnInit {
         //   console.log("fallo");
         //   console.log("Fallo en el buscarUser");
         // }
-        console.log("Esta es la respuesta", response)
       }
     )
   }

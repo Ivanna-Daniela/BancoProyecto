@@ -92,6 +92,6 @@ function verifyToken(req, res, next) {
     req.userId = payload._id;
     next();
 }
-router.get('/uniqueuser', userRouter.getUser);
+router.post('/uniqueuser', userRouter.getUser);
 
 module.exports=router;
