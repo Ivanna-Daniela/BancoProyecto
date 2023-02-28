@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { GlobalComponent } from '../globalVar/global-component';
 
 @Component({
   selector: 'app-signup',
@@ -23,6 +24,7 @@ export class SignupComponent implements OnInit {
     
   }
   signUp(){
+    GlobalComponent.appUrl = this.user.email;
     this.authService.signUp(this.user).subscribe(
       res =>{
         console.log(res);
