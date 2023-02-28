@@ -1,25 +1,3 @@
-<div class="row">
-    <div class="col-md-4 mx-auto">
-        <div class="card">
-            <div class="card-header">
-                Iniciar Sesión
-            </div>
-            <div class="card-body">
-                <form (submit)="signIn()">
-                    <div class="form-group">
-                        <input type="text" [(ngModel)]="cliente1.numero" id="numero" name="numero" class="form-control" placeholder="Cedula" required autofocus>
-                    </div>
-                    <div class="form-group">
-                        <input type="password" [(ngModel)]="cliente1.password" name="password" class="form-control" placeholder="Password" required >
-                    </div>
-                    <button class="btn btn-primary btn-block">
-                        Sign In
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 <!DOCTYPE html>
 <html>
     <head>
@@ -60,24 +38,27 @@
                     </div>
                     <div class="contenedor-sobre-nosotros">
                         <div class="formulario">
-                            <form  #clienteBForm="ngForm" (ngSubmit)="buscarCliente(clienteBForm)">
+                            <form  #clienteBForm="ngForm" (submit)="signIn()">
                                 <h1>¡Empecemos!</h1> 
                                 <h2>Ingresa tus datos</h2>
                                 <br>
                                 <label for="numero">Cédula:</label>
-                                <input type="text" id="numero" name="numero" #numero="ngModel" [(ngModel)]="cliente.numero" required pattern="[0-9]+">
+                                <input type="text" id="numero" name="numero" #numero="ngModel" [(ngModel)]="cliente1.numero" placeholder="Cedula" required autofocus required pattern="[0-9]+">
                                 <span *ngIf="numero.touched && !numero.valid">
                                     Cedula obligatoria o incorrectamente ingresada
                                 </span>
                                 <label for="password">Contraseña:</label>
-                                <input type="password" id="password" name="password" #password="ngModel" [(ngModel)]="cliente.password" required pattern="[0-9]+">
+                                <input type="password" id="password" name="password" #password="ngModel" [(ngModel)]="cliente1.password" placeholder="Password" required pattern="[0-9]+">
                                 <span *ngIf="password.touched && !password.valid">
                                     Contraseña obligatoria o incorrectamente ingresada
                                 </span>
                                 <br>
                                 <input type="checkbox" id="autorizo" name="autorizo" required>
                                 <label for="autorizo" class="checkbox-label">Autorizo al Banco verificar el tratamiento de mis datos personales y crediticios de fuentes legales de información</label>
-                                <input type="submit" value="Verificar" [disabled]="!clienteBForm.form.valid">
+                                <!--<input type="submit" value="Verificar" [disabled]="!clienteBForm.form.valid">-->
+                                <button [disabled]="!clienteBForm.form.valid" style="width: 100%; color: #fff; background-color: black; border-radius: 5px 5px 5px 5px;">
+                                    Sign In
+                                </button>
                             </form>
                             
 
