@@ -1,6 +1,6 @@
 export class GlobalComponent {
  
-    public static appUrl: string = "user";
+    public static appUrl: any;
     public static appCed: string = "1234";
     
  

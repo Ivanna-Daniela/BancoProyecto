@@ -29,6 +29,7 @@ export class PrivateTasksComponent implements OnInit{
   }
     ngOnInit(): void {
       this.buscarCliente();
+      console.log(GlobalComponent.appUrl);
     }
 
     buscarCuentas() {

@@ -1,4 +1,5 @@
 const {Router} = require('express');
+
 const router = Router();
 
 const User = require('../models/user');
@@ -23,6 +24,8 @@ router.post('/signin', async (req, res)=>{
     const token = jwt.sign({_id: user._id}, 'secretkey');
     return res.status(200).json({token});
 });
+
+
 //datos publicos
 router.get('/tasks', (req, res)=>{
     res.json([
@@ -69,9 +72,10 @@ router.get('/private-tasks', verifyToken, (req, res)=>{
         }
     ])
 });
+
 router.get('/profile', verifyToken, (req, res)=>{
     res.send(req.userId);
-})
+});
 
 module.exports = router;
 

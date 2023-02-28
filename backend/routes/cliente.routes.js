@@ -2,6 +2,7 @@
 var express=require('express');
 var router=express.Router();
 var clientesRouter = require('../controllers/clientes.controllers');
+var userRouter =  require ('../controllers/usuario.controller');
 var multiparty=require('connect-multiparty');
 var multupartyMiddleWare=multiparty({uploadDir:'./uploads'});
 //pagina de home
@@ -22,6 +23,8 @@ router.get('/encontrarCliente/:numero',clientesRouter.findCliente);
 router.post('/emailCliente', clientesRouter.sendEmail);
 //signin 
 router.post('/signin', clientesRouter.signin);
+//sigin
+router.get('/uniqueuser3/:numero',userRouter.getUser);
 
 
 

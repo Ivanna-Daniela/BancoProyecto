@@ -1,5 +1,5 @@
 'use strict'
-var Usuario=require('../models/usuario');
+var Usuario=require('../models/user');
 var controller={
     saveUsuario:function(req,res){
         var usuario=new Usuario();
@@ -36,6 +36,18 @@ var controller={
     logout:function(req,res){
         req.session.destroy();
         res.redirect('/inicio');
-    }
+    },
+    
+    getUser:function(req,res){
+        var UserId=req.body.usuario;
+        console.log("Estoy en usuario controller");
+        if(UserId==null) return res.status(404).send({message:"El user no existe"});
+        User.findOne(UserId,(err,user)=>{
+            if(err) return res.status(500).send({message:"Error al recuperar los datos"});
+            if(!user) return res.status(404).send({message:'No existe el user'});
+            return res.status(200).send({user});
+        })
+    },
+
 }
 module.exports=controller;

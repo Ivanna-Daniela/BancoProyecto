@@ -2,6 +2,7 @@
 var express=require('express');
 var router=express.Router();
 var cuentasRouter = require('../controllers/cuentas.controller');
+var userRouter=require('../controllers/usuario.controller');
 var multiparty=require('connect-multiparty');
 var multupartyMiddleWare=multiparty({uploadDir:'./uploads'});
 //pagina de home
@@ -30,6 +31,7 @@ router.get('/filtroCliente/:cliente',cuentasRouter.findCuentabyCliente);
 //buscar cliente por cedula de la cuenta
 
 router.get('/clientePorCuenta/:numero',cuentasRouter.findClienteByCuenta);
+
 
 
 module.exports=router; 
