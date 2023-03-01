@@ -34,7 +34,7 @@ const routes: Routes = [
   {path:'cuentas',component:CuentasComponent},
   {path:'clientes',component:ClientesComponent},
   {path:'administrator',component:AdminComponent},
-  {path:'transacciones/:id',component:TransactionComponent},
+  {path:'transacciones',component:TransactionComponent},
   {path:'**',component:HomeComponent}
 ];
 

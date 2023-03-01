@@ -20,14 +20,14 @@
       <h4>Bienvenido {{cliente.nombre}}</h4>
        <div class="list-group list-group-flush mx-3 mt-4">
          <a
-         (click)="buscarCuentas()"
+         (click)="buscarCuentas();"
             class="list-group-item list-group-item-action py-2 ripple"
             >
            <i class="fas fa-chart-area fa-fw me-3"></i
              ><span>Mis productos</span>
          </a>
          <a 
-         href="http://localhost:4200/transacciones/63fe16e68c2a539540e9e8a5"
+         [routerLink]="['/transacciones']"
          class="list-group-item list-group-item-action py-2 ripple"
          ><i class="fas fa-money-bill fa-fw me-3"></i><span>Transacciones provisional</span></a
         >

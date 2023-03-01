@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ComponentFixture } from '@angular/core/testing';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Cliente } from '../../models/cliente';
@@ -7,6 +8,7 @@ import { Cuenta } from '../../models/cuenta';
 import { ClienteService } from '../../services/cliente.service';
 import { CuentaService } from '../../services/cuenta.service';
 import { Global } from '../../services/global';
+import { GlobalComponent } from '../globalVar/global-component';
 
 @Component({
   selector: 'app-transaction',
@@ -27,7 +29,7 @@ export class TransactionComponent implements OnInit{
   public comprobado:string;
   public monto:number;
   public trans:string;
-
+  public ides:string;
 
   constructor(
     private _cuentaService:CuentaService,
@@ -47,13 +49,16 @@ export class TransactionComponent implements OnInit{
     this.comprobado="";
     this.monto=0;
     this.trans="";
+    this.ides= GlobalComponent.appId;
     
   }
   
   ngOnInit(): void {
     this._route.params.subscribe(params=>{
-      let id=params['id'];
-      this.getCliente(id);
+      console.log("EStos transacciones",GlobalComponent.appId);
+      //let id=params['id'];
+      let ide = GlobalComponent.appId;
+      this.getCliente(GlobalComponent.appId);
       
     })
 
@@ -62,6 +67,7 @@ export class TransactionComponent implements OnInit{
     this._cuentaService.getCuentasN(cliente).subscribe(
       response=>{
         if(response.cuentas){
+          console.log("Estoy en trans-dgetOptions");
         this.cuentas=response.cuentas;
         console.log(  response.cuentas);
         }
@@ -75,6 +81,7 @@ export class TransactionComponent implements OnInit{
   getCliente(id:string){
     this._clienteService.getCliente(id).subscribe(
       response=>{
+        console.log("Estoy en trans-getcliente");
         this.cliente=response.cliente;
         console.log(this.cliente.numero);
         this.getOptions(this.cliente.numero);
@@ -89,6 +96,7 @@ export class TransactionComponent implements OnInit{
     this._cuentaService.clientePorCuenta(this.cuentaR.numero).subscribe(
       response=>{
         if(response.cliente){
+          console.log("Estoy en trans-getcuenta");
          this.clienteR=response.cliente;
          console.log(this.clienteR);
          this.comprobado='si';
@@ -106,7 +114,7 @@ export class TransactionComponent implements OnInit{
   getClienteC(numero:string){
     this._clienteService.getClienteN(numero).subscribe(
       response=>{
-
+        console.log("Estoy en trans-clientec");
         this.clienteR=response.cliente;
         console.log("cliente",this.clienteR);
       },

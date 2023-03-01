@@ -29,15 +29,14 @@ export class PrivateTasksComponent implements OnInit{
   }
     ngOnInit(): void {
       this.buscarCliente();
-      console.log(GlobalComponent.appUrl);
     }
 
     buscarCuentas() {
-      this._cuentaService.getCuentaN(this.email).subscribe(
+      this._cuentaService.getCuentaN(GlobalComponent.appUrl).subscribe(
         response=>{
           if(response.cuenta){
             this.arr=response.cuenta;
-          console.log( response.cuenta);
+            console.log("Estoy en buscar priv-cuentas");
           setTimeout(() => {
             this.cuentaBuscada = true;
           }, 3); 
@@ -54,7 +53,7 @@ export class PrivateTasksComponent implements OnInit{
         response => {
           if (response.cliente.length === 1) {
             this.cliente = response.cliente[0];
-            console.log(response.cliente[0]); 
+            console.log("Estoy en buscar priv-cliente"); 
           } else {
             this.cliente=new Cliente('','','',"",123,"","");
           }

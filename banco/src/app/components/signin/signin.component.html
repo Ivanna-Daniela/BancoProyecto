@@ -5,7 +5,7 @@
                 Iniciar Sesión
             </div>
             <div class="card-body">
-                <form (submit)="signIn();">
+                <form (submit)="buscarUser();signIn();" >
                     <div class="form-group">
                         <input type="text" [(ngModel)]="user.usuario" id="usuario" name="usuario" class="form-control" placeholder="Usuario" required autofocus>
                     </div>

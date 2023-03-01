@@ -36,6 +36,8 @@ export class AuthService {
     logOut(){
         localStorage.removeItem('token');
         GlobalComponent.appUrl = "";
+        GlobalComponent.appCed="";
+        GlobalComponent.appId="";
         this.router.navigate(['/signin'])
     }
 
