@@ -1,6 +1,7 @@
 import { Component , OnInit} from '@angular/core';
 import { Cuenta} from '../../models/cuenta';
 import { CuentaService } from '../../services/cuenta.service';
+import { AuthAService } from 'src/app/services/authA.service';
 import { Global } from '../../services/global';
 @Component({
   selector: 'app-cuentas',
@@ -17,7 +18,10 @@ export class CuentasComponent implements OnInit{
   public cuentaBuscada: boolean = false;
   public actualizacionExitosa: boolean = false;
 
-  constructor(private _cuentaService: CuentaService) {
+  constructor(
+    private _cuentaService: CuentaService,
+    public authAService: AuthAService
+    ) {
     this.url = Global.url;
     this.cuentas = [];
     this.cuenta= new Cuenta('',1,'','',1,'','',1);

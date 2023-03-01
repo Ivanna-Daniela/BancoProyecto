@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ComponentFixture } from '@angular/core/testing';
 import { NgForm } from '@angular/forms';
+import { AuthAService } from 'src/app/services/authA.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Cliente } from '../../models/cliente';
 import { Cuenta } from '../../models/cuenta';
@@ -36,7 +37,8 @@ export class TransactionComponent implements OnInit{
     private _clienteService:ClienteService,
     private _router:Router,
     private _route:ActivatedRoute,
-    private http: HttpClient
+    private http: HttpClient,
+    public authAService: AuthAService
   ){
     this.url=Global.url;
     this.cliente=new Cliente("","","","",0,"","");

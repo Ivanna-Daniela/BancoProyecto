@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Cliente } from '../../models/cliente';
 import { ClienteService } from '../../services/cliente.service';
 import { Global } from '../../services/global';
+import { AuthAService } from 'src/app/services/authA.service';
 
 
 @Component({
@@ -20,7 +21,11 @@ export class ClientesComponent implements OnInit {
   public editMode: boolean = false;
   public actualizacionExitosa: boolean = false; // add this variable
 
-  constructor(private _clienteService: ClienteService) {
+  constructor(
+    private _clienteService: ClienteService,
+    public authAService: AuthAService
+    
+    ) {
     this.url = Global.url;
     this.clientes = [];
     this.numero = '';

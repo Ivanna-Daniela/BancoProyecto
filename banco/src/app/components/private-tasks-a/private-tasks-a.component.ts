@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthAService } from 'src/app/services/authA.service';
 
 @Component({
   selector: 'app-private-tasks-a',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./private-tasks-a.component.css']
 })
 export class PrivateTasksAComponent {
-
+  constructor(
+    public authAService: AuthAService
+  ){}
 }

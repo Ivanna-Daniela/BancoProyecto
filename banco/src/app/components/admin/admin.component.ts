@@ -14,7 +14,7 @@ export class AdminComponent implements OnInit{
     password:''
   }
   constructor(
-    private authAService : AuthAService,
+    public authAService : AuthAService,
     private router : Router
   ){}
 

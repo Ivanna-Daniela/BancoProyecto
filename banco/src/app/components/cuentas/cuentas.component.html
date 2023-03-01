@@ -1,4 +1,69 @@
-<p>cuentas works!</p>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container">
+    <a class="navbar-brand" href="#">Bank</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <ng-container *ngIf="!authAService.loggedInA(); else loggedInA">
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/inicio']">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/crearCliente']">Administracion</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/contacto']">Contactos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/cuenta']">Cuenta</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/tasks']">Tareas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/private']">Tareas Privadas</a>
+            </li>
+          </ng-container>
+          <ng-template #loggedInA>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/cuentas']">Cuentas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/cuenta']">Crear Cuenta</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/edicionclientes']">Editar Clientes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/crearCliente']">Crear Cliente</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/clientes']">Clientes</a>
+            </li>
+          </ng-template>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <ng-container *ngIf="!authAService.loggedInA(); else loggedIn">
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/signin']">Iniciar Sesión</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/signup']">Registrarse</a>
+            </li>
+          </ng-container>
+          <ng-template #loggedIn>
+            <li class="nav-item">
+              <a class="nav-link" style="cursor: pointer;" (click)="authAService.logOutA()">LogOut</a>
+            </li>
+          </ng-template>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
  <h2>Últimos 10 cuentas creados</h2>
  <ul>
   <li *ngFor="let cuenta of cuentas" class="cuenta">

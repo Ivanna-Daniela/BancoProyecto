@@ -2,6 +2,7 @@ import { GlobalComponent } from '../globalVar/global-component';
 import { Component , OnInit} from '@angular/core';
 import { Cuenta} from '../../models/cuenta';
 import { CuentaService } from '../../services/cuenta.service';
+import { AuthAService } from 'src/app/services/authA.service';
 import { Cliente } from '../../models/cliente';
 import { ClienteService } from '../../services/cliente.service';
 import { Global } from '../../services/global';
@@ -19,7 +20,11 @@ export class PrivateTasksComponent implements OnInit{
   public arr: any[];
   public cliente: Cliente;
   public numero: string;
-  constructor(private _cuentaService: CuentaService, private _clienteService: ClienteService) {
+  constructor(
+    private _cuentaService: CuentaService, 
+    private _clienteService: ClienteService,
+    public authAService: AuthAService
+    ) {
     this.email = GlobalComponent.appUrl ;
     this.url = Global.url;
     this.cuenta= new Cuenta('',1,'','',1,'','',1);
