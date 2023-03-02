@@ -1,0 +1,111 @@
+nav{
+    flex: auto;
+    
+}
+table input{
+    background-color: white;
+    border: none;
+    color: black;
+}
+.numero{
+    width: 400px;
+    font-size: 20px;
+    margin-left: 40px;
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+button{
+    font-size: 20px;
+    border-radius: 5px 5px 5px 5px;
+    margin-left: 25px;
+    width: 100px;
+    color: white;
+    background-color: black;
+}
+.busqueda{
+    margin-top: 20px;
+    margin-left: 150px;
+}
+.datos{
+    font-size: 25px;
+    margin-top: 20px;
+    margin-left: 70px;
+}
+.datos th{
+    font-size: 20px;
+}
+
+
+.clientes {
+    font-size: 20px;
+    margin-top: 20px;
+    width: 850px;
+    color: black;
+    background-color: white;
+}
+.clientes th{
+    font-size: 20px;
+    border: solid black 1px;
+    text-align: center;
+}
+.registro{
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    margin-top: 25px;
+}
+.botones{
+    margin-left:330px;
+}
+#titulo-registro{
+    margin-left: 180px;
+}
+.container{
+    font-size: 15px;
+
+}
+table {
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+  
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+  
+table th {
+    text-align: left;
+    background-color: #f2f2f2;
+}
+.contenedor {
+    display: flex;
+    height: 100vh;
+}
+.izquierda {
+    width: 50%;
+    height: 866px;
+    background-color: white;
+}
+.derecha {
+    width: 50%;
+    height: 866px;
+    background: #C6FFDD;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #f7797d, #FBD786, #C6FFDD);  
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, hsla(358, 89%, 72%, 0.603), hsla(42, 94%, 75%, 0.603), hsla(144, 100%, 89%, 0.603)), url(../../../assets/img/dinero.jpg); 
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+}
+.tarjeta1{
+    margin-top: 50px;
+    margin-left: 150px;
+}
+.tarjeta2{
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+
+  

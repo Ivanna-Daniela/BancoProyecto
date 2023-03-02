@@ -1,3 +1,49 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="background-color: black;">
+    <div class="container">
+      <a class="navbar-brand" href="#">Bank</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="color: white;">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <ng-container *ngIf="!authAService.loggedInA(); else loggedInA">
+  
+            </ng-container>
+            <ng-template #loggedInA>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/cuentas']">Cuentas</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/cuenta']">Crear Cuenta</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/edicionclientes']">Editar Clientes</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/crearCliente']">Crear Cliente</a>
+                  </li>
+            </ng-template>
+          </ul>
+          <ul class="navbar-nav ml-auto">
+            <ng-container *ngIf="!authAService.loggedInA(); else loggedIn">
+              <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/signin']">Iniciar Sesión</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/signup']">Registrarse</a>
+              </li>
+            </ng-container>
+            <ng-template #loggedIn>
+              <li class="nav-item">
+                <a class="nav-link" style="cursor: pointer;" (click)="authAService.logOutA()">LogOut</a>
+              </li>
+            </ng-template>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,26 +60,9 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
         <script src="https://kit.fontawesome.com/00c1360545.js" crossorigin="anonymous"></script>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">        
+        <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous"> -->      
     </head>
     <body>
-        <header>
-            <nav>
-                <a [routerLink]="['/cuentas']">Cuentas</a>
-                <a [routerLink]="['/cuenta']">Cuentas</a>
-                <a [routerLink]="['/edicionclientes']">Editar Clientes</a>
-                <a [routerLink]="['/crearCliente']">Crear Cliente</a>
-                <a [routerLink]="['/clientes']">Clientes</a>
-            </nav>
-
-                <section class="textos-header">
-                    <h1>Tú dinero siempre disponible,</h1>
-                    <h2>tú información siempre segura.</h2>
-                </section>
-                <div class="wave" style="height: 150px; overflow: hidden;" ><svg viewBox="0 0 500 150" preserveAspectRatio="none" 
-                style="height: 100%; width: 100%;"><path d="M0.00,49.98 C149.99,150.00 349.20,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z" 
-                style="stroke: none; fill: #fff;"></path></svg></div>
-        </header>
         <main>
                 <section class="contenedor sobre-nosotros" id="about">
                     <h2 class="titulo">Crea tu cuenta</h2>

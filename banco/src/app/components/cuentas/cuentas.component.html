@@ -1,4 +1,5 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container">
     <a class="navbar-brand" href="#">Bank</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -8,24 +9,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <ng-container *ngIf="!authAService.loggedInA(); else loggedInA">
-            <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/inicio']">Inicio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/crearCliente']">Administracion</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/contacto']">Contactos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/cuenta']">Cuenta</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/tasks']">Tareas</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/private']">Tareas Privadas</a>
-            </li>
+            
           </ng-container>
           <ng-template #loggedInA>
             <li class="nav-item">
@@ -39,9 +23,6 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" [routerLink]="['/crearCliente']">Crear Cliente</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/clientes']">Clientes</a>
             </li>
           </ng-template>
         </ul>
@@ -64,62 +45,97 @@
     </div>
   </div>
 </nav>
- <h2>Últimos 10 cuentas creados</h2>
- <ul>
-  <li *ngFor="let cuenta of cuentas" class="cuenta">
-    <h4>{{cuenta.numero}} - {{cuenta.nombre}} - {{cuenta.tipo}} - {{cuenta.saldo}} - {{cuenta.cliente}} - {{cuenta.estado}}</h4>
-  </li>
-</ul>  
-
-<h2>Busqueda por numero de cédula de cliente</h2> 
-<!-- add a search form to retrieve a single client by ID -->
-<form>
-  <input type="text" [(ngModel)]="cliente" name="cliente" placeholder="Cédula del cliente">
-  <button type="button" (click)="buscarCuenta()">Buscar</button>
-</form>
-
-<!-- display the details of the searched client -->
-<div *ngIf="cuentaBuscada && cuenta._id">
-  <h2>Detalles de la cuenta buscada</h2>
-  <table style="border: 1px solid black;">
-    <tr>
-      <th style="border: 1px solid black;">Numero</th>
-      <td style="border: 1px solid black;">{{cuenta.numero}}</td>
-    </tr>
-    <tr>
-      <th style="border: 1px solid black;">Nombre</th>
-      <td style="border: 1px solid black;">
-        <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="cuenta.nombre" required [disabled]="!editMode">
-      </td>
-    </tr>
-    <tr>
-      <th style="border: 1px solid black;">Tipo</th>
-      <td style="border: 1px solid black;">
-        <input type="text" name="tipo" #tipo="ngModel" [(ngModel)]="cuenta.tipo" required [disabled]="!editMode">
-      </td>
-    </tr>
-    <tr>
-      <th style="border: 1px solid black;">Saldo</th>
-      <td style="border: 1px solid black;">{{cuenta.saldo}}</td>
-    </tr>
-    <tr>
-        <th style="border: 1px solid black;">Cliente</th>
-        <td style="border: 1px solid black;">{{cuenta.cliente}}</td>
-    </tr>
-    <tr>
-        <th style="border: 1px solid black;">Estado</th>
-        <td style="border: 1px solid black;">{{cuenta.estado}}</td>
-    </tr>
-        <tr>
-      <th style="border: 1px solid black;">Limite Diario</th>
-      <td style="border: 1px solid black;">
-        <input type="number" name="limiteDiario" #limiteDiario="ngModel" [(ngModel)]="cuenta.limiteDiario" required [disabled]="!editMode">
-      </td>
-    </tr>
-    </table>
-<button *ngIf="!editMode" (click)="enableEditMode()">Editar</button>
-<button *ngIf="editMode" (click)="guardarCambios()">Guardar</button>
-<button type="button" (click)="borrarCuenta(cuenta._id)">Borrar</button> 
+<div class="contenedor">
 
   
+    
+  <div class="izquierda">
+    <div class="tarjeta1">
+      <h2>Busqueda por numero de cédula de cliente</h2> 
+      <!-- add a search form to retrieve a single client by ID -->
+      <form>
+        <input type="text" [(ngModel)]="cliente" name="cliente" placeholder="Cédula del cliente" class="numero">
+        <button type="button" (click)="buscarCuenta()">Buscar</button>
+      </form>
+      
+      <!-- display the details of the searched client -->
+      <div *ngIf="cuentaBuscada && cuenta._id">
+        <h2>Detalles de la cuenta buscada</h2>
+        <table style="border: 1px solid black;" class="datos">
+          <tr>
+            <th style="background-color: black; color: white;">Numero</th>
+            <td style="border: 1px solid black;">{{cuenta.numero}}</td>
+          </tr>
+          <tr>
+            <th style="background-color: black; color: white;">Nombre</th>
+            <td style="border: 1px solid black;">
+              <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="cuenta.nombre" required [disabled]="!editMode">
+            </td>
+          </tr>
+          <tr>
+            <th style="background-color: black; color: white;">Tipo</th>
+            <td style="border: 1px solid black;">
+              <input type="text" name="tipo" #tipo="ngModel" [(ngModel)]="cuenta.tipo" required [disabled]="!editMode">
+            </td>
+          </tr>
+          <tr>
+            <th style="background-color: black; color: white;">Saldo</th>
+            <td style="border: 1px solid black;">{{cuenta.saldo}}</td>
+          </tr>
+          <tr>
+              <th style="background-color: black; color: white;">Cliente</th>
+              <td style="border: 1px solid black;">{{cuenta.cliente}}</td>
+          </tr>
+          <tr>
+              <th style="background-color: black; color: white;">Estado</th>
+              <td style="border: 1px solid black;">{{cuenta.estado}}</td>
+          </tr>
+              <tr>
+            <th style="background-color: black; color: white;">Limite Diario</th>
+            <td style="border: 1px solid black;">
+              <input type="number" name="limiteDiario" #limiteDiario="ngModel" [(ngModel)]="cuenta.limiteDiario" required [disabled]="!editMode">
+            </td>
+          </tr>
+          </table>
+      <button *ngIf="!editMode" (click)="enableEditMode()" class="busqueda">Editar</button>
+      <button *ngIf="editMode" (click)="guardarCambios()" class="busqueda">Guardar</button>
+      <button type="button" (click)="borrarCuenta(cuenta._id)" class="busqueda">Borrar</button> 
+      </div>
+    </div>
+  
+  </div>
+  <div class="derecha">
+    <div class="tarjeta2">
+      <h2 id="titulo-cuentas" style="color: white; text-shadow: 2px 2px 1px black; ">Últimos 10 cuentas creadas</h2>
+      <table class="clientes">
+        <thead>
+          <tr>
+            <th style="background-color: black; color: white;">Cuenta</th>
+            <th style="background-color: black; color: white;">Tipo</th>
+            <th style="background-color: black; color: white;">Saldo</th>
+            <th style="background-color: black; color: white;">Cliente</th>
+            <th style="background-color: black; color: white;">Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cuenta of cuentas.slice(0, 10)">
+            <td>{{cuenta.numero}} - {{cuenta.nombre}}</td>
+            <td>{{cuenta.tipo}}</td>
+            <td>{{cuenta.saldo}}</td>
+            <td>{{cuenta.cliente}}</td>
+            <td>{{cuenta.estado}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="botones">
+        <button (click)="index = index - 10" [disabled]="index === 0" class="registro">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <button (click)="index = index + 10" [disabled]="index + 10 >= cuentas.length" class="registro">
+          <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  
+  </div>
 </div>

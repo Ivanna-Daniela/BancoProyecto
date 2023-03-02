@@ -17,6 +17,7 @@ export class CuentasComponent implements OnInit{
   public editMode: boolean = false;
   public cuentaBuscada: boolean = false;
   public actualizacionExitosa: boolean = false;
+  public index=0;
 
   constructor(
     private _cuentaService: CuentaService,

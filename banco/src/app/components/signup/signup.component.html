@@ -1,16 +1,62 @@
-<div class="row">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+      <a class="navbar-brand" href="#">Bank</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <ng-container *ngIf="!authService.loggedIn(); else loggedIn">
+              
+            <!--<li class="nav-item">
+              <a class="nav-link" [routerLink]="['/crearCliente']">Administracion</a>
+            </li>-->
+              
+              <!--<li class="nav-item">
+                <a class="nav-link" [routerLink]="['/cuenta']">Cuenta</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/tasks']">Tareas</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/private']">Tareas Privadas</a>
+              </li>-->
+            </ng-container>
+            <ng-template #loggedInA>
+              
+            </ng-template>
+          </ul>
+          <ul class="navbar-nav ml-auto">
+            <ng-container *ngIf="!authService.loggedIn(); else loggedIn">
+              
+              <!--<li class="nav-item">
+                <a class="nav-link" [routerLink]="['/signup']">Registrarse</a>
+              </li>-->
+            </ng-container>
+            <ng-template #loggedIn>
+              <li class="nav-item">
+                <a class="nav-link" style="cursor: pointer;" (click)="authService.logOut()">LogOut</a>
+              </li>
+            </ng-template>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+<div class="row tarjeta" id="login">
     <div class="col-md-4 mx-auto">
         <div class="card">
-            <div class="card-header">
+            <div class="card-header" style="font-size: 20px;">
                 Registrate
             </div>
             <div class="card-body">
                 <form (submit)="signUp()">
                     <div class="form-group">
-                        <input type="text" [(ngModel)]="user.usuario" name="usuario" class="form-control" placeholder="Usuario" required autofocus>
+                        <input type="text" [(ngModel)]="user.usuario" name="usuario" class="form-control" placeholder="Usuario" required autofocus style="font-size: 20px;">
                     </div>
                     <div class="form-group">
-                        <input type="password" [(ngModel)]="user.password" name="password" class="form-control" placeholder="Password" required>
+                        <input type="password" [(ngModel)]="user.password" name="password" class="form-control" placeholder="Password" required style="font-size: 20px;">
                     </div>
                     
                     <button class="btn btn-primary btn-block">

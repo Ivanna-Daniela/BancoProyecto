@@ -5,6 +5,7 @@ import { Cliente } from '../../models/cliente';
 import { NgForm } from '@angular/forms';
 import { Global } from '../../services/global';
 import { CuentaService } from 'src/app/services/cuenta.service';
+import { AuthAService } from 'src/app/services/authA.service';
 
 @Component({
   selector: 'app-createcliente',
@@ -22,7 +23,8 @@ export class CreateclienteComponent implements OnInit{
 
   constructor(
     private _clienteService:ClienteService,
-    private _cuentaService:CuentaService
+    private _cuentaService:CuentaService,
+    public authAService: AuthAService
   ){
     this.url=Global.url;
     this.cliente= new Cliente('','','','',1,'','');

@@ -20,6 +20,7 @@ export class ClientesComponent implements OnInit {
   public clienteBuscado: boolean = false;
   public editMode: boolean = false;
   public actualizacionExitosa: boolean = false; // add this variable
+  public index=1;
 
   constructor(
     private _clienteService: ClienteService,

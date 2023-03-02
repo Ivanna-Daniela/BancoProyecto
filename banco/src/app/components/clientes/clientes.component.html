@@ -1,44 +1,28 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container">
     <a class="navbar-brand" href="#">Bank</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="color: white;">
         <span class="navbar-toggler-icon"></span>
       </button>
     <div class="container-fluid">
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <ng-container *ngIf="!authAService.loggedInA(); else loggedInA">
-            <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/inicio']">Inicio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/crearCliente']">Administracion</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/contacto']">Contactos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/cuenta']">Cuenta</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/tasks']">Tareas</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/private']">Tareas Privadas</a>
-            </li>
+
           </ng-container>
           <ng-template #loggedInA>
             <li class="nav-item">
               <a class="nav-link" [routerLink]="['/cuentas']">Cuentas</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/cuenta']">Crear Cuenta</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" [routerLink]="['/edicionclientes']">Editar Clientes</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" [routerLink]="['/crearCliente']">Crear Cliente</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/clientes']">Clientes</a>
             </li>
           </ng-template>
         </ul>
@@ -63,68 +47,96 @@
 </nav>
 <div style="display: flex;">
 
-    <div style="flex: 1; margin-left: 20px;">
-      <h2>Busqueda por numero de cédula</h2> 
-      <!-- add a search form to retrieve a single client by ID -->
-      <form>
-        <input type="text" [(ngModel)]="numero" name="numero" placeholder="Cédula del cliente">
-        <button type="button" (click)="buscarCliente()">Buscar</button>
-      </form>
-  
-      <!-- display the details of the searched client -->
-      <div *ngIf="clienteBuscado && cliente._id">
-        <h2>Detalles del cliente buscado</h2>
-        <table style="border: 1px solid black;">
-          <tr>
-            <th style="border: 1px solid black;">Cedula</th>
-            <td style="border: 1px solid black;">{{cliente.numero}}</td>
-          </tr>
-          <tr>
-            <th style="border: 1px solid black;">Nombre</th>
-            <td style="border: 1px solid black;">
-              <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="cliente.nombre" required [disabled]="!editMode">
-            </td>
-          </tr>
-          <tr>
-            <th style="border: 1px solid black;">Apellido</th>
-            <td style="border: 1px solid black;">
-              <input type="text" name="apellido" #apellido="ngModel" [(ngModel)]="cliente.apellido" required [disabled]="!editMode">
-            </td>
-          </tr>
-          <tr>
-            <th style="border: 1px solid black;">Telefono</th>
-            <td style="border: 1px solid black;">
-              <input type="text" name="telefono" #telefono="ngModel" [(ngModel)]="cliente.telefono" required [disabled]="!editMode">
-            </td>
-          </tr>
-          <tr>
-            <th style="border: 1px solid black;">Mail</th>
-            <td style="border: 1px solid black;">
-              <input type="text" name="correo" #correo="ngModel" [(ngModel)]="cliente.correo" required [disabled]="!editMode">
-            </td>
-          </tr>
-        </table>
-  
-        <button *ngIf="!editMode" (click)="enableEditMode()">Editar</button>
-        <button *ngIf="editMode" (click)="guardarCambios()">Guardar</button>
-        <button type="button" (click)="borrarCliente(cliente._id)">Borrar</button>
-      </div>
-  
-      <div *ngIf="clienteBuscado && !cliente._id">
-        <p>No se encontró ningún cliente.</p>
+    <div style="flex: 1; margin-left: 20px;" class="izquierda">
+      <div class="tarjeta1">
+        <h2>Busqueda por numero de cédula</h2> 
+        <!-- add a search form to retrieve a single client by ID -->
+        <form>
+          <input type="text" [(ngModel)]="numero" name="numero" placeholder="Cédula del cliente" class="numero">
+          <button type="button" (click)="buscarCliente()">Buscar</button>
+        </form>
+    
+        <!-- display the details of the searched client -->
+        <div *ngIf="clienteBuscado && cliente._id">
+          <h2>Detalles del cliente buscado</h2>
+          <table style="border: 1px solid black;" class="datos">
+            <tr>
+              <th style="background-color: black; color: white;">Cedula</th>
+              <td style="border: 1px solid black;">{{cliente.numero}}</td>
+            </tr>
+            <tr>
+              <th style="background-color: black; color: white;">Nombre</th>
+              <td style="border: 1px solid black;">
+                <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="cliente.nombre" required [disabled]="!editMode">
+              </td>
+            </tr>
+            <tr>
+              <th style="background-color: black; color: white;">Apellido</th>
+              <td style="border: 1px solid black;">
+                <input type="text" name="apellido" #apellido="ngModel" [(ngModel)]="cliente.apellido" required [disabled]="!editMode">
+              </td>
+            </tr>
+            <tr>
+              <th style="background-color: black; color: white;">Telefono</th>
+              <td style="border: 1px solid black;">
+                <input type="text" name="telefono" #telefono="ngModel" [(ngModel)]="cliente.telefono" required [disabled]="!editMode">
+              </td>
+            </tr>
+            <tr>
+              <th style="background-color: black; color: white;">Mail</th>
+              <td style="border: 1px solid black;">
+                <input type="text" name="correo" #correo="ngModel" [(ngModel)]="cliente.correo" required [disabled]="!editMode">
+              </td>
+            </tr>
+          </table>
+    
+          <button *ngIf="!editMode" (click)="enableEditMode()" class="busqueda">Editar</button>
+          <button *ngIf="editMode" (click)="guardarCambios()" class="busqueda">Guardar</button>
+          <button type="button" (click)="borrarCliente(cliente._id)" class="buscaqueda">Borrar</button>
+        </div>
+    
+        <div *ngIf="clienteBuscado && !cliente._id">
+          <p>No se encontró ningún cliente.</p>
+        </div>
       </div>
     </div>
 
-    <div style="flex: 1;">
-        <h2>Últimos 10 clientes creados</h2>
-        <ul>
-          <li *ngFor="let cliente of clientes" class="cliente">
-            <h4>{{cliente.numero}} - {{cliente.nombre}} - {{cliente.apellido}} - {{cliente.telefono}}- {{cliente.correo}}</h4>
-          </li>
-        </ul>
+    <div style="flex: 1;" class="derecha">
+      <div class="tarjeta2">
+        <h2 id="titulo-registro" style="color: white; text-shadow: 2px 2px 1px black; ">Últimos 10 clientes creados</h2>
+        <table class="clientes">
+          <thead>
+            <tr>
+              <th style="background-color: black; color: white;">Cedula</th>
+              <th style="background-color: black; color: white;">Nombre</th>
+              <th style="background-color: black; color: white;">Apellido</th>
+              <th style="background-color: black; color: white;">Telefono</th>
+              <th style="background-color: black; color: white;">Correo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let cliente of clientes.slice(index, index+10)">
+              <td style="border: 1px solid black;">{{cliente.numero}}</td>
+              <td style="border: 1px solid black;">{{cliente.nombre}}</td>
+              <td style="border: 1px solid black;">{{cliente.apellido}}</td>
+              <td style="border: 1px solid black;">{{cliente.telefono}}</td>
+              <td style="border: 1px solid black;">{{cliente.correo}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="botones">
+          <button (click)="index = index - 10" [disabled]="index === 0" class="registro">
+            <i class="fas fa-arrow-left"></i>
+          </button>
+          <button (click)="index = index + 10" [disabled]="index >= clientes.length - 10" class="registro">
+            <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
       </div>
+      
+    </div>
 
   </div>
 <div *ngIf="actualizacionExitosa" class="success-message rounded shadow-lg p-3 mb-4 " style="background-color: lightblue;text-align: center;">
     ACTUALIZACION EXITOSA
-  </div>
+</div>

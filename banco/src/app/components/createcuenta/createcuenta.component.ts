@@ -4,6 +4,7 @@ import { Global } from '../../services/global';
 import { CuentaService } from '../../services/cuenta.service';
 import { Cuenta } from '../../models/cuenta';
 import { NgForm } from '@angular/forms';
+import { AuthAService } from 'src/app/services/authA.service';
 
 @Component({
   selector: 'app-createcuenta',
@@ -20,7 +21,8 @@ export class CreatecuentaComponent implements OnInit{
   public idGuardado:string;
 
   constructor(
-    private _cuentaService:CuentaService
+    private _cuentaService:CuentaService,
+    public authAService: AuthAService
   ){
     this.titulo="GUARDAR CUENTA";
     this.url=Global.url;
