@@ -10,7 +10,7 @@
 
     </head>
     <header>
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
           <a class="navbar-brand" href="#">Bank</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -66,107 +66,110 @@
     <body>
         <!--Inicio de barra lateral-->
 
-        <aside id="lateral">
-            
-            <div class="container" *ngIf="cliente">
-                <h4>Bienvenid@ {{cliente.nombre}}</h4>
-                <div class="clearfix"></div>
-            </div>
-        </aside>
         <div class="container-fluid">
             <div class="row">
-              <div class="col-lg-3 pl-0">
-                <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
-                  <div class="position-sticky">
-                    <div class="list-group list-group-flush mx-3 mt-4">
-                      <p *ngIf="confirm == false">
-                        <a class="list-group-item list-group-item-action py-2 ripple" [routerLink]="['/private']" class="button-cuentas">Mis cuentas</a>
-                      </p>
-                      <p *ngIf="confirm == false">
-                        <a class="list-group-item list-group-item-action py-2 ripple" [routerLink]="['/transacciones']" class="button-transacciones">Transacciones</a>
-                      </p>
+              <div class="izquierda">
+                <div class="col-lg-3 pl-0">
+                  <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+                    <div class="position-sticky">
+                      <div class="list-group list-group-flush mx-3 mt-4 items">
+                        <p *ngIf="confirm == false" class="menu">
+                          <a class="list-group-item list-group-item-action py-2 ripple" [routerLink]="['/private']" class="button-cuentas" style="font-size: 25px; width: 100px;color: white;">Mis cuentas</a>
+                        </p>
+                        <p *ngIf="confirm == false" class="menu">
+                          <a class="list-group-item list-group-item-action py-2 ripple" [routerLink]="['/transacciones']" class="button-transacciones" style="font-size: 25px; width: 100px;color: white;">Transacciones</a>
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                </nav>
+                  </nav>
+                </div>
               </div>
-              <div class="col-lg-9">
-                <div class="container my-5">
-                  <div class="row justify-content-center">
-                    <div class="col-md-8 col-lg-6">
-                      <div class="card">
-                        <div class="card-header">Elija su cuenta</div>
-                        <div class="card-body">
-                          <form>
-                            <div class="form-group">
-                              <label for="selectedOption">Cuenta:</label>
-                              <select id="numero" name="numero" class="form-control" #numero="ngModel" [(ngModel)]="cuentaE.numero" required>
-                                <option *ngFor="let cuenta of cuentas" [value]="cuenta.numero">Cuenta: {{ cuenta.numero }}  saldo {{ cuenta.saldo }}</option>
-                              </select>
-                            </div>
-                          </form>
+              <div class="derecha">
+                <div class="mensaje">
+                  <div class="container" *ngIf="cliente">
+                      <h4 id="cliente">Bienvenid@ {{cliente.nombre}}</h4>
+                      <div class="clearfix"></div>
+                  </div>
+                </div>
+                <div class="col-lg-9">
+                  <div class="container my-5">
+                    <div class="row justify-content-center">
+                      <div class="col-md-8 col-lg-6">
+                        <div class="card">
+                          <div class="card-header">Elija su cuenta</div>
+                          <div class="card-body">
+                            <form>
+                              <div class="form-group">
+                                <label for="selectedOption">Cuenta:</label>
+                                <select id="numero" name="numero" class="form-control" #numero="ngModel" [(ngModel)]="cuentaE.numero" required>
+                                  <option *ngFor="let cuenta of cuentas" [value]="cuenta.numero">Cuenta: {{ cuenta.numero }}  saldo {{ cuenta.saldo }}</option>
+                                </select>
+                              </div>
+                            </form>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="row justify-content-center my-5">
-                    <div class="col-md-8 col-lg-6">
-                      <div class="card">
-                        <div class="card-header">Ingrese los datos de la cuenta receptora</div>
-                        <div class="card-body">
-                          <form #cuentaForm="ngForm" (ngSubmit)="getCuenta(cuentaForm)">
-                            <div class="form-group">
-                              <label for="numeroR">Número de cuenta:</label>
-                              <input type="number" id="numeroR" name="numeroR" class="form-control" #numeroR="ngModel" [(ngModel)]="cuentaR.numero" required placeholder="Enter email">
+                    <div class="row justify-content-center my-5">
+                      <div class="col-md-8 col-lg-6">
+                        <div class="card">
+                          <div class="card-header">Ingrese los datos de la cuenta receptora</div>
+                          <div class="card-body">
+                            <form #cuentaForm="ngForm" (ngSubmit)="getCuenta(cuentaForm)">
+                              <div class="form-group">
+                                <label for="numeroR">Número de cuenta:</label>
+                                <input type="number" id="numeroR" name="numeroR" class="form-control" #numeroR="ngModel" [(ngModel)]="cuentaR.numero" required placeholder="Enter email">
+                                <br>
+                                <span class="text-danger" *ngIf="numeroR.touched && !numeroR.valid">
+                                  Número de cuenta obligatorio o incorrectamente ingresado
+                                </span>
+                              </div>
+                              <button type="submit" class="btn btn-primary" [disabled]="!cuentaForm.form.valid" style="font-size: 20px; border-radius: 5px 5px 5px 5px; margin-left: 400px;">
+                                Verificar
+                              </button>
                               <br>
-                              <span class="text-danger" *ngIf="numeroR.touched && !numeroR.valid">
-                                Número de cuenta obligatorio o incorrectamente ingresado
-                              </span>
-                            </div>
-                            <button type="submit" class="btn btn-primary" [disabled]="!cuentaForm.form.valid">
-                              Verificar
-                            </button>
-                            <br>
-                            <div class="message success" *ngIf="comprobado == 'si'">
-                              Cuenta del cliente {{clienteR.nombre}} {{clienteR.apellido}}
-                            </div>
-                            <div class="message failed" *ngIf="comprobado == 'no'">
-                              Esta cuenta no pertenece a a ningun cliente, vuelva a ingresar los datos.
-                            </div>
-                          </form>
-                      
-                        </div>
-                        <div class="row justify-content-center my-5">
-                            <div class="col-md-8 col-lg-6">
-                              <div class="card">
-                                <div class="card-header">Ingrese el monto a depositar</div>
-                                <div class="card-body">
-                                    <div class="formularioMonto">
-                                    <h3>Ingrese el monto a depositar</h3>
-                                    <form #montoForm="ngForm" (ngSubmit)="transaccion(montoForm)">
-                                        <div class="form-group">
-                                        <label for="monto">Monto:</label>
-                                        <input type="number" id="monto" name="monto" #montoInput="ngModel" [(ngModel)]="monto" required class="form-control">
-                                        <br>
-                                        <span *ngIf="montoInput.touched && !montoInput.valid" class="invalid-feedback">
-                                            Monto obligatorio o incorrectamente ingresado
-                                        </span>
-                                        </div>
-                                        <input type="submit" value="Transferir" [disabled]="!montoForm.form.valid && (comprobado === 'no' && !cuentaE.numero)" class="btn btn-primary mt-2">
-                                        <br>
-                                        <div class="message success" *ngIf="trans=='si'">
-                                        Cuenta del cliente {{cliente.nombre}} {{cliente.apellido}} ha transferido {{monto}} al cliente {{clienteR.nombre}} {{clienteR.apellido}}
-                                        </div>
-                                        <div class="message failed" *ngIf="trans=='no'">
-                                        transaccion fallida
-                                        </div>
-                                    </form>
-                                
-                                    </div>
+                              <div class="message success" *ngIf="comprobado == 'si'">
+                                Cuenta del cliente {{clienteR.nombre}} {{clienteR.apellido}}
+                              </div>
+                              <div class="message failed" *ngIf="comprobado == 'no'">
+                                Esta cuenta no pertenece a a ningun cliente, vuelva a ingresar los datos.
+                              </div>
+                            </form>
+                        
+                          </div>
+                          <div class="row justify-content-center my-5">
+                              <div class="col-md-8 col-lg-6">
+                                <div class="card1">
+                                  <div class="card-header">Ingrese el monto a depositar</div>
+                                  <div class="card-body">
+                                      <div class="formularioMonto">
+                                      <h3>Ingrese el monto a depositar</h3>
+                                      <form #montoForm="ngForm" (ngSubmit)="transaccion(montoForm)">
+                                          <div class="form-group">
+                                          <label for="monto">Monto:</label>
+                                          <input type="number" id="monto" name="monto" #montoInput="ngModel" [(ngModel)]="monto" required class="form-control">
+                                          <br>
+                                          <span *ngIf="montoInput.touched && !montoInput.valid" class="invalid-feedback">
+                                              Monto obligatorio o incorrectamente ingresado
+                                          </span>
+                                          </div>
+                                          <input type="submit" value="Transferir" [disabled]="!montoForm.form.valid && (comprobado === 'no' && !cuentaE.numero)" class="btn btn-primary mt-2" style="font-size: 20px; border-radius: 5px 5px 5px 5px; margin-left: 400px;">
+                                          <br>
+                                          <div class="message success" *ngIf="trans=='si'">
+                                          Cuenta del cliente {{cliente.nombre}} {{cliente.apellido}} ha transferido {{monto}} al cliente {{clienteR.nombre}} {{clienteR.apellido}}
+                                          </div>
+                                          <div class="message failed" *ngIf="trans=='no'">
+                                          transaccion fallida
+                                          </div>
+                                      </form>
+                                  
+                                      </div>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
+                          </div>
+                          
                         </div>
-                        
                       </div>
                     </div>
                   </div>
@@ -174,8 +177,5 @@
               </div>
             </div>
         </div>
-        
-          
-
     </body>
 </html>

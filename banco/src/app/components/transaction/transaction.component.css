@@ -1,3 +1,44 @@
 #sidebarMenu {
     margin-left: 190px;
-  }
+}
+nav{
+  font-size: 15px;
+}
+.mensaje{
+  background: #ddd6f3;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #faaca8, #ddd6f3);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, hsla(3, 89%, 82%, 0.674), hsla(254, 55%, 90%, 0.669)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  height: 84px;
+  width: 100%;
+  align-items: center;
+}
+#cliente{
+  font-size: 50px;
+}
+.derecha{
+  width: 80%;
+  background: #ddd6f3;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #faaca8, #ddd6f3);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, hsla(3, 89%, 82%, 0.402), hsla(254, 55%, 90%, 0.579)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+.izquierda{
+  width: 20%;
+  background: black;  /* fallback for old browsers */
+}
+.card{
+  width: 1000px;
+  font-size: 20px;
+  border-radius: 10px 10px 10px 10px;
+}
+.card1{
+  width: 700px;
+  border: solid black 1px;
+  border-radius: 10px 10px 10px 10px;
+}
+.card-header{
+  background-color: black;
+  color: white;
+  border-radius: 10px 10px 0px 0px;
+}
