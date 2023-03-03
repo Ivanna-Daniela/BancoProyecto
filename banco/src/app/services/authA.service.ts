@@ -7,7 +7,7 @@ import { Router } from "@angular/router";
 })
 export class AuthAService {
 
-    private URL = 'http://localhost:3700/administrator'
+    private URL = '/administrator'
 
     constructor(
         private http: HttpClient,

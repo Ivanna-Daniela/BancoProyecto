@@ -9,7 +9,7 @@ import { GlobalComponent } from "../components/globalVar/global-component";
 })
 export class AuthService {
 
-    private URL = 'http://localhost:3700/api'
+    private URL = '/api'
 
     constructor(
         private http: HttpClient,
