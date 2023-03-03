@@ -4,8 +4,8 @@ var port='3700';
 mongoose.promise=global.Promise;
 mongoose.set("strictQuery",false);
 var app=require('./app');
-mongoose.connect('mongodb://127.0.0.1:27017/cuentas')
-//mongoose.connect('mongodb+srv://admin:1234@clusterbanking.dn1i3su.mongodb.net/?retryWrites=true&w=majority')
+//mongoose.connect('mongodb://127.0.0.1:27017/cuentas')
+mongoose.connect('mongodb+srv://admin:1234@clusterbanking.dn1i3su.mongodb.net/?retryWrites=true&w=majority')
  
 .then(()=>{
     console.log("Conexion establecida con la BDD")
