@@ -2,6 +2,7 @@
 var Cuenta=require('../models/cuenta');
 var Cliente=require('../models/cliente');
 var nodemailer = require('nodemailer');
+var nodemailer = require('nodemailer');
 var fs=require('fs');
 var path=require('path');
 const { exists } = require('../models/cuenta');
@@ -98,50 +99,74 @@ var controller={
         })
     }, 
     transaccion: async function(req, res) {
-      var params = req.body;
-      var numeroE = params.id_cuentaE;
-      var numeroR = params.id_cuentaR;
-      var monto = params.monto;
-    
-      if (!numeroE || !numeroR) {
-        return res.status(404).send({ message: "Las cuentas no han sido ingresadas" });
-      }
-    
-      try {
-        // Find the sending account
-        const cuentaE = await Cuenta.findOne({ numero: numeroE }).exec();
-        if (!cuentaE) {
-          return res.status(404).send({ message: "La cuenta emisora no existe" });
+        var params = req.body;
+        var numeroE = params.id_cuentaE;
+        var numeroR = params.id_cuentaR;
+        var monto = params.monto;
+      
+        if (!numeroE || !numeroR) {
+          return res.status(404).send({ message: "Las cuentas no han sido ingresadas" });
         }
-    
-        // Find the receiving account
-        const cuentaR = await Cuenta.findOne({ numero: numeroR }).exec();
-        if (!cuentaR) {
-          return res.status(404).send({ message: "La cuenta receptora no existe" });
+      
+        try {
+          // Find the sending account
+          const cuentaE = await Cuenta.findOne({ numero: numeroE }).exec();
+          if (!cuentaE) {
+            return res.status(404).send({ message: "La cuenta emisora no existe" });
+          }
+      
+          // Find the receiving account
+          const cuentaR = await Cuenta.findOne({ numero: numeroR }).exec();
+          if (!cuentaR) {
+            return res.status(404).send({ message: "La cuenta receptora no existe" });
+          }
+      
+          // Check if monto is greater than montoLimite of cuentaE
+          if (monto > cuentaE.limiteDiario) {
+            return res.status(400).send({ message: "El monto excede el límite de la cuenta emisora" });
+          }
+      
+          // Check if monto is greater than saldo of cuentaE
+          if (monto > cuentaE.saldo) {
+            return res.status(400).send({ message: "El monto excede el saldo de la cuenta emisora" });
+          }
+      
+          // Update account balances
+          cuentaE.saldo -= monto;
+          cuentaR.saldo = parseInt(cuentaR.saldo) + parseInt(monto);
+      
+          // Find the client associated with cuentaR
+          const cliente = await Cliente.findOne({ numero: cuentaR.cliente }).exec();
+          if (!cliente) {
+            return res.status(404).send({ message: "El cliente no existe" });
+          }
+      
+          // Send email to the client
+          const nodemailer = require("nodemailer");
+          let transporter = nodemailer.createTransport({
+            service: 'Gmail',
+            auth: {
+              user: 'proyectobanco23@gmail.com',
+              pass: 'cudjssnyqoioxqem'
+            },
+          });
+      
+          let info = await transporter.sendMail({
+            from: 'proyectobanco23@gmail.com',
+            to: cliente.correo,
+            subject: "Notificación de Transacción",
+            text: `Estimado  ${cliente.nombre},\n\nSu cuenta ha sido acreditada con ${monto}. El nuevo balance ess ${cuentaR.saldo}.\n\nSaludos,\nSu banco`,
+          });
+      
+          await cuentaE.save();
+          await cuentaR.save();
+      
+          return res.status(200).send({ message: "Transacción realizada con éxito" });
+        } catch (error) {
+          console.error(error);
+          return res.status(500).send({ message: "Error al realizar la transacción" });
         }
-    
-        // Check if monto is greater than montoLimite of cuentaE
-        if (monto > cuentaE.limiteDiario) {
-          return res.status(400).send({ message: "El monto excede el límite de la cuenta emisora" });
-        }
-    
-        // Check if monto is greater than saldo of cuentaE
-        if (monto > cuentaE.saldo) {
-          return res.status(400).send({ message: "El monto excede el saldo de la cuenta emisora" });
-        }
-    
-        // Update account balances
-        cuentaE.saldo -= monto;
-        cuentaR.saldo = parseInt(cuentaR.saldo) + parseInt(monto);
-    
-        await cuentaE.save();
-        await cuentaR.save();
-    
-        return res.status(200).send({ message: "Transacción realizada con éxito" });
-      } catch (error) {
-        console.error(error);
-        return res.status(500).send({ message: "Error al realizar la transacción" });
-      }
+      
     },
     
       findCuentas:function(req,res){
