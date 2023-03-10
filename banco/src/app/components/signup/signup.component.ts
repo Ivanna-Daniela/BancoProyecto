@@ -37,5 +37,9 @@ export class SignupComponent implements OnInit {
     )
    
   }
+  isValidPassword(): boolean {
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}$/;
+    return passwordRegex.test(this.user.password);
+  }
 
 }

@@ -44,26 +44,25 @@
       </div>
     </div>
   </nav>
-<div class="row tarjeta" id="login">
+  <div class="row tarjeta" id="login">
     <div class="col-md-4 mx-auto">
-        <div class="card">
-            <div class="card-header" style="font-size: 20px;">
-                Registrate
-            </div>
-            <div class="card-body">
-                <form (submit)="signUp()">
-                    <div class="form-group">
-                        <input type="text" [(ngModel)]="user.usuario" name="usuario" class="form-control" placeholder="Usuario" required autofocus style="font-size: 20px;">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" [(ngModel)]="user.password" name="password" class="form-control" placeholder="Password" required style="font-size: 20px;">
-                    </div>
-                    
-                    <button class="btn btn-primary btn-block">
-                        Sign Up
-                    </button>
-                </form>
-            </div>
+      <div class="card">
+        <div class="card-header" style="font-size: 20px;">
+          Registrate
         </div>
+        <div class="card-body">
+          <form (submit)="signUp()">
+            <div class="form-group">
+              <input type="text" [(ngModel)]="user.usuario" name="usuario" class="form-control" placeholder="Usuario" required autofocus style="font-size: 20px;">
+            </div>
+            <div class="form-group">
+              <input type="password" [(ngModel)]="user.password" name="password" class="form-control" placeholder="Password" required minlength="8" style="font-size: 20px;">
+              <div *ngIf="!isValidPassword()" class="text-danger">La contraseña debe tener al menos 8 caracteres, una letra mayúscula, un número y un carácter especial.</div>
+            </div>
+  
+            <button class="btn btn-primary btn-block">Sign Up</button>
+          </form>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
